@@ -60,8 +60,8 @@ const Todo = ({ todos }) => {
     )
 }
 
-export async function getServerSideProps(context) {
-    const res = await fetch('https://egs-data.herokuapp.com/api.php')
+export async function getServerSideProps() {
+    const res = await fetch('https://api.trackstats.app/api.php')
     const todos = await res.json()
     console.log("Hi!")
     return {
