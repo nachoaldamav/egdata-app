@@ -33,9 +33,8 @@ const Todo = ({ todos }) => {
             `}
             </style>
 
-            <Navbar/>
 
-            <div className="flex flex-wrap container mx-auto px-4 justify-items-stretch">
+            <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {loading === true && <h1>Loading...</h1>}
                 {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage }) => (
                     <div key={id} className='rounded-md pl-2 pr-2 game_card'>
@@ -45,7 +44,7 @@ const Todo = ({ todos }) => {
                         width={250}
                         height={333}
                         layout='responsive'
-                        className='w-full rounded-md'
+                        className='w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100'
                         />
                     <div className="px-2 py-2">
                         <div className="font-bold text-gray-50 text-base mb-2 game_title">{title}</div>
