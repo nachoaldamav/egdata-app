@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Navbar } from '../components/navbar'
+import AppLayout from '../components/AppLayout'
+import Link from "next/link"
+import {Banner} from "../pages/free-games"
+
 
 let EGS_Url = "https://epicgames.com/store/product/"
 
@@ -8,6 +11,7 @@ const loading = false
 
 const Todo = ({ todos }) => {
     return (
+        <AppLayout>
         <div className="bg-gray-900">
             <Head>
                 <title>Epic Games Data</title>
@@ -36,12 +40,13 @@ const Todo = ({ todos }) => {
             `}
             </style>
 
-
+            <Banner/>
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {loading === true && <h1>Loading...</h1>}
-                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage }) => (
+                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace }) => (
                     <div key={id} id={id} className='rounded-md pl-2 pr-2 game_card'>
-                <a href={productSlug} target="_blank">
+                <Link href={`/product/${id}`} target="">
+                    <a>
                     <Image
                         src={Thumbnail || '/egs_logo.png'}
                         alt={title}
@@ -66,10 +71,12 @@ const Todo = ({ todos }) => {
                         </div>
                     </div>
                     </a>
+                    </Link>
                 </div>
                 ))}
             </div>
         </div>
+        </AppLayout>
     )
 }
 
