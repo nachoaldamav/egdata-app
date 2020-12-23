@@ -18,14 +18,8 @@ export default function Product({ title }) {
     )
 }
 
-export async function getStaticPaths() {
-    return {
-      paths: [{ params: { id: "7015c51a49be4592b5ba3ae2577723c5" } }],
-      fallback: true,
-    }
-  }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { params } = context
     const { id } = params
 
