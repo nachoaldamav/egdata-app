@@ -37,7 +37,7 @@ export class Navbar extends React.Component {
 			<header className="bg-gray-600 sm:flex sm:justify-between sm:px-4 sm:py-3 sm:items-center">
 				<header className="flex items-center justify-between px-4 py-3 sm:p-0">
 					<div>
-						<img className="h-8" src="/img/logo-inverted.svg" alt="workcation" />
+						<img className="h-8" src="/vercel.svg" alt="workcation" />
 					</div>
 					<div className="sm:hidden">
 						<button
@@ -57,19 +57,19 @@ export class Navbar extends React.Component {
 						href="#"
 						className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-800 sm:mt-0 sm:ml-2"
 					>
-						List your property
+						Why
 					</a>
 					<a
 						href="#"
 						className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-800 sm:mt-0 sm:ml-2"
 					>
-						Trips
+						Are you
 					</a>
 					<a
 						href="#"
 						className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-800 sm:mt-0 sm:ml-2"
 					>
-						Messages
+						Seeing this
 					</a>
 				</div>
 			</header>

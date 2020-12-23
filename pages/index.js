@@ -4,11 +4,13 @@ import { Navbar } from '../components/navbar'
 
 let EGS_Url = "https://epicgames.com/store/product/"
 
+const loading = false
+
 const Todo = ({ todos }) => {
     return (
         <div className="bg-gray-900">
             <Head>
-                <title>Todo Page</title>
+                <title>Epic Games Data</title>
             </Head>
 
             <style jsx>{`
@@ -33,7 +35,8 @@ const Todo = ({ todos }) => {
 
             <Navbar/>
 
-            <div className="flex flex-wrap container px-4">
+            <div className="flex flex-wrap container mx-auto px-4 justify-items-stretch">
+                {loading === true && <h1>Loading...</h1>}
                 {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice }) => (
                     <div key={id} className='rounded-md pl-2 pr-2 game_card'>
                     <Image
@@ -41,6 +44,7 @@ const Todo = ({ todos }) => {
                         alt={title}
                         width={250}
                         height={333}
+                        layout='responsive'
                         className='w-full rounded-md'
                         />
                     <div className="px-2 py-2">
@@ -65,7 +69,6 @@ const Todo = ({ todos }) => {
                 </div>
                 ))}
             </div>
-
         </div>
     )
 }
@@ -73,6 +76,11 @@ const Todo = ({ todos }) => {
 export async function getServerSideProps() {
     const res = await fetch('https://api.trackstats.app/api.php')
     const todos = await res.json()
+    if (!res) {
+        return {
+          loading: true,
+        }
+      }
     console.log("Hi!")
     return {
         props: {
