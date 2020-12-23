@@ -25,6 +25,9 @@ const Todo = ({ todos }) => {
                     display: block;
                     width: 230px;
                 }
+                .game_card {
+                    padding-top: 15px;
+                }
             `}
             </style>
 
@@ -32,7 +35,7 @@ const Todo = ({ todos }) => {
 
             <div className="flex flex-wrap container px-4">
                 {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice }) => (
-                    <div key={id} className='rounded-md pl-2 pr-2'>
+                    <div key={id} className='rounded-md pl-2 pr-2 game_card'>
                     <Image
                         src={Thumbnail || '/egs_logo.png'}
                         alt={title}
