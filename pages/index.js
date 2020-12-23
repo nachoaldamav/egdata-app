@@ -31,7 +31,7 @@ const Todo = ({ todos }) => {
             <Navbar/>
 
             <div className="flex flex-wrap container px-4">
-                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller }) => (
+                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice }) => (
                     <div key={id} className='rounded-md pl-2 pr-2'>
                     <Image
                         src={Thumbnail || '/egs_logo.png'}
@@ -43,14 +43,21 @@ const Todo = ({ todos }) => {
                     <div className="px-2 py-2">
                         <div className="font-bold text-gray-50 text-base mb-2 game_title">{title}</div>
                         <div className="font-bold text-gray-200 text-sm mb-2 game_title">{seller}</div>
-                        <p className="text-gray-200 text-base">
-                            {currentPrice}
-                        </p>
+                        <div className="text-gray-200 text-base">
+                        {discount > 0 &&
+                            <div className="text-gray-500 text-base inline line-through font-sans">
+                                {originalPrice}
+                            </div>
+                        }
+                            <div className="text-gray-100 text-base inline"> {currentPrice}</div>
+                        </div>
                     </div>
-                    <div className="px-6 py-4">
-                        <a target="_blank" href={productSlug}>
-                            <button className="btn btn-blue btn-blue:hover">Epic Games Store</button>
-                        </a>
+                    <div className="mt-8 lex lg:mt-0 lg:flex-shrink-0">
+                        <div className="ml-3 inline-flex rounded-md shadow">
+                            <a href={productSlug} className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+                            Epic Games
+                            </a>
+                        </div>
                     </div>
                 </div>
                 ))}
