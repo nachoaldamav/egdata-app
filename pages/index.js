@@ -30,6 +30,9 @@ const Todo = ({ todos }) => {
                 .game_card {
                     padding-top: 15px;
                 }
+                #engines {
+                    visibility: hidden!important;
+                }
             `}
             </style>
 
@@ -37,13 +40,14 @@ const Todo = ({ todos }) => {
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {loading === true && <h1>Loading...</h1>}
                 {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage }) => (
-                    <div key={id} className='rounded-md pl-2 pr-2 game_card'>
+                    <div key={id} id={id} className='rounded-md pl-2 pr-2 game_card'>
                     <Image
                         src={Thumbnail || '/egs_logo.png'}
                         alt={title}
                         width={250}
                         height={333}
                         layout='responsive'
+                        id={id}
                         className='w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100'
                         />
                     <div className="px-2 py-2">
@@ -62,7 +66,7 @@ const Todo = ({ todos }) => {
                     </div>
                     <div className="mt-8 lex lg:mt-0 lg:flex-shrink-0">
                         <div className="ml-3 inline-flex rounded-md shadow">
-                            <a href={productSlug} className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
+                            <a href={productSlug} target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50">
                             Epic Games
                             </a>
                         </div>
