@@ -37,7 +37,7 @@ const Todo = ({ todos }) => {
 
             <div className="flex flex-wrap container mx-auto px-4 justify-items-stretch">
                 {loading === true && <h1>Loading...</h1>}
-                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice }) => (
+                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage }) => (
                     <div key={id} className='rounded-md pl-2 pr-2 game_card'>
                     <Image
                         src={Thumbnail || '/egs_logo.png'}
@@ -52,8 +52,10 @@ const Todo = ({ todos }) => {
                         <div className="font-bold text-gray-200 text-sm mb-2 game_title">{seller}</div>
                         <div className="text-gray-200 text-base">
                         {discount > 0 &&
-                            <div className="text-gray-500 text-base inline line-through font-sans">
-                                {originalPrice}
+                            <div className="text-gray-500 text-base inline font-sans">
+                                <span className="tracking-wider leading-relaxed text-xs p-1 bg-blue-500 font-medium rounded-md no-underline text-white">-{discountPercentage}%</span>
+                                <div className="inline"> </div>
+                                <div className="line-through inline">{originalPrice}</div>
                             </div>
                         }
                             <div className="text-gray-100 text-base inline"> {currentPrice}</div>
