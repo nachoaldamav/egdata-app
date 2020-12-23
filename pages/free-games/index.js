@@ -40,7 +40,7 @@ export default function freeGames({ title }) {
     )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { params } = context
     const { id } = params
 
