@@ -31,9 +31,9 @@ export default function freeGames({ data }) {
 
   return(
     <AppLayout>
-      <div className="flex flex-wrap container mx-auto px-11">
-      <p className="text-5xl text-white text-left">Free Games</p>
-        <div className="flex flex-nowrap">
+      <div className="flex flex-wrap container mx-auto px-20">
+      <p className="text-5xl text-white text-left py-5">Free Games</p>
+        <div className="flex flex-nowrap py-8">
           {data.map(({ title, id, VaultClosed, DieselStoreFrontWide, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug, endDate }) => (
             <div>
             {endDate != "" &&
