@@ -27,56 +27,45 @@ export function Banner() {
     )
 }
 
-export default function freeGames({ title }) {
+export default function freeGames({ data }) {
 
-    const router = useRouter()
+  return(
+    <AppLayout>
+      <div className="flex flex-wrap container mx-auto px-11">
+      <p className="text-5xl text-white text-left">Free Games</p>
+        <div className="flex flex-nowrap">
+          {data.map(({ title, id, VaultClosed, DieselStoreFrontWide, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug, endDate }) => (
+            <div>
+            {endDate != "" &&
+            <div className="rounded-md pl-2 pr-2">
+              <Image
+                src={DieselStoreFrontWide || VaultClosed || '/egs_logo.png' }
+                alt={title}
+                width={670}
+                height={376}
+                className='w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100' />
+              <div>
 
-    if (router.isFallback) return <h1>Cargando...</h1>
-
-    return (
-        <AppLayout>
-            <h1>Free Games Page: {title}</h1>
-        </AppLayout>
-    )
+              </div>
+              <div className="px-2 py-2">
+                  <div className="font-bold text-gray-50 text-base mb-2 game_title">{title}</div>
+                  <div className="text-gray-100 text-base inline"> {currentPrice}</div>
+              </div>
+            </div>
+            }
+            </div>
+          ))}
+        </div>
+      </div>
+    </AppLayout>
+  )
 }
 
-export async function getServerSideProps(context) {
-    const { params } = context
-    const { id } = params
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://api.trackstats.app/free-api.php`)
+  const data = await res.json()
 
-    const res = await axios.post('https://www.epicgames.com/graphql', {
-        "query":"query catalogQuery($productNamespace: String!, $offerId: String!, $locale: String, $country: String!, $includeSubItems: Boolean!) {\n  Catalog {\n    catalogOffer(namespace: $productNamespace, id: $offerId, locale: $locale) {\n      title\n      id\n      namespace\n      description\n      effectiveDate\n      expiryDate\n      isCodeRedemptionOnly\n      keyImages {\n        type\n        url\n      }\n      seller {\n        id\n        name\n      }\n      productSlug\n      urlSlug\n      url\n      tags {\n        id\n      }\n      items {\n        id\n        namespace\n      }\n      customAttributes {\n        key\n        value\n      }\n      categories {\n        path\n      }\n      price(country: $country) {\n        totalPrice {\n          discountPrice\n          originalPrice\n          voucherDiscount\n          discount\n          currencyCode\n          currencyInfo {\n            decimals\n          }\n          fmtPrice(locale: $locale) {\n            originalPrice\n            discountPrice\n            intermediatePrice\n          }\n        }\n        lineOffers {\n          appliedRules {\n            id\n            endDate\n            discountSetting {\n              discountType\n            }\n          }\n        }\n      }\n    }\n    offerSubItems(namespace: $productNamespace, id: $offerId) @include(if: $includeSubItems) {\n      namespace\n      id\n      releaseInfo {\n        appId\n        platform\n      }\n    }\n  }\n}\n",
-        "variables":{
-           "productNamespace":"moose",
-           "offerId":{id},
-           "locale":"en-US",
-           "country":"ES",
-           "lineOffers":[
-              {
-                 "offerId":{id},
-                 "quantity":1
-              }
-           ],
-           "calculateTax":false,
-           "includeSubItems":true
-        }
-     })
-     .then(function (request) {
-        console.log(request);
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-    const data = await res.data
-    console.log(JSON.stringify(data.data.Catalog.catalogOffer.title))
-  
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-  
-    return {
-      props: {title: data.data.Catalog.catalogOffer.title} // will be passed to the page component as props
-    }
-  }
+  // Pass data to the page via props
+  return { props: { data } }
+}

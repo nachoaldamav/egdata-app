@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 export class Navbar extends React.Component {
@@ -37,7 +38,11 @@ export class Navbar extends React.Component {
 			<header className="bg-gray-600 sm:flex sm:justify-between sm:px-4 sm:py-3 sm:items-center">
 				<header className="flex items-center justify-between px-4 py-3 sm:p-0">
 					<div>
-						<img className="h-8" src="/vercel.svg" alt="workcation" />
+						<Link href="/">
+							<a>
+								<img className="h-8" src="/vercel.svg" alt="logo" />
+							</a>
+						</Link>
 					</div>
 					<div className="sm:hidden">
 						<button

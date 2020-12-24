@@ -3,10 +3,10 @@ import { Navbar } from '../navbar'
 export default function AppLayout ({children}) {
     return (
       <>
-        <div>
+        <div className="bg-gray-900 h-screen">
           <main>
               <Navbar/>
-            {children}
+                {children}
           </main>
         </div>
       </>

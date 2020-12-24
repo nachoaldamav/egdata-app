@@ -11,10 +11,13 @@
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "autoprefixer": "^10.1.0",
     "axios": "^0.21.1",
+    "firebase": "^8.2.1",
+    "localforage": "^1.9.0",
     "next": "10.0.3",
     "postcss": "^8.2.1",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "sharp": "^0.27.0"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^3.1.3",

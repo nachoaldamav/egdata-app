@@ -43,9 +43,9 @@ const Todo = ({ todos }) => {
             <Banner/>
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {loading === true && <h1>Loading...</h1>}
-                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace }) => (
+                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug }) => (
                     <div key={id} id={id} className='rounded-md pl-2 pr-2 game_card'>
-                <Link href={`/product/${id}`} target="">
+                <Link href={`/product/${slug}`} target="">
                     <a>
                     <Image
                         src={Thumbnail || '/egs_logo.png'}
