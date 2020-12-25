@@ -8,13 +8,19 @@ import useSWR from 'swr'
 export default function Product(context) {
     const { data, error } = useSWR('https://api.trackstats.app/game.php', fetch)
 
-    if (error) return <div>failed to load</div>
-    if (!data) return <div>loading...</div>
+    if (error) return (
+        <AppLayout><p className="text-5xl text-white text-left py-5">Failed to load</p></AppLayout>
+    )
+    if (!data) return (
+        <AppLayout><p className="text-5xl text-white text-left py-5">Loading...</p></AppLayout>
+    )
 
     const router = useRouter()
     const { id } = router.query
 
-        if (router.isFallback) return <h1>Cargando...</h1>
+        if (router.isFallback) return (
+            <AppLayout><p className="text-5xl text-white text-left py-5">Loading...</p></AppLayout>
+        )
 
         return (
             <AppLayout>
