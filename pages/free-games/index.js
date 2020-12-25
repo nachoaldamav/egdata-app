@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import AppLayout from '../../components/AppLayout'
 import Link from "next/link"
-import axios from "axios"
 import { useRouter } from 'next/router'
 
 export function Banner() {
@@ -38,7 +37,7 @@ export default function freeGames({ data }) {
       <p className="text-5xl text-white text-left py-5">Free Games</p>
         <div className="flex flex-nowrap py-8">
           {data.map(({ title, id, VaultClosed, DieselStoreFrontWide, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug, endDate }) => (
-            <div>
+            <div key={id}>
             {endDate != "" &&
             <div className="rounded-md pl-2 pr-2">
               <Image
