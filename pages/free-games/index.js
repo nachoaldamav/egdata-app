@@ -31,6 +31,9 @@ export default function freeGames({ data }) {
 
   return(
     <AppLayout>
+      <Head>
+        <title>Epic Games Data | Free Games</title>
+      </Head>
       <div className="flex flex-wrap container mx-auto px-20">
       <p className="text-5xl text-white text-left py-5">Free Games</p>
         <div className="flex flex-nowrap py-8">
