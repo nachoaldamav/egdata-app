@@ -17,6 +17,9 @@ export default function Game({ id }) {
 
     return (
         <AppLayout>
+            <Head>
+                <title>Epic Games Data | {game.title}</title>
+            </Head>
             <p className="text-5xl text-white text-left py-5">{game.title}</p>
         </AppLayout>
     )
