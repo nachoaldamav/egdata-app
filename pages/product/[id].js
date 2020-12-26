@@ -58,12 +58,14 @@ export default function Game({ id }) {
                     </Link>
                 </div>
                 {game.available === "true" &&
+                    <div className="container max-w-2xl py-10">
                     <DiscussionEmbed
                         shortname={disqusShortname}
                         config={disqusConfig}
                         width={420}
                         height={320}
                     />
+                    </div>
                 }
             </div>
         </AppLayout>
