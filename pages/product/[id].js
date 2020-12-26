@@ -4,7 +4,8 @@ import AppLayout from '../../components/AppLayout'
 import Link from "next/link"
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
-import Skeleton from '@material-ui/lab/Skeleton';
+import Skeleton from '@material-ui/lab/Skeleton'
+import {DiscussionEmbed} from 'disqus-react'
 
 export default function Game({ id }) {
 
@@ -21,6 +22,13 @@ export default function Game({ id }) {
     if (isError) return (
         <AppLayout><p className="text-5xl text-white text-left py-5">Failed to load</p></AppLayout>
     )
+
+    const disqusShortname = "egs-data"
+    const disqusConfig = {
+        url: game.website_url, // url
+        identifier: game.id, // Single post id
+        title: game.title // Single post title
+    }
 
     return (
         <AppLayout>
@@ -49,6 +57,12 @@ export default function Game({ id }) {
                         </a>
                     </Link>
                 </div>
+                <DiscussionEmbed
+                shortname={disqusShortname}
+                config={disqusConfig}
+                width={420}
+                height={320}
+            />
             </div>
         </AppLayout>
     )
