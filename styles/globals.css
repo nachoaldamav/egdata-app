@@ -19,3 +19,7 @@ a {
 html > ul {
   list-style: disc!important;
 }
+
+.game_description p span {
+  display: block;
+}

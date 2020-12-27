@@ -16,8 +16,8 @@ export default function Game({ id }) {
     const { game, isLoading, isError } = useGame(id)
     if (isLoading) return (
         <AppLayout>
-            <div className="container mx-auto px-6 py-2">
-                <Skeleton variant="rect" width="75%" height={630} animation="wave" />
+            <div className="container mx-auto px-6 py-2 content-center items-center">
+                <Skeleton className="mx-auto" variant="rect" width="75%" height={630} animation="wave" />
                 <br />
                 <Skeleton variant="text" width="25%" animation="wave" />
             </div>
@@ -37,21 +37,21 @@ export default function Game({ id }) {
     return (
         <AppLayout>
             <style jsx>{`
-                .game_description img {
-
-                }
+                
             `}
             </style>
             <Head>
                 <title>{game.title} | Epic Games Data</title>
             </Head>
             <div className="container mx-auto px-6 py-2 content-center items-center">
-                <Image
-                 src={game.DieselStoreFrontWide || game.OfferImageWide || <Skeleton />}
-                 width={1100}
-                 height={630}
-                 className="object-center place-content-center md:px-16"
-                 />
+                <div className="hero container max-w-screen-lg mx-auto">
+                    <Image
+                    src={game.DieselStoreFrontWide || game.OfferImageWide || <Skeleton />}
+                    width={1100}
+                    height={630}
+                    className="mx-auto"
+                    />
+                 </div>
                 <p className="text-5xl text-white text-left py-5">{game.title || <Skeleton />}</p>
                 <div className="inline-flex rounded-md shadow">
                     <Link href={game.productSlug}>
@@ -69,7 +69,7 @@ export default function Game({ id }) {
                 </div>
                 <div className="container mx-auto md:px-16 text-base text-white text-left py-5 game_description">
                     <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game._title} />
-                    <ReactMarkdown className="list-disc" plugins={[gfm]} children={game._description}/>
+                    <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
                 </div>
                 {game.available === "true" &&
                     <div className="container max-w-2xl py-10">
