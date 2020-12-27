@@ -25,6 +25,7 @@
     "next": "10.0.3",
     "nprogress": "^0.2.0",
     "postcss": "^8.2.1",
+    "qs": "^6.9.4",
     "react": "17.0.1",
     "react-chartjs-2": "^2.11.1",
     "react-dom": "17.0.1",
