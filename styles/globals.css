@@ -15,3 +15,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+html > ul {
+  list-style: disc!important;
+}

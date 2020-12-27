@@ -6,8 +6,12 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Skeleton from '@material-ui/lab/Skeleton'
 import {DiscussionEmbed} from 'disqus-react'
+import ReactMarkdown from 'react-markdown'
+import gfm from 'remark-gfm'
+
 
 export default function Game({ id }) {
+
 
     const { game, isLoading, isError } = useGame(id)
     if (isLoading) return (
@@ -32,6 +36,12 @@ export default function Game({ id }) {
 
     return (
         <AppLayout>
+            <style jsx>{`
+                .game_description img {
+
+                }
+            `}
+            </style>
             <Head>
                 <title>{game.title} | Epic Games Data</title>
             </Head>
@@ -40,7 +50,7 @@ export default function Game({ id }) {
                  src={game.DieselStoreFrontWide || game.OfferImageWide || <Skeleton />}
                  width={1100}
                  height={630}
-                 className="object-center place-content-center"
+                 className="object-center place-content-center md:px-16"
                  />
                 <p className="text-5xl text-white text-left py-5">{game.title || <Skeleton />}</p>
                 <div className="inline-flex rounded-md shadow">
@@ -56,6 +66,10 @@ export default function Game({ id }) {
                             Direct Buy
                         </a>
                     </Link>
+                </div>
+                <div className="container mx-auto md:px-16 text-base text-white text-left py-5 game_description">
+                    <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game._title} />
+                    <ReactMarkdown className="list-disc" plugins={[gfm]} children={game._description}/>
                 </div>
                 {game.available === "true" &&
                     <div className="container max-w-2xl py-10">
