@@ -44,6 +44,10 @@ export default function Game({ id }) {
                 <title>{game.title} | Epic Games Data</title>
             </Head>
             <div className="container mx-auto px-6 py-2 content-center items-center">
+                <div className="grid grid-cols-2 py-8"> 
+                    <div className="text-white text-base"><Link href="/"><a className="transition duration-500 ease-in-out opacity-70 transform hover:opacity-100">Return to the store</a></Link> - <strong>{game.title || <Skeleton />}</strong></div>
+                    <div></div>
+                </div>
                 <div className="hero container max-w-screen-lg mx-auto">
                     <Image
                     src={game.DieselStoreFrontWide || game.OfferImageWide || <Skeleton />}
