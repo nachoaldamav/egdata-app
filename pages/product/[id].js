@@ -58,7 +58,7 @@ export default function Game({ id }) {
                 <title>{game.title} | Epic Games Data</title>
             </Head>
             <div className="container mx-auto px-6 py-2 content-center items-center">
-                <div className="grid grid-cols-2 py-8"> 
+                <div className="grid md:grid-cols-2 py-8"> 
                     <div className="text-white text-base"><Link href="/"><a className="transition duration-500 ease-in-out opacity-70 transform hover:opacity-100">Return to the store</a></Link> - <strong>{game.title || <Skeleton />}</strong></div>
                     <div></div>
                 </div>
@@ -71,11 +71,21 @@ export default function Game({ id }) {
                     />
                  </div>
                 
-                <div className="flex flex-wrap">
-                    <div className="px-6 w-3/6">
+                <div className="flex flex-col md:flex-row">
+                    <div className="px-6 md:w-3/6">
                         <p className="text-5xl text-white text-left py-5">{game.title || <Skeleton />}</p>
                     </div>
-                    <div>
+                    <div className="px-6 md:w-3/6 object-right text-right">
+                    <div className="text-gray-200 text-base p-4">
+                        {game.discount > 0 &&
+                                <div className="text-gray-500 text-base font-sans inline">
+                                    <span className="tracking-wider leading-relaxed text-xs p-1 bg-blue-500 font-medium rounded-md no-underline text-white">-{game.discountPercentage}%</span>
+                                    <div className="inline"> </div>
+                                    <div className="line-through inline">{game.originalPrice}</div>
+                                </div>
+                            }
+                                <div className="text-gray-100 text-base inline"> {game.currentPrice}</div>
+                        </div>
                         <div className="inline-flex rounded-md shadow">
                             <Link href={game.productSlug}>
                                 <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
@@ -98,7 +108,7 @@ export default function Game({ id }) {
                     <br/>
                     <hr />
                     <br/>
-                    <div className="grid grid-flow-col auto-cols-2 grid-rows-4 gap-4 py-4">
+                    <div className="grid grid-flow-row grid-cols-2 max-w-4xl mx-auto py-4 gap-4">
                         {galleryImages}
                     </div>
                 </div>
