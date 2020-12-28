@@ -34,6 +34,20 @@ export default function Game({ id }) {
         title: game.title // Single post title
     }
 
+    const galleryImages = game.galleryImages.map((image) =>
+        <div className="">
+            {image != null &&
+            <Image
+                src={image || '/egs_logo.png'}
+                width={1920}
+                height={1080}
+                layout="intrinsic"
+                className=""
+            />
+            }
+        </div>
+    );
+
     return (
         <AppLayout>
             <style jsx>{`
@@ -56,24 +70,37 @@ export default function Game({ id }) {
                     className="mx-auto"
                     />
                  </div>
-                <p className="text-5xl text-white text-left py-5">{game.title || <Skeleton />}</p>
-                <div className="inline-flex rounded-md shadow">
-                    <Link href={game.productSlug}>
-                        <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
-                            Buy now
-                        </a>
-                    </Link>
-                </div>
-                <div className="inline-flex px-2 rounded-md shadow">
-                    <Link href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game._id}#/purchase/verify?_k=mshm8g`}>
-                        <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
-                            Direct Buy
-                        </a>
-                    </Link>
+                
+                <div className="flex flex-wrap">
+                    <div className="px-6 w-3/6">
+                        <p className="text-5xl text-white text-left py-5">{game.title || <Skeleton />}</p>
+                    </div>
+                    <div>
+                        <div className="inline-flex rounded-md shadow">
+                            <Link href={game.productSlug}>
+                                <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
+                                    Buy now
+                                </a>
+                            </Link>
+                        </div>
+                        <div className="inline-flex px-2 rounded-md shadow">
+                            <Link href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game._id}#/purchase/verify?_k=mshm8g`}>
+                                <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
+                                    Direct Buy
+                                </a>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
                 <div className="container mx-auto md:px-16 text-base text-white text-left py-5 game_description">
                     <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game._title} />
                     <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
+                    <br/>
+                    <hr />
+                    <br/>
+                    <div className="grid grid-flow-col auto-cols-2 grid-rows-4 gap-4 py-4">
+                        {galleryImages}
+                    </div>
                 </div>
                 {game.available === "true" &&
                     <div className="container max-w-2xl py-10">
