@@ -5,8 +5,6 @@ import Link from "next/link"
 import {Banner} from "../pages/free-games"
 
 
-let EGS_Url = "https://epicgames.com/store/product/"
-
 const loading = false
 
 const Todo = ({ todos }) => {
@@ -15,6 +13,12 @@ const Todo = ({ todos }) => {
         <div className="bg-gray-900">
             <Head>
                 <title>Epic Games Data</title>
+                <link rel="manifest" href="/manifest.json" />
+                <meta name = "apple-mobile-web-app-capable" content="yes" />
+                <meta name = "apple-mobile-web-app-status-bar-style" content="black" />
+                <meta name = "apple-mobile-web-app-title" content="EGS Data" />
+                <link rel="apple-touch-icon" href="/public/logo-icon-144x144.png" />
+                <link rel="apple-touch-startup-icon" href="/public/logo-icon-144x144.png" />
             </Head>
 
             <style jsx>{`
