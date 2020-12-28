@@ -1,9 +1,3 @@
-html {
-    font-family: sans-serif;
-  }
-  
-
-  
   footer {
     text-align: center;
   }
@@ -34,4 +28,33 @@ html {
   .ais-Hits-item, .ais-InfiniteHits-item, .ais-InfiniteResults-item, .ais-Results-item {
     border: 0px!important;
     box-shadow: 0 2px 5px 0 #e3e5ec00!important;
+    width: 23%!important;
+  }
+
+  .game_title {
+    text-overflow: ellipsis;
+    display: block;
+    width: 230px;
+  }
+
+  @media screen and ( max-width: 500px) {
+    .ais-Hits-list, .ais-InfiniteHits-list, .ais-InfiniteResults-list, .ais-Results-list {
+      flex-direction: column;
+    }
+    .ais-Hits-item, .ais-InfiniteHits-item, .ais-InfiniteResults-item, .ais-Results-item {
+      border: 0px!important;
+      box-shadow: 0 2px 5px 0 #e3e5ec00!important;
+      width: 100%!important;
+  }
+  }
+
+  @media screen and ( max-width: 700px) {
+    .ais-Hits-list, .ais-InfiniteHits-list, .ais-InfiniteResults-list, .ais-Results-list {
+      flex-direction: column;
+    }
+    .ais-Hits-item, .ais-InfiniteHits-item, .ais-InfiniteResults-item, .ais-Results-item {
+      border: 0px!important;
+      box-shadow: 0 2px 5px 0 #e3e5ec00!important;
+      width: 100%!important;
+  }
   }
