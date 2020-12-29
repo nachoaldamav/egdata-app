@@ -6,6 +6,7 @@ import qs from 'qs'
 import algoliasearch from 'algoliasearch/lite'
 import { findResultsState } from 'react-instantsearch-dom/server'
 import { App } from '../../components'
+import Head from 'next/head'
 
 const searchClient = algoliasearch(
   '0X90LHIM7C',
