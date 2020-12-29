@@ -80,6 +80,9 @@ class Page extends React.Component {
   render() {
     return (
       <div>
+        <Head>
+          <title>Search games | Epic Games Data</title>
+        </Head>
         <App
           {...DEFAULT_PROPS}
           searchState={this.state.searchState}
