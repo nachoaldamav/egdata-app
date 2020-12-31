@@ -86,6 +86,7 @@ export default function Game({ id }) {
                             }
                                 <div className="text-gray-100 text-base inline"> {game.currentPrice}</div>
                         </div>
+
                         <div className="inline-flex rounded-md shadow">
                             <Link href={game.productSlug}>
                                 <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
@@ -93,6 +94,7 @@ export default function Game({ id }) {
                                 </a>
                             </Link>
                         </div>
+                        {game.currentPrice != "Coming Soon..." &&
                         <div className="inline-flex px-2 rounded-md shadow">
                             <Link href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game._id}#/purchase/verify?_k=mshm8g`}>
                                 <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
@@ -100,6 +102,7 @@ export default function Game({ id }) {
                                 </a>
                             </Link>
                         </div>
+                        }
                     </div>
                 </div>
                 <div className="container mx-auto md:px-16 text-base text-white text-left py-5 game_description">
