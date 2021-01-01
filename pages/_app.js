@@ -4,6 +4,7 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import Router  from 'next/router'
 import Head from 'next/head'
+import { Navbar } from '../components/navbar'
 
 //Binding events.
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#2A2A2A" />
     </Head>
+    <Navbar/>
     <Component {...pageProps} />
     </>
   )
