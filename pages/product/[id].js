@@ -8,8 +8,7 @@ import Skeleton from '@material-ui/lab/Skeleton'
 import {DiscussionEmbed} from 'disqus-react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
-
-
+import Countdown from 'react-countdown';
 
 export default function Game({ id }) {
 
@@ -48,6 +47,16 @@ export default function Game({ id }) {
             }
         </div>
     );
+
+    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+          // Render a completed state
+          return "";
+        } else {
+          // Render a countdown
+          return <span>{days} {days != 1 ? "days" : "day"} {hours}:{minutes}:{seconds}</span>;
+        }
+      };
 
     return (
         <AppLayout>
@@ -115,7 +124,7 @@ export default function Game({ id }) {
                 </div>
                 <div className="container mx-auto md:px-16 text-base text-white text-left py-5">
                     <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game._title} />
-                    <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
+                        <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
                     <br/>
                     <hr />
                     <br/>
@@ -131,6 +140,14 @@ export default function Game({ id }) {
                         width={420}
                         height={320}
                     />
+                    </div>
+                }
+                {game.available === "false" &&
+                    <div className="container max-w-2xl py-5 text-white">
+                        <p className="text-white text-xl"><strong>This game has not been released yet, </strong> reviews will open 1 day after the release</p>
+                        <div className="text-center text-2xl">
+                        <Countdown date={game.releaseDate} renderer={renderer} />
+                        </div>
                     </div>
                 }
             </div>
