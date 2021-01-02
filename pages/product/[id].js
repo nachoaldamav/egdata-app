@@ -81,7 +81,7 @@ export default function Game({ id }) {
                 </div>
                 <div className="hero container max-w-screen-lg mx-auto">
                     <Image
-                    src={game.DieselStoreFrontWide || game.OfferImageWide || <Skeleton />}
+                    src={game.DieselStoreFrontWide || game.OfferImageWide || '/img/egs-placeholder.png'}
                     width={1100}
                     height={630}
                     className="mx-auto"
