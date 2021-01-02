@@ -10,6 +10,7 @@ import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 
 
+
 export default function Game({ id }) {
 
 
@@ -105,7 +106,7 @@ export default function Game({ id }) {
                         }
                     </div>
                 </div>
-                <div className="container mx-auto md:px-16 text-base text-white text-left py-5 game_description">
+                <div className="container mx-auto md:px-16 text-base text-white text-left py-5">
                     <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game._title} />
                     <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
                     <br/>

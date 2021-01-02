@@ -34,6 +34,7 @@
     "react-instantsearch-dom": "^6.8.2",
     "react-loading-skeleton": "^2.1.1",
     "react-markdown": "^5.0.3",
+    "react-truncate-markup": "^5.0.1",
     "remark-gfm": "^1.0.0",
     "sharp": "^0.27.0",
     "swr": "^0.3.11"
