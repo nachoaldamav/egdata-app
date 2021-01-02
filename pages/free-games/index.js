@@ -3,7 +3,7 @@ import Image from 'next/image'
 import AppLayout from '../../components/AppLayout'
 import Link from "next/link"
 import React, { useEffect } from "react";
-import { askNotification } from '../firebaseConfig'
+import { askNotification } from '../../firebase/firebaseConfig'
 
 export function Banner() {
     return (
