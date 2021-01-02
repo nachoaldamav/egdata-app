@@ -5,6 +5,7 @@ import 'nprogress/nprogress.css'
 import Router  from 'next/router'
 import Head from 'next/head'
 import { Navbar } from '../components/navbar'
+import firebase from '../firebase/firebaseConfig'
 
 //Binding events.
 Router.events.on('routeChangeStart', () => NProgress.start())
