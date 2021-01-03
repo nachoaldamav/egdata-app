@@ -12,7 +12,6 @@ import Countdown from 'react-countdown';
 
 export default function Game({ id }) {
 
-
     const { game, isLoading, isError } = useGame(id)
     if (isLoading) return (
         <AppLayout>

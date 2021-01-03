@@ -3,11 +3,27 @@ import Image from 'next/image'
 import AppLayout from '../components/AppLayout'
 import Link from "next/link"
 import {Banner} from "../pages/free-games"
+import useSWR from 'swr'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 
 const loading = false
 
-const Todo = ({ todos }) => {
+export default function Game({ id }) {
+    const { api, isLoading, isError } = useApi(id)
+    if (isLoading) return (
+        <AppLayout>
+            <div className="container mx-auto px-6 py-2 content-center items-center">
+                <Skeleton className="mx-auto" variant="rect" width="75%" height={630} animation="wave" />
+                <br />
+                <Skeleton variant="text" width="25%" animation="wave" />
+            </div>
+        </AppLayout>
+    )
+    if (isError) return (
+        <AppLayout><p className="text-5xl text-white text-left py-5">Failed to load</p></AppLayout>
+    )
+
     return (
         <AppLayout>
         <div className="bg-gray-900">
@@ -47,7 +63,7 @@ const Todo = ({ todos }) => {
             <Banner/>
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {loading === true && <h1>Loading...</h1>}
-                {todos.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug }) => (
+                {api.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug }) => (
                     <div key={id} id={id} className='rounded-md pl-2 pr-2 game_card'>
                     <Link href={`/product/${slug}`} target="">
                         <a>
@@ -84,20 +100,13 @@ const Todo = ({ todos }) => {
     )
 }
 
-export async function getServerSideProps() {
-    const res = await fetch('https://api.trackstats.app/api.php')
-    const todos = await res.json()
-    if (!res) {
-        return {
-          loading: true,
-        }
-      }
-    console.log("Hi!")
-    return {
-        props: {
-            todos
-        },
-    }
-}
+function useApi (context) {
 
-export default Todo
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+    const { data, error } = useSWR(`https://api.trackstats.app/api.php`, fetcher)
+    return {
+      api: data,
+      isLoading: !error && !data,
+      isError: error
+    }
+  }
