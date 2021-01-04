@@ -9,6 +9,7 @@ import {DiscussionEmbed} from 'disqus-react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import Countdown from 'react-countdown'
+import { NextSeo } from 'next-seo'
 
 export default function Game({ id, data }) {
 
@@ -83,6 +84,29 @@ export default function Game({ id, data }) {
                 <meta name="twitter:image" content={data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png'} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
+            <NextSeo  
+                title={`${data.title} | Epic Games Data`}
+                description={data._title}
+                canonical={`https://egdata.app/product/${data.slug}`}
+                openGraph={{
+                    title: data.title,
+                    description: data._title,
+                    images: [
+                    {
+                        url: data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png',
+                        width: 800,
+                        height: 600,
+                        alt: data.title,
+                    },
+                    ],
+                    site_name: 'EGData',
+                }}
+                twitter={{
+                    site: '@EpicGamesData',
+                    cardType: 'summary_large_image',
+                }}
+            />
+
             <div className="container mx-auto px-6 py-2 content-center items-center">
                 <div className="grid md:grid-cols-2 py-8 sub_menu"> 
                     <div className="text-white text-base"><Link href="/"><a className="transition duration-500 ease-in-out opacity-70 transform hover:opacity-100">Return to the store</a></Link> - <strong>{game.title || <Skeleton />}</strong></div>
