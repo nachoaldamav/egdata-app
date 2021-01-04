@@ -65,7 +65,7 @@ export default function Game({ id }) {
                 {loading === true && <h1>Loading...</h1>}
                 {api.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug }) => (
                     <div key={id} id={id} className='rounded-md pl-2 pr-2 game_card'>
-                    <Link href={`/product/${slug}`} target="">
+                    <Link href="/product/[id]" as={`/product/${slug}`} >
                         <a>
                         <Image
                             src={Thumbnail || '/egs_logo.png'}
