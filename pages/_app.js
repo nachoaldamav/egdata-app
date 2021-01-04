@@ -18,6 +18,9 @@ function MyApp({ Component, pageProps }) {
     <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="https://egdata.app/img/egs-placeholder" />
+        <title>Epic Games Data</title>
         <link rel="manifest" href="/manifest.json" />
         <link
           href="/icons/favicon-16x16.png"
