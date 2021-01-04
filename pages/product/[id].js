@@ -11,7 +11,7 @@ import gfm from 'remark-gfm'
 import Countdown from 'react-countdown'
 import { NextSeo } from 'next-seo'
 
-export default function Game({ id, data }) {
+export default function Game({ id, metadata }) {
 
     const { game, isLoading, isError } = useGame(id)
     if (isLoading) return (
@@ -72,31 +72,31 @@ export default function Game({ id, data }) {
             `}
             </style>
             <Head>
-                <title>{data.title} | Epic Games Data</title>
+                <title>{metadata.title} | Epic Games Data</title>
 
-                <meta property="og:title" content={`${data.title} | Epic Games Data`} />
-                <meta property="og:description" content={data._title} />
-                <meta property="og:image" content={data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png'} />
-                <meta property="og:url" content={`https://egdata.app/product/${data.slug}`} />
+                <meta property="og:title" content={`${metadata.title} | Epic Games Data`} />
+                <meta property="og:description" content={metadata._title} />
+                <meta property="og:image" content={metadata.DieselStoreFrontWide || metadata.OfferImageWide || '/img/egs-placeholder.png'} />
+                <meta property="og:url" content={`https://egdata.app/product/${metadata.slug}`} />
 
-                <meta name="twitter:title" content={`${data.title} | Epic Games Data`} />
-                <meta name="twitter:description" content={data._title} />
-                <meta name="twitter:image" content={data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png'} />
+                <meta name="twitter:title" content={`${metadata.title} | Epic Games Data`} />
+                <meta name="twitter:description" content={metadata._title} />
+                <meta name="twitter:image" content={metadata.DieselStoreFrontWide || metadata.OfferImageWide || '/img/egs-placeholder.png'} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <NextSeo  
-                title={`${data.title} | Epic Games Data`}
-                description={data._title}
-                canonical={`https://egdata.app/product/${data.slug}`}
+                title={`${metadata.title} | Epic Games Data`}
+                description={metadata._title}
+                canonical={`https://egdata.app/product/${metadata.slug}`}
                 openGraph={{
-                    title: data.title,
-                    description: data._title,
+                    title: metadata.title,
+                    description: metadata._title,
                     images: [
                     {
-                        url: data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png',
+                        url: metadata.DieselStoreFrontWide || metadata.OfferImageWide || '/img/egs-placeholder.png',
                         width: 800,
                         height: 600,
-                        alt: data.title,
+                        alt: metadata.title,
                     },
                     ],
                     site_name: 'EGData',
@@ -198,6 +198,24 @@ export async function getStaticPaths() {
       }
 }
 
+export async function getStaticProps({ params }) {
+    const res = await fetch(`https://api.egdata.app/game.php?title=${params.id}`)
+    const metadata = await res.json()
+  
+    if (!metadata) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
+  
+    return {
+      props: { metadata },
+    }
+  }
+
 function useGame (context) {
     const router = useRouter()
     const { id } = router.query
@@ -208,23 +226,5 @@ function useGame (context) {
       game: data,
       isLoading: !error && !data,
       isError: error
-    }
-  }
-
-  export async function getStaticProps({ params }) {
-    const res = await fetch(`https://api.egdata.app/game.php?title=${params.id}`)
-    const data = await res.json()
-  
-    if (!data) {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
-      }
-    }
-  
-    return {
-      props: { data },
     }
   }
