@@ -40,7 +40,10 @@ export class Navbar extends React.Component {
 					<div>
 						<Link href="/">
 							<a>
-								<img className="h-8" src="/vercel.svg" alt="logo" />
+								<div>
+									<img className="h-16 inline-block" src="/EG_data_mono.png" alt="logo" />
+									<span className="inline-block text-xl text-white font-bold subpixel-antialiased">Epic Games Data</span>
+								</div>
 							</a>
 						</Link>
 					</div>

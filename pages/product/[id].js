@@ -8,7 +8,7 @@ import Skeleton from '@material-ui/lab/Skeleton'
 import {DiscussionEmbed} from 'disqus-react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
-import Countdown from 'react-countdown';
+import Countdown from 'react-countdown'
 
 export default function Game({ id }) {
 
