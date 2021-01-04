@@ -10,7 +10,7 @@ import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import Countdown from 'react-countdown'
 
-export default function Game({ id }) {
+export default function Game({ id, data }) {
 
     const { game, isLoading, isError } = useGame(id)
     if (isLoading) return (
@@ -71,16 +71,16 @@ export default function Game({ id }) {
             `}
             </style>
             <Head>
-                <title>{game.title} | Epic Games Data</title>
+                <title>{data.title} | Epic Games Data</title>
 
-                <meta property="og:title" content={`${game.title} | Epic Games Data`} />
-                <meta property="og:description" content={game._title} />
-                <meta property="og:image" content={game.DieselStoreFrontWide || game.OfferImageWide || '/img/egs-placeholder.png'} />
-                <meta property="og:url" content={`https://egdata.app/product/${game.slug}`} />
+                <meta property="og:title" content={`${data.title} | Epic Games Data`} />
+                <meta property="og:description" content={data._title} />
+                <meta property="og:image" content={data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png'} />
+                <meta property="og:url" content={`https://egdata.app/product/${data.slug}`} />
 
-                <meta name="twitter:title" content={`${game.title} | Epic Games Data`} />
-                <meta name="twitter:description" content={game._title} />
-                <meta name="twitter:image" content={game.DieselStoreFrontWide || game.OfferImageWide || '/img/egs-placeholder.png'} />
+                <meta name="twitter:title" content={`${data.title} | Epic Games Data`} />
+                <meta name="twitter:description" content={data._title} />
+                <meta name="twitter:image" content={data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png'} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <div className="container mx-auto px-6 py-2 content-center items-center">
@@ -164,6 +164,16 @@ export default function Game({ id }) {
     )
 }
 
+export async function getStaticPaths() {
+    return {
+        paths: [
+          { params: { id: 'oddworld-soulstorm' } },
+          { params: { id: '2' } }
+        ],
+        fallback: true
+      }
+}
+
 function useGame (context) {
     const router = useRouter()
     const { id } = router.query
@@ -174,5 +184,23 @@ function useGame (context) {
       game: data,
       isLoading: !error && !data,
       isError: error
+    }
+  }
+
+  export async function getStaticProps({ params }) {
+    const res = await fetch(`https://api.egdata.app/game.php?title=${params.id}`)
+    const data = await res.json()
+  
+    if (!data) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
+  
+    return {
+      props: { data },
     }
   }
