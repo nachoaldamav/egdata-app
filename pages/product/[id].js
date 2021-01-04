@@ -73,14 +73,14 @@ export default function Game({ id, data }) {
             <Head>
                 <title>{data.title} | Epic Games Data</title>
 
-                <meta property="og:title" content={`${data.title} | Epic Games Data`} />
+                <meta property="og:title" content="Epic Games Data" />
                 <meta property="og:description" content={data._title} />
                 <meta property="og:image" content={data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png'} />
                 <meta property="og:url" content={`https://egdata.app/product/${data.slug}`} />
 
-                <meta name="twitter:title" content={`${data.title} | Epic Games Data`} />
-                <meta name="twitter:description" content={data._title} />
-                <meta name="twitter:image" content={data.DieselStoreFrontWide || data.OfferImageWide || '/img/egs-placeholder.png'} />
+                <meta name="twitter:title" content="Epic Games Data" />
+                <meta name="twitter:description" content="Epic Games Data" />
+                <meta name="twitter:image" content='/img/egs-placeholder.png' />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <div className="container mx-auto px-6 py-2 content-center items-center">
