@@ -159,7 +159,7 @@ function useGame (context) {
     const { id } = router.query
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-    const { data, error } = useSWR(`https://api.trackstats.app/game.php?title=${id}`, fetcher)
+    const { data, error } = useSWR(`https://api.egdata.app/game.php?title=${id}`, fetcher)
     return {
       game: data,
       isLoading: !error && !data,

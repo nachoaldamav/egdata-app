@@ -70,7 +70,7 @@ export default function freeGames({ data }) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://api.trackstats.app/free-api.php`)
+  const res = await fetch(`https://api.egdata.app/free-api.php`)
   const data = await res.json()
 
   // Pass data to the page via props
