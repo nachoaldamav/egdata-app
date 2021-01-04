@@ -164,16 +164,6 @@ export default function Game({ id, data }) {
     )
 }
 
-export async function getStaticPaths() {
-    return {
-        paths: [
-          { params: { id: 'oddworld-soulstorm' } },
-          { params: { id: '2' } }
-        ],
-        fallback: true
-      }
-}
-
 function useGame (context) {
     const router = useRouter()
     const { id } = router.query
@@ -187,7 +177,7 @@ function useGame (context) {
     }
   }
 
-  export async function getStaticProps({ params }) {
+  export async function getServerSideProps({ params }) {
     const res = await fetch(`https://api.egdata.app/game.php?title=${params.id}`)
     const data = await res.json()
   
