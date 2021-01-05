@@ -1,8 +1,45 @@
 import Head from 'next/head'
 import { NextSeo } from 'next-seo'
-import Game from './game'
+import Game from '../../components/game'
+import { useRouter } from "next/router"
+import AppLayout from '../../components/AppLayout'
+import Skeleton from '@material-ui/lab/Skeleton'
 
-export default function Product({ metadata }) {
+export async function getStaticPaths() {
+    return {
+        fallback: true,
+        paths: []
+      }
+}
+
+export async function getStaticProps(context) {
+    const { params } = context
+    const { id } = params
+
+    const res = await fetch(`https://api.egdata.app/game.php?title=${id}`)
+    const metadata = await res.json()
+  
+    return {
+      props: {
+          metadata
+      }
+    }
+  }
+
+  export default function Product({ metadata }) {
+    
+    const router = useRouter()
+
+    if (router.isFallback) return (
+        <AppLayout>
+            <div className="container mx-auto px-6 py-2 content-center items-center">
+                <Skeleton className="mx-auto" variant="rect" width="75%" height={630} animation="wave" />
+                <br />
+                <Skeleton variant="text" width="25%" animation="wave" />
+            </div>
+        </AppLayout>
+    )
+
     return (
     <>
             <Head>
@@ -44,31 +81,3 @@ export default function Product({ metadata }) {
     </>
     )
 }
-
-export async function getStaticPaths() {
-    return {
-        paths: [
-          { params: { id: 'oddworld-soulstorm' } },
-          { params: { id: 'cyberpunk-2077' } }
-        ],
-        fallback: true
-      }
-}
-
-export async function getStaticProps({ params }) {
-    const res = await fetch(`https://api.egdata.app/game.php?title=${params.id}`)
-    const metadata = await res.json()
-  
-    if (!metadata) {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: false,
-        },
-      }
-    }
-  
-    return {
-      props: { metadata },
-    }
-  }
