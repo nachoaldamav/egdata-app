@@ -55,28 +55,6 @@ export async function getStaticProps(context) {
                 <meta name="twitter:image" content={metadata.DieselStoreFrontWide || metadata.OfferImageWide || '/img/egs-placeholder.png'} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
-            <NextSeo  
-                title={`${metadata.title} | Epic Games Data`}
-                description={metadata._title}
-                canonical={`https://egdata.app/product/${metadata.slug}`}
-                openGraph={{
-                    title: metadata.title,
-                    description: metadata._title,
-                    images: [
-                    {
-                        url: metadata.DieselStoreFrontWide || metadata.OfferImageWide || '/img/egs-placeholder.png',
-                        width: 800,
-                        height: 600,
-                        alt: metadata.title,
-                    },
-                    ],
-                    site_name: 'EGData',
-                }}
-                twitter={{
-                    site: '@EpicGamesData',
-                    cardType: 'summary_large_image',
-                }}
-            />
             <Game />
     </>
     )
