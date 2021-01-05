@@ -1,21 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import AppLayout from '../../components/AppLayout'
-import Link from "next/link"
-import { useRouter } from 'next/router'
-import useSWR from 'swr'
-import Skeleton from '@material-ui/lab/Skeleton'
-import {DiscussionEmbed} from 'disqus-react'
-import ReactMarkdown from 'react-markdown'
-import gfm from 'remark-gfm'
-import Countdown from 'react-countdown'
 import { NextSeo } from 'next-seo'
 import Game from './game'
 
 export default function Product({ metadata }) {
     return (
     <>
-     <Head>
+            <Head>
                 <title>{metadata.title} | Epic Games Data</title>
 
                 <meta property="og:title" content={`${metadata.title} | Epic Games Data`} />
