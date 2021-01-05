@@ -28,6 +28,7 @@
     "next-pwa": "^5.0.1",
     "next-seo": "^4.17.0",
     "nprogress": "^0.2.0",
+    "popper.js": "^1.16.1",
     "postcss": "^8.2.1",
     "qs": "^6.9.4",
     "react": "17.0.1",
@@ -38,6 +39,7 @@
     "react-loading-skeleton": "^2.1.1",
     "react-markdown": "^5.0.3",
     "react-truncate-markup": "^5.0.1",
+    "recharts": "^2.0.0-beta.8",
     "remark-gfm": "^1.0.0",
     "sharp": "^0.27.0",
     "swr": "^0.3.11"

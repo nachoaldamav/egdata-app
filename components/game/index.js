@@ -9,7 +9,8 @@ import {DiscussionEmbed} from 'disqus-react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import Countdown from 'react-countdown'
-import { NextSeo } from 'next-seo'
+import priceGraph from '../priceGraph'
+import Tooltip from '../Tooltip'
 
 export default function Game({ id, metadata }) {
 
@@ -24,7 +25,7 @@ export default function Game({ id, metadata }) {
         </AppLayout>
     )
     if (isError) return (
-        <AppLayout><p className="text-5xl text-white text-left py-5">Failed to load</p></AppLayout>
+        <AppLayout><p className="text-5xl text-white text-center py-5">Failed to load</p></AppLayout>
     )
 
     const disqusShortname = "egs-data"
@@ -101,7 +102,6 @@ export default function Game({ id, metadata }) {
                             }
                                 <div className="text-gray-100 text-base inline"> {game.currentPrice}</div>
                         </div>
-
                         <div className="inline-flex rounded-md shadow">
                             <Link href={game.productSlug}>
                                 <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
@@ -130,6 +130,7 @@ export default function Game({ id, metadata }) {
                         {galleryImages}
                     </div>
                 </div>
+                <priceGraph />
                 {game.available === "true" &&
                     <div className="container max-w-2xl py-10">
                     <DiscussionEmbed
