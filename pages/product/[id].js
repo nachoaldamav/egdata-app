@@ -45,9 +45,9 @@ export async function getStaticProps(context) {
             <Head>
                 <title>{metadata.title} | Epic Games Data</title>
 
-                <meta property="og:title" content={`${metadata.title} | Epic Games Data`} />
-                <meta property="og:description" content={metadata._title} />
-                <meta property="og:image" content={metadata.DieselStoreFrontWide || metadata.OfferImageWide || '/img/egs-placeholder.png'} />
+                <meta property="og:title" content={`${metadata.title} | Epic Games Data`} key="og:title" />
+                <meta property="og:description" content={metadata._title} key="og:description" />
+                <meta property="og:image" content={metadata.DieselStoreFrontWide || metadata.OfferImageWide || '/img/egs-placeholder.png'} key="og:image" />
                 <meta property="og:url" content={`https://egdata.app/product/${metadata.slug}`} />
 
                 <meta name="twitter:title" content={`${metadata.title} | Epic Games Data`} />
