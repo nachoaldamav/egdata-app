@@ -5,7 +5,7 @@ import Link from "next/link"
 import React, { useEffect } from "react";
 import { askNotification } from '../../firebase/firebaseConfig'
 import { DateTime } from 'luxon'
-import Countdown from 'react-countdown'
+import Countdown, { zeroPad } from 'react-countdown'
 
 export function Banner() {
     return (
@@ -37,7 +37,7 @@ export default function freeGames({ data }) {
       return <p className="bg-blue-600 text-white text-center p-0 rounded-b-md -top-2"><span>Free now!</span></p>;
     } else {
       // Render a countdown
-      return <p className="bg-green-700 text-white text-center p-0 rounded-b-md -top-2"><span>{days} {days != 1 ? "days" : "day"} {hours}:{minutes}:{seconds}</span></p>;
+      return <p className="bg-green-700 text-white text-center p-0 rounded-b-md -top-2"><span>{days} {days != 1 ? "days" : "day"} {zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}</span></p>;
     }
   };
 
@@ -66,7 +66,7 @@ export default function freeGames({ data }) {
                 width={670}
                 height={376}
                 className='w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100 py-0' />
-                  <Countdown date={startDate} renderer={renderer} />
+                  <Countdown date={startDate} zeroPadTime={2} renderer={renderer} />
               <div>
 
               </div>
