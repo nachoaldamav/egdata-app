@@ -9,7 +9,7 @@ import {DiscussionEmbed} from 'disqus-react'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import Countdown from 'react-countdown'
-import priceGraph from '../priceGraph'
+import PriceGraph from '../priceGraph'
 import Tooltip from '../Tooltip'
 
 export default function Game({ id, metadata }) {
@@ -129,8 +129,8 @@ export default function Game({ id, metadata }) {
                     <div className="grid grid-flow-row grid-cols-2 max-w-4xl mx-auto py-4 gap-4">
                         {galleryImages}
                     </div>
+                    <PriceGraph id={game.id} />
                 </div>
-                <priceGraph />
                 {game.available === "true" &&
                     <div className="container max-w-2xl py-10">
                     <DiscussionEmbed
