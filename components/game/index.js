@@ -121,7 +121,7 @@ export default function Game({ id, metadata }) {
                     </div>
                 </div>
                 <div className="container mx-auto md:px-16 text-base text-white text-left py-5">
-                    <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game._title} />
+                    <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game.title} />
                         <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
                     <br/>
                     <hr />

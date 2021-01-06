@@ -6,7 +6,7 @@ export default function PriceGraph({ id }) {
     const [chartData, setChartData] = useState({});
     const [employeeSalary, setEmployeeSalary] = useState([]);
     const [employeeAge, setEmployeeAge] = useState([]);
-    const url = `https://egs-data.herokuapp.com/price.php?id=${id}`;
+    const url = `https://api.egdata.app/price.php?id=${id}`;
 
   const chart = () => {
     let empSal = [];
