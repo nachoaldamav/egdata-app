@@ -49,6 +49,15 @@ export default function freeGames({ data }) {
     <AppLayout>
       <Head>
         <title>Epic Games Data | Free Games</title>
+        <meta property="og:title" content="Free Games | Epic Games Data" key="og:title" />
+        <meta property="og:description" content="Free games of the Epic Games Store" key="og:description" />
+        <meta property="og:image" content="https://cdn.egdata.app/images/eg-data_free.jpg" key="og:image" />
+        <meta property="og:url" content="https://egdata.app/free-games" />
+
+        <meta name="twitter:title" content="Free Games | Epic Games Data" />
+        <meta name="twitter:description" content="Free games of the Epic Games Store" />
+        <meta name="twitter:image" content="https://cdn.egdata.app/images/eg-data_free.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className="flex flex-wrap container mx-auto px-20">
       <p className="text-5xl text-white text-left py-5">Free Games</p>
