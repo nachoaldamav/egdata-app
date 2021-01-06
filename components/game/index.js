@@ -75,7 +75,7 @@ export default function Game({ id, metadata }) {
 
             <div className="container mx-auto px-6 py-2 content-center items-center">
                 <div className="grid md:grid-cols-2 py-8 sub_menu"> 
-                    <div className="text-white text-base"><Link href="/"><a className="transition duration-500 ease-in-out opacity-70 transform hover:opacity-100">Return to the store</a></Link> - <strong>{game.title || <Skeleton />}</strong></div>
+                    <div className="text-white text-base"><Link href="/"><a className="transition duration-500 ease-in-out opacity-70 transform hover:opacity-100">Return to Home</a></Link> - <strong>{game.title || <Skeleton />}</strong></div>
                     <div></div>
                 </div>
                 <div className="hero container max-w-screen-lg mx-auto">
