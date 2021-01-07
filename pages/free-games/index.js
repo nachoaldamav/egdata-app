@@ -81,7 +81,7 @@ export default function freeGames({ data }) {
               </div>
               <div className="px-2 py-2">
                   <div className="font-bold text-gray-50 text-base mb-2 game_title">{title}</div>
-                  <div className="text-gray-100 text-base inline">{available === "true" && <span>{DateTime.fromISO(startDate).setLocale('en').toLocaleString({ month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })} - {DateTime.fromISO(endDate).setLocale('en').toLocaleString({ month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</span>}{available === "false" && <span> Free now - {DateTime.fromISO(endDate).setLocale('en').toLocaleString({ month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</span>}</div>
+                  <div className="text-gray-100 text-base inline">{available === "false" && <span>{DateTime.fromISO(startDate).setLocale('en').toLocaleString({ month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })} - {DateTime.fromISO(endDate).setLocale('en').toLocaleString({ month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</span>}{available === "true" && <span> Free now - {DateTime.fromISO(endDate).setLocale('en').toLocaleString({ month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</span>}</div>
               </div>
             </div>
             </a>
