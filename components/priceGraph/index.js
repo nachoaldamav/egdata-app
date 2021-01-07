@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
-import 'chartjs-adapter-luxon'
-import moment from 'moment'
 
 export default function PriceGraph({ id }) {
     const [chartData, setChartData] = useState({});
