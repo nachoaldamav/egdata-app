@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
+import 'chartjs-adapter-luxon'
+import moment from 'moment'
 
 export default function PriceGraph({ id }) {
     const [chartData, setChartData] = useState({});
@@ -16,8 +18,8 @@ export default function PriceGraph({ id }) {
       .then(res => {
         console.log(res);
         for (const dataObj of res.data.data) {
-          empSal.push(parseInt(dataObj.price));
-          empAge.push(parseInt(dataObj.date));
+          empSal.push(dataObj.price);
+          empAge.push(Date.parse(dataObj.date));
         }
         setChartData({
           labels: empAge,
@@ -62,13 +64,13 @@ export default function PriceGraph({ id }) {
                   }
                 }
               ],
-              xAxes: [
-                {
-                  gridLines: {
-                    display: false
-                  }
+              xAxes: [{
+                type: 'time',
+                time: {
+                  parser: 'YYYY-MM-DD HH:mm:ss',
+                  unit: 'month'
                 }
-              ]
+             }]
             }
           }}
         />
