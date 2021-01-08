@@ -122,14 +122,17 @@ export default function Game({ id, metadata }) {
                 </div>
                 <div className="container mx-auto md:px-16 text-base text-white text-left py-5">
                     <ReactMarkdown className="text-2xl" plugins={[gfm]} children={game.title} />
-                        <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
+                    <ReactMarkdown className="game_description" plugins={[gfm]} children={game._description}/>
+                    
                     <br/>
                     <hr />
                     <br/>
                     <div className="grid grid-flow-row grid-cols-2 max-w-4xl mx-auto py-4 gap-4">
                         {galleryImages}
                     </div>
-                    <PriceGraph id={game.id} />
+                    {game.available === "true" &&
+                        <PriceGraph id={game.id} />
+                    }
                 </div>
                 {game.available === "true" &&
                     <div className="container max-w-2xl py-10">
