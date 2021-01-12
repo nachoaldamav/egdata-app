@@ -41,7 +41,7 @@ export class Navbar extends React.Component {
 						<Link href="/">
 							<a>
 								<div>
-									<img className="h-16 inline-block" src="/EG_data_mono.png" alt="logo" />
+									<img className="h-16 inline-block" src="/img/new_logo.png" alt="logo" />
 									<span className="inline-block text-xl text-white font-bold subpixel-antialiased">Epic Games Data</span>
 								</div>
 							</a>
