@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.13",
@@ -30,6 +31,7 @@
     "next-offline": "^5.0.3",
     "next-pwa": "^5.0.1",
     "next-seo": "^4.17.0",
+    "next-sitemap": "^1.4.5",
     "nprogress": "^0.2.0",
     "popper.js": "^1.16.1",
     "postcss": "^8.2.1",
