@@ -83,7 +83,7 @@ export default class extends React.Component {
       >
         <Configure hitsPerPage={12} />
         <header>
-          <p className="text-2xl text-white">Search games</p>
+        <img className="content-center" src="https://res.cloudinary.com/hilnmyskv/image/upload/q_auto/v1610378794/Algolia_com_Website_assets/images/shared/algolia_logo/search-by-algolia-dark-background.png" />
           <SearchBox />
         </header>
         <main>
