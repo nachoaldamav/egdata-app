@@ -6,6 +6,8 @@ export default function loginCallback() {
     const router = useRouter()
     let callbackCode = router.query.code
 
+    let loading = true
+
     const params = new URLSearchParams()
 
     params.append('grant_type', 'authorization_code')
@@ -26,8 +28,9 @@ export default function loginCallback() {
     const getToken = axios.post(url, params, config)
     .then((response) => {
         console.log(response.data);
-        return response.data
+        return response.data;
     })
+    .then(loading = false)
     .catch(error => {console.log( 'the error has occured: ' + error)})
 
     let bearerToken = getToken.access_token
