@@ -30,22 +30,21 @@ export default function loginCallback() {
         console.log(response.data);
         return response.data;
     })
-    .then(loading = false)
-    .catch(error => {console.log( 'the error has occured: ' + error)})
+    .catch(error => {console.log( 'the error has occured: ' + error)});
 
-    console.log(getToken.access_token)
+    console.log(getToken.access_token);
 
     const config2 = {
         headers: {
           'Authorization': 'Bearer ' + getToken.access_token
         }
-    }
+    };
 
     const userInfo = axios.get('https://api.epicgames.dev/epic/oauth/v1/userInfo', config2)
     .then((response) => {
         console.log('Welcome ' + response.preferred_username);
         return response
-    })
+    });
 
     return (
         <AppLayout>
