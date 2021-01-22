@@ -32,6 +32,8 @@ export default function loginCallback() {
 
     let bearerToken = getToken.access_token
 
+    console.log(bearerToken)
+
     const config2 = {
         headers: {
           'Authorization': 'Bearer ' + bearerToken
