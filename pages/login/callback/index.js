@@ -2,29 +2,6 @@ import { useRouter } from 'next/router'
 import AppLayout from '../../../components/AppLayout'
 import axios from 'axios'
 
-export default function loginCallback() {
-
-    let token = useToken()
-
-    const config2 = {
-        headers: {
-          'Authorization': 'Bearer ' + token
-        }
-    };
-
-    const userInfo = axios.get('https://api.epicgames.dev/epic/oauth/v1/userInfo', config2)
-    .then((response) => {
-        console.log('Welcome ' + response.preferred_username);
-        return response
-    });
-
-    return (
-        <AppLayout>
-            <p>Hello</p>
-        </AppLayout>
-    )
-}
-
 export async function useToken() {
     const router = useRouter()
     let callbackCode = router.query.code
@@ -58,5 +35,28 @@ export async function useToken() {
     console.log(getToken.access_token);
 
     return getToken.access_token
+}
+
+export default function loginCallback() {
+
+    let token = useToken()
+
+    const config2 = {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+    };
+
+    const userInfo = axios.get('https://api.epicgames.dev/epic/oauth/v1/userInfo', config2)
+    .then((response) => {
+        console.log('Welcome ' + response.preferred_username);
+        return response
+    });
+
+    return (
+        <AppLayout>
+            <p>Hello</p>
+        </AppLayout>
+    )
 }
 
