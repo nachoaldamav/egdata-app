@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export default function loginCallback() {
 
-    token = useToken()
+    let token = useToken()
 
     const config2 = {
         headers: {
