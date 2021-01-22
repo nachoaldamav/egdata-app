@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import AppLayout from '../../../components/AppLayout'
 import axios from 'axios'
 
-export async function useToken() {
+export function useToken() {
     const router = useRouter()
     let callbackCode = router.query.code
 
@@ -37,9 +37,9 @@ export async function useToken() {
     return getToken.access_token
 }
 
-export default function loginCallback() {
+export default async function loginCallback() {
 
-    let token = useToken()
+    const token = useToken()
 
     const config2 = {
         headers: {
