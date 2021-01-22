@@ -37,13 +37,13 @@ export function useToken() {
     return getToken.access_token
 }
 
-export default async function loginCallback() {
+export default function loginCallback({ getToken }) {
 
-    const token = useToken()
+    const token = {getToken}
 
     const config2 = {
         headers: {
-          'Authorization': 'Bearer ' + token
+          'Authorization': 'Bearer ' + token.access_token
         }
     };
 
