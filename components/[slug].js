@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import AppLayout from '../../components/AppLayout'
+import AppLayout from './AppLayout'
 import useSWR from 'swr'
 import Link from 'next/link'
 
