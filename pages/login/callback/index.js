@@ -23,23 +23,9 @@ export default function loginCallback() {
 
     const url = 'https://api.epicgames.dev/epic/oauth/v1/token'
 
-    axios.post(url, params, config)
+    const getToken = axios.post(url, params, config)
     .then((response) => {
-        console.log(response);
-        return response.data
-    }) 
-    .catch(error => {console.log( 'the error has occured: ' + error)})
-
-    const config_2 = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + response.data.access_token
-        }
-    }
-
-    axios.get('https://api.epicgames.dev/epic/oauth/v1/userInfo', config_2)
-    .then((response) => {
-        console.log(response);
+        console.log(response.data);
         return response.data
     }) 
     .catch(error => {console.log( 'the error has occured: ' + error)})
