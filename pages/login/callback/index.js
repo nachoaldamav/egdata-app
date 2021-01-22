@@ -33,13 +33,11 @@ export default function loginCallback() {
     .then(loading = false)
     .catch(error => {console.log( 'the error has occured: ' + error)})
 
-    let bearerToken = getToken.access_token
-
-    console.log(bearerToken)
+    console.log(getToken.access_token)
 
     const config2 = {
         headers: {
-          'Authorization': 'Bearer ' + bearerToken
+          'Authorization': 'Bearer ' + getToken.access_token
         }
     }
 
