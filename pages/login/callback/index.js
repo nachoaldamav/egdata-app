@@ -10,7 +10,7 @@ export default function loginCallback() {
         deployement_id: 'c1472b0ba8e14f87871a304e98b735ef',
         scope: 'basic_profile',
         code: callbackCode,
-        redirect_uri: 'https://egdata.app/'
+        redirect_uri: 'https://egdata.app/login/callback'
     }
     axios({
         method: 'post',
