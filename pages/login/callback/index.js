@@ -3,6 +3,14 @@ import AppLayout from '../../../components/AppLayout'
 import axios from 'axios'
 
 export default function loginCallback() {
+    return (
+        <AppLayout>
+            <p>Hola</p>
+        </AppLayout>
+    )
+}
+
+async function getToken() {
     const router = useRouter()
     let callbackCode = router.query.code
 
@@ -24,13 +32,10 @@ export default function loginCallback() {
     const url = 'https://api.epicgames.dev/epic/oauth/v1/token'
 
     axios.post(url, params, config)
-    .then((response) => {console.log(response)}) 
+    .then((response) => {
+        console.log(response);
+        return response.data
+    }) 
     .catch(error => {console.log( 'the error has occured: ' + error)})
-
-    return (
-        <AppLayout>
-            <p>Hola</p>
-        </AppLayout>
-    )
 }
 
