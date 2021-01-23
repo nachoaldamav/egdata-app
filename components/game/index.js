@@ -11,6 +11,8 @@ import gfm from 'remark-gfm'
 import Countdown from 'react-countdown'
 import PriceGraph from '../priceGraph'
 import Tooltip from '../Tooltip'
+import axios from 'axios'
+import { updateLocale } from 'moment'
 
 export default function Game({ id, metadata }) {
 
@@ -58,6 +60,20 @@ export default function Game({ id, metadata }) {
           return <span>{days} {days != 1 ? "days" : "day"} {hours}:{minutes}:{seconds}</span>;
         }
       };
+    
+    const firebase = "https://epicstore-2a6cc.firebaseio.com/"
+    const url = `https://epicstore-2a6cc.firebaseio.com/${game.id}.json`
+
+    axios.get(url)
+    .then((response) => {
+        axios.put(url, {
+        counter: response.data.counter + 1
+    })})
+    .catch((error) => {
+        axios.put(url, {
+            counter: 0
+        })
+    })
 
     return (
         <AppLayout>
