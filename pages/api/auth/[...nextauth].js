@@ -1,33 +1,8 @@
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
 
 const options = {
   // @link https://next-auth.js.org/configuration/providers
   providers: [
-    Providers.Email({
-      // SMTP connection string or nodemailer configuration object https://nodemailer.com/
-      server: process.env.NEXTAUTH_EMAIL_SERVER,
-      // Email services often only allow sending email from a valid/verified address
-      from: process.env.NEXTAUTH_EMAIL_FROM,
-    }),
-    // When configuring oAuth providers make sure you enabling requesting
-    // permission to get the users email address (required to sign in)
-    Providers.Google({
-      clientId: process.env.NEXTAUTH_GOOGLE_ID,
-      clientSecret: process.env.NEXTAUTH_GOOGLE_SECRET,
-    }),
-    Providers.Facebook({
-      clientId: process.env.NEXTAUTH_FACEBOOK_ID,
-      clientSecret: process.env.NEXTAUTH_FACEBOOK_SECRET,
-    }),
-    Providers.Twitter({
-      clientId: process.env.NEXTAUTH_TWITTER_ID,
-      clientSecret: process.env.NEXTAUTH_TWITTER_SECRET,
-    }),
-    Providers.GitHub({
-      clientId: process.env.NEXTAUTH_GITHUB_ID,
-      clientSecret: process.env.NEXTAUTH_GITHUB_SECRET,
-    }),
     {
         id: 'epicgames',
         name: 'Epic Games',
