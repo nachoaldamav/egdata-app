@@ -26,9 +26,6 @@ const options = {
     },
   ],
 
-  // @link https://next-auth.js.org/configuration/databases
-  database: process.env.NEXTAUTH_DATABASE_URL,
-
   // @link https://next-auth.js.org/configuration/options#session
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
@@ -58,30 +55,17 @@ const options = {
 
   // @link https://next-auth.js.org/configuration/callbacks
   callbacks: {
-    /**
-     * Intercept signIn request and return true if the user is allowed.
-     *
-     * @link https://next-auth.js.org/configuration/callbacks#sign-in-callback
-     * @param  {object} user     User object
-     * @param  {object} account  Provider account
-     * @param  {object} profile  Provider profile
-     * @return {boolean}         Return `true` (or a modified JWT) to allow sign in
-     *                           Return `false` to deny access
-     */
     signIn: async (user, account, profile) => {
-      return true
-    },
-
-    /**
-     * @link https://next-auth.js.org/configuration/callbacks#session-callback
-     * @param  {object} session      Session object
-     * @param  {object} user         User object    (if using database sessions)
-     *                               JSON Web Token (if not using database sessions)
-     * @return {object}              Session that will be returned to the client
-     */
-    session: async (session, user) => {
-      //session.customSessionProperty = 'bar'
-      return Promise.resolve(session)
+        return Promise.resolve(true)
+      },
+      redirect: async (url, baseUrl) => {
+        return Promise.resolve(baseUrl)
+      },
+      session: async (session, user) => {
+        return Promise.resolve(session)
+      },
+      jwt: async (token, user, account, profile, isNewUser) => {
+        return Promise.resolve(token)
     },
 
     /**
