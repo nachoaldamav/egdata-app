@@ -10,7 +10,7 @@ export default function Login() {
       <button onClick={() => signIn()}>Sign in</button>
     </>}
     {session && <>
-      Signed in<br/>
+      Signed in as {session.user.name}<br/>
       <button onClick={signOut}>Sign out</button>
     </>}
     </AppLayout>
