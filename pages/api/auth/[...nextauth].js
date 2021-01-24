@@ -23,7 +23,7 @@ const options = {
         idToken: 'true',
         clientId: 'xyza7891lcopZrtftxZbwoSYrLtQiNNz',
         clientSecret: 'UwlA+3A2dKaApsfPcpZHaJVT1sCoOGCUOYmGlqXidLo'
-    },
+    }
   ],
 
   // @link https://next-auth.js.org/configuration/options#session
@@ -44,13 +44,13 @@ const options = {
   jwt: {
     // A secret to use for key generation - you should set this explicitly
     // Defaults to NextAuth.js secret if not explicitly specified.
-    // secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
+    secret: 'eHl6YTc4OTFsY29wWnJ0ZnR4WmJ3b1NZckx0UWlOTno6VXdsQSszQTJkS2FBcHNmUGNwWkhhSlZUMXNDb09HQ1VPWW1HbHFYaWRMbw==',
     // Set to true to use encryption. Defaults to false (signing only).
-    // encryption: true,
+    encryption: true,
     // You can define your own encode/decode functions for signing and encryption
     // if you want to override the default behaviour.
-    // encode: async ({ secret, token, maxAge }) => {},
-    // decode: async ({ secret, token, maxAge }) => {},
+    encode: async ({ secret, token, maxAge }) => {},
+    decode: async ({ secret, token, maxAge }) => {},
   },
 
   // @link https://next-auth.js.org/configuration/callbacks
