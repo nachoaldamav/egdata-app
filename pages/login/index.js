@@ -5,7 +5,7 @@ export default function Login() {
   const [session, loading] = useSession()
   return (
     <AppLayout>
-      {!loading && <>
+      {loading && <>
         <p>Loading...</p>
       </>
       }
