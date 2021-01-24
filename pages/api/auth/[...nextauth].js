@@ -139,7 +139,7 @@ const options = {
 
   // Additional options
   // secret: 'abcdef123456789' // Recommended (but auto-generated if not specified)
-  // debug: true, // Use this option to enable debug messages in the console
+  debug: true, // Use this option to enable debug messages in the console
 }
 
 const Auth = (req, res) => NextAuth(req, res, options)
