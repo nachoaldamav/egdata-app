@@ -20,7 +20,7 @@ export class Navbar extends React.Component {
 
 	render() {
 		const [session, loading] = useSession()
-		
+
 		let menuIcon;
 
 		if (this.state.isOpen) {
@@ -73,7 +73,7 @@ export class Navbar extends React.Component {
 					</a>
 					</Link>
 				</div>
-				{!session && 
+				{session && 
 					<div className={this.state.isOpen ? 'px-2 pt-2 pb-4 block' : 'px-2 pt-2 pb-4 hidden sm:flex'}>
 					<Link href="/login">
 					<a
