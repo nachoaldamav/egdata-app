@@ -10,7 +10,7 @@ const options = {
         domain: process.env.AUTH0_DOMAIN
       })
   ],
-
+  database: process.env.DATABASE_URL,
   // Additional options
   // secret: 'abcdef123456789' // Recommended (but auto-generated if not specified)
   debug: true, // Use this option to enable debug messages in the console

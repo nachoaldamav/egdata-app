@@ -28,6 +28,7 @@
     "localforage": "^1.9.0",
     "luxon": "^1.25.0",
     "moment": "^2.29.1",
+    "mongodb": "^3.6.3",
     "next": "10.0.3",
     "next-auth": "^3.1.0",
     "next-offline": "^5.0.3",
