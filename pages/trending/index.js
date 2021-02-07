@@ -1,7 +1,8 @@
 import useSWR from 'swr'
-import { request } from 'graphql-request'
+import axios from 'axios'
 import AppLayout from '../../components/AppLayout'
 import ImageCard from '../../components/imageCard'
+import GameLink from '../../components/GameLink'
 import Link from "next/link"
 
 let options = {
@@ -21,127 +22,13 @@ let variables = {
                     country: "US"
                 }
 
-const fetcher = query => request('https://www.epicgames.com/graphql', query, variables)
+const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function TrendingGames() {
-    const { data, error } = useSWR(
-        `query collectionLayoutQuery($locale: String, $country: String!, $slug: String) {
-            Storefront {
-            collectionLayout(locale: $locale, slug: $slug) {
-              _activeDate
-              _locale
-              _metaTags
-              _slug
-              _title
-              _urlPattern
-              lastModified
-              regionBlock
-              affiliateId
-              takeover {
-                banner {
-                  altText
-                  src
-                }
-                description
-                eyebrow
-                title
-              }
-              seo {
-                title
-                description
-                keywords
-                image {
-                  src
-                  altText
-                }
-                twitter {
-                  title
-                  description
-                }
-                og {
-                  title
-                  description
-                  image {
-                    src
-                    alt
-                  }
-                }
-              }
-              collectionOffers {
-                title
-                id
-                namespace
-                description
-                effectiveDate
-                keyImages {
-                  type
-                  url
-                }
-                seller {
-                  id
-                  name
-                }
-                productSlug
-                urlSlug
-                url
-                items {
-                  id
-                  namespace
-                }
-                customAttributes {
-                  key
-                  value
-                }
-                categories {
-                  path
-                }
-                linkedOfferId
-                linkedOffer {
-                  effectiveDate
-                  customAttributes {
-                    key
-                    value
-                  }
-                }
-                price(country: $country) {
-                  totalPrice {
-                    discountPrice
-                    originalPrice
-                    voucherDiscount
-                    discount
-                    fmtPrice(locale: $locale) {
-                      originalPrice
-                      discountPrice
-                      intermediatePrice
-                    }
-                  }
-                  lineOffers {
-                    appliedRules {
-                      id
-                      endDate
-                    }
-                  }
-                }
-              }
-              pageTheme {
-                preferredMode
-                light {
-                  theme
-                  accent
-                }
-                dark {
-                  theme
-                  accent
-                }
-              }
-            }
-          }
-        }`,
-        fetcher
-      )
+    const { data, error } = useSWR('https://egs-api.trackstats.workers.dev/', fetcher)
 
-        if (error) return <AppLayout><h1>Failed to load</h1></AppLayout>
-        if (!data) return <AppLayout><h1>loading...</h1></AppLayout>
+        if (error) return <AppLayout><h1 className="text-5xl text-white text-left px-20 py-5">Failed to load</h1></AppLayout>
+        if (!data) return <AppLayout><h1 className="text-5xl text-white text-left px-20 py-5">loading...</h1></AppLayout>
 
 
     return (
@@ -168,15 +55,16 @@ export default function TrendingGames() {
                 }
             `}
             </style>
+            <p className="text-5xl text-white text-left px-20 py-5">Top Sellers - Top 20</p>
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
-                {data.Storefront.collectionLayout.collectionOffers.map(({ id, title, keyImages, customAttributes, urlSlug }) => (
+                {data.data.Storefront.collectionLayout.collectionOffers.map(({ id, title, keyImages, customAttributes, urlSlug }) => (
                 <div key={id} id={id} className='rounded-md pl-2 pr-2 game_card'>
-                    <Link href="/product/[id]" as={`/product/${customAttributes[2].value}`} >
+                    <GameLink customAttributes={customAttributes} >
                         <a>
                         <ImageCard keyImages={keyImages} title={title} id={id}/>
-                        <h1 key={id} className="game_title">{title}</h1>
+                        <h1 key={id} className="font-bold text-gray-50 text-base mb-2 game_title">{title}</h1>
                         </a>
-                    </Link>
+                    </GameLink>
                 </div>
                 ))}
             </div>
