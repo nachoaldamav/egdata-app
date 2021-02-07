@@ -64,6 +64,14 @@ export class Navbar extends React.Component {
 				</header>
 
 				<div className={this.state.isOpen ? 'px-2 pt-2 pb-4 block' : 'px-2 pt-2 pb-4 hidden sm:flex'}>
+					<Link href="/trending">
+					<a
+						className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2"
+					>
+						Trending
+					</a>
+					</Link>
+
 					<Link href="/search">
 					<a
 						className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2"
