@@ -1,7 +1,5 @@
 import firebase from 'firebase/app'
 import 'firebase/messaging'
-import "firebase/performance";
-import "firebase/analytics"
 
 const firebaseConfig = {
         apiKey: "AIzaSyDTFpFRvHHytL8v4MG5OKOSen5HHmbj_Q4",
@@ -12,11 +10,6 @@ const firebaseConfig = {
         messagingSenderId: "996648565991",
         appId: "1:996648565991:web:449eb4de0054d22abe7642",
         measurementId: "G-BQR8NYY8W6"
-}
-
-if (typeof window !== 'undefined' && !firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
-    if ('measurementId' in firebaseConfig) firebase.analytics()
 }
 
 export default firebase

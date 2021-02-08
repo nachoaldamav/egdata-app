@@ -13,6 +13,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
+  const GTAG = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TPGMW0EP2J');"
   return (
     <>
     <Head>
@@ -35,6 +36,10 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#2A2A2A" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPGMW0EP2J"></script>
+        <script>
+         {GTAG}
+        </script>
     </Head>
     <Navbar/>
     <Component {...pageProps} />
