@@ -13,8 +13,8 @@ export default function LoginComponent() {
 	    </Link>
       }
     {session && 
-            <a className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2">
-                Hello, {session.user.name}!
+            <a className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2" onClick={signOut}>
+                Hello, {session.user.name}
             </a>
     }
     </>
