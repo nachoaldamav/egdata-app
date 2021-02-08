@@ -13,11 +13,9 @@ export default function LoginComponent() {
 	    </Link>
       }
     {session && 
-        <Link href="/login">
             <a className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2">
-                Signed in
+                Hello, {session.user.name}!
             </a>
-        </Link>
     }
     </>
   )
