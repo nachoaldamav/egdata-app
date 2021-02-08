@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import AppLayout from '../components/AppLayout'
 import Link from "next/link"
-import {Banner} from "../pages/free-games"
+import {Banner, BannerShowcase} from "../pages/free-games"
 import useSWR from 'swr'
 import Skeleton from '@material-ui/lab/Skeleton'
 
@@ -60,7 +60,7 @@ export default function Game({ id }) {
             `}
             </style>
 
-            <Banner/>
+            <BannerShowcase/>
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {loading === true && <h1>Loading...</h1>}
                 {api.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug }) => (
