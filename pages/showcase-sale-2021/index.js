@@ -6,6 +6,7 @@ import GameLink from '../../components/GameLink'
 import Link from "next/link"
 import Countdown, { zeroPad } from 'react-countdown'
 import { TwitchEmbed } from 'react-twitch-embed'
+import Head from 'next/head'
 
 let options = {
     data: {
