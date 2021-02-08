@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 export default function ImageCard({ keyImages, title, id }) {
-    const image = keyImages.find(images => images.type === 'DieselStoreFrontTall')
+    const image = keyImages.find(images => images.type === 'OfferImageTall')
     const {type, url} = image
 
     return (

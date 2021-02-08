@@ -8158,6 +8158,11 @@ react-truncate-markup@^5.0.1:
     prop-types "^15.6.0"
     resize-observer-polyfill "1.5.x"
 
+react-twitch-embed@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-twitch-embed/-/react-twitch-embed-2.1.0.tgz#2bba8b50822acb827f3ab6251acca2a9b22bcdba"
+  integrity sha512-CtyuZxNs7YFYw5ZOHYYbqEbuukmHF6Lx6709w3BfxUtCAR2B5Oy2CTKNf0FIJAgISSWDXWMSC7jX+8u/XHHq3w==
+
 react@17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"

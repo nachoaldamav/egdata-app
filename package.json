@@ -53,6 +53,7 @@
     "react-loading-skeleton": "^2.1.1",
     "react-markdown": "^5.0.3",
     "react-truncate-markup": "^5.0.1",
+    "react-twitch-embed": "^2.1.0",
     "recharts": "^2.0.0-beta.8",
     "remark-gfm": "^1.0.0",
     "sharp": "^0.27.0",
