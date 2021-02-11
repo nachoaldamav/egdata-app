@@ -52,13 +52,7 @@ export default function ShowCase2021() {
               // Render a completed state
               return (
                 <div>
-                     <TwitchEmbed className="container mx-auto justify-items-stretch place-items-center place-content-center"
-                        channel="epicgames"
-                        id="epicgames"
-                        theme="dark"
-                        muted
-                        onVideoPause={() => console.log(':(')}
-                    />
+                    <p>Ended</p>
                 </div>
                 );
             } else {
@@ -95,7 +89,6 @@ export default function ShowCase2021() {
             <p className="text-5xl text-white text-left px-20 py-5">The Showcase sale 2021</p>
             <p className="text-xl text-white text-left px-20 py-2">Stick around for the Showcase Sale and save up to 75% off select titles.</p>
 
-            <Countdown date="02 11 2021 19:00:00 GMT+0000" zeroPadTime={2} renderer={renderer} />
 
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {data.data.Catalog.searchStore.elements.map(({ id, title, keyImages, customAttributes, urlSlug, price }) => (
