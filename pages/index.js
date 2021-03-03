@@ -60,7 +60,7 @@ export default function Game({ id }) {
             `}
             </style>
 
-            <BannerShowcase/>
+            <Banner />
             <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
                 {loading === true && <h1>Loading...</h1>}
                 {api.map(({ title, id, Thumbnail, currentPrice, productSlug, seller, discount, originalPrice, discountPercentage, namespace, slug }) => (
