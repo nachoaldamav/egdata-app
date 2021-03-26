@@ -111,11 +111,11 @@ export default function Game({ id, metadata }) {
                             </Link>
                         </div>
                         {game.currentPrice != "Coming Soon..." &&
-                        <div className="inline-flex px-2 rounded-md shadow">
-                            <DirectBuy customAttributes={game.pages} id={game._id}>
-                                Direct Buy
-                            </DirectBuy>
-                        </div>
+                            <div className="inline-flex px-2 rounded-md shadow">
+                                <DirectBuy customAttributes={game.pages} id={game._id}>
+                                    Direct Buy
+                                </DirectBuy>
+                            </div>
                         }
                     </div>
                 </div>
