@@ -14,6 +14,7 @@ app.get('/api/item/:slug', (req, res) => {
 })
 
 app.get('/api/trending', (req, res) => {
+    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate')
     axios
     .get("https://egs-api.trackstats.workers.dev/")
     .then((response) => {
