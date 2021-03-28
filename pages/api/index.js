@@ -14,15 +14,11 @@ app.get('/api/item/:slug', (req, res) => {
 })
 
 app.get('/api/trending', (req, res) => {
-    const data = async () => {
-        try {
-          return await axios.get('https://egs-api.trackstats.workers.dev/')
-        } catch (error) {
-          console.error(error)
-        }
-      };
-    console.log(data);
-    res.json(data);
+    axios
+    .get("https://egs-api.trackstats.workers.dev/")
+    .then((response) => {
+      res.send(response.data);
+    });
 })
 
 module.exports = app
