@@ -21,7 +21,8 @@ app.get('/api/trending', (req, res) => {
           console.error(error)
         }
       };
-    res.send(data)
+    console.log(data);
+    res.json(data);
 })
 
 module.exports = app
