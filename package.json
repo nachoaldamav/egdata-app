@@ -6,10 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postbuild": "next-sitemap",
     "build:css": "postcss styles/tailwind.css -o styles/main.css",
     "build:watch": "postcss styles/tailwind.css -o styles/main.css --watch",
-    "prod:build": "yarn run build:css && yarn run build && yarn run postbuild"
+    "prod:build": "yarn run build:css && yarn run build"
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.13",
