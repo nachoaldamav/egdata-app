@@ -1,0 +1,16 @@
+{
+    "expo": {
+     "name": "EGData",
+     "icon": "./public/img/new_logo.png",
+     "version": "1.0.0",
+     "slug": "egdata-app",
+     "ios": {
+       "bundleIdentifier": "com.egdata.app",
+       "buildNumber": "1.0.0"
+     },
+     "android": {
+       "package": "com.egdata.app",
+       "versionCode": 1
+     }
+    }
+  }
