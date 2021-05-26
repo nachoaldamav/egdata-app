@@ -11,7 +11,7 @@ export default function PriceGraph({ id }) {
     const [chartData, setChartData] = useState({});
     const [employeeSalary, setEmployeeSalary] = useState([]);
     const [employeeAge, setEmployeeAge] = useState([]);
-    const url = `https://api.egdata.app/price.php?id=${id}}&country=${selectedCountry || 'US'}`;
+    const url = `https://api.egdata.app/price.php?id=${id}&country=${selectedCountry || 'US'}`;
 
   const chart = () => {
     let empSal = [];
@@ -28,7 +28,7 @@ export default function PriceGraph({ id }) {
           labels: empAge,
           datasets: [
             {
-              label: "Price in US$",
+              label: `Price in ${selectedCountry}`,
               data: empSal,
               backgroundColor: ["rgba(75, 192, 192, 0.6)"],
               borderWidth: 4
