@@ -176,9 +176,13 @@ export default function Game({ id, metadata }) {
 function useGame (context) {
     const router = useRouter()
     const { id } = router.query
+    let selectedCountry;
+    if (typeof window !== 'undefined') {
+        selectedCountry = localStorage.getItem('selectedCountry');
+    }
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-    const { data, error } = useSWR(`https://api.egdata.app/game.php?title=${id}`, fetcher)
+    const { data, error } = useSWR(`https://api.egdata.app/game.php?title=${id}&country=${selectedCountry || 'US'}`, fetcher)
     return {
       game: data,
       isLoading: !error && !data,

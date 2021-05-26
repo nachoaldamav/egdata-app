@@ -106,7 +106,7 @@ function useApi (context) {
         selectedCountry = localStorage.getItem('selectedCountry');
     }
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-    const { data, error } = useSWR(`https://api.egdata.app/?country=${selectedCountry || 'ES'}`, fetcher)
+    const { data, error } = useSWR(`https://api.egdata.app/?country=${selectedCountry || 'US'}`, fetcher)
     return {
       api: data,
       isLoading: !error && !data,

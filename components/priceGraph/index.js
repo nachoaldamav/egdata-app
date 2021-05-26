@@ -3,10 +3,15 @@ import { Line } from "react-chartjs-2";
 import axios from "axios";
 
 export default function PriceGraph({ id }) {
+  let selectedCountry;
+    if (typeof window !== 'undefined') {
+        selectedCountry = localStorage.getItem('selectedCountry');
+    }
+
     const [chartData, setChartData] = useState({});
     const [employeeSalary, setEmployeeSalary] = useState([]);
     const [employeeAge, setEmployeeAge] = useState([]);
-    const url = `https://api.egdata.app/price.php?id=${id}`;
+    const url = `https://api.egdata.app/price.php?id=${id}}&country=${selectedCountry || 'US'}`;
 
   const chart = () => {
     let empSal = [];
