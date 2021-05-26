@@ -140,6 +140,11 @@ html > ul {
   display: block;
 }
 
+.menu-flags-button {
+  color: white!important;
+  border: thin solid rgb(255 255 255)!important;
+}
+
 @media (min-width: 640px){
   .menu-flags {
     width: 100vw;
