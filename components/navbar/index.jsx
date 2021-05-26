@@ -2,6 +2,8 @@ import Link from 'next/link';
 import React from 'react';
 import { session, signIn, signOut, useSession } from 'next-auth/client'
 import LoginComponent from '../LoginComponent'
+import Dropdown from '../dropdown'
+
 
 export class Navbar extends React.Component {
 	constructor(props) {
@@ -81,6 +83,7 @@ export class Navbar extends React.Component {
 					</a>
 					</Link>
 					<LoginComponent />
+					<Dropdown/>
 				</div>
 			</header>
 		);

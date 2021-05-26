@@ -139,3 +139,27 @@ html > ul {
 .game_description p span {
   display: block;
 }
+
+@media (min-width: 640px){
+  .menu-flags {
+    width: 100vw;
+  }
+}
+   
+  @media (min-width: 768px){
+    .menu-flags {
+      width: 24vw;
+    }
+}
+   
+  @media (min-width: 1024px){
+    .menu-flags {
+      width: 16vw;
+    }
+}
+   
+  @media (min-width: 1200px){
+    .menu-flags {
+      width: 12vw;
+    }
+}

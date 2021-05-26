@@ -101,9 +101,12 @@ export default function Game({ id }) {
 }
 
 function useApi (context) {
-
+    let selectedCountry;
+    if (typeof window !== 'undefined') {
+        selectedCountry = localStorage.getItem('selectedCountry');
+    }
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-    const { data, error } = useSWR(`https://api.egdata.app/`, fetcher)
+    const { data, error } = useSWR(`https://api.egdata.app/?country=${selectedCountry || 'ES'}`, fetcher)
     return {
       api: data,
       isLoading: !error && !data,
