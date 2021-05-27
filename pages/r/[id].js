@@ -28,9 +28,6 @@ export default function redirectPage({ id, metadata }) {
                         <p className="text-lg">Make sure you are logged in to Epic Games first.</p>
                     </div>
                     <div> 
-                        <p className="text-xl">Wait 5 seconds</p>
-                        <br></br>
-                        <p>OR</p>
                         <br></br>
                         <a href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game._id}#/purchase/verify?_k=mshm8g`}>
                             <button className="btn h-20 w-auto px-7 bg-black epic-login inline rounded-md">
