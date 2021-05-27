@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import '../styles/tailwind.css'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import Router  from 'next/router'
+import Router, { useRouter }  from 'next/router'
 import Head from 'next/head'
 import { Navbar } from '../components/navbar'
 import firebase from '../firebase/firebaseConfig'
@@ -13,6 +13,8 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+  const pathname = router.pathname;
   const GTAG = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TPGMW0EP2J');"
   return (
     <>
@@ -41,7 +43,7 @@ function MyApp({ Component, pageProps }) {
          {GTAG}
         </script>
     </Head>
-    <Navbar/>
+    {pathname !== '/r/[id]' && <Navbar/>}
     <Component {...pageProps} />
     </>
   )

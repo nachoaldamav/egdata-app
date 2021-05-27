@@ -127,8 +127,8 @@ export default function Game({ id, metadata }) {
                         </div>
                         {game.currentPrice != "Coming Soon..." &&
                         <div className="inline-flex px-2 rounded-md shadow">
-                            <Link href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game._id}#/purchase/verify?_k=mshm8g`}>
-                                <a target="_blank" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
+                            <Link href={`/r/${game.slug}`}>
+                                <a target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-indigo-700">
                                     Direct Buy
                                 </a>
                             </Link>

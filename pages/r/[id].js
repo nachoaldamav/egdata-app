@@ -21,23 +21,34 @@ export default function redirectPage({ id, metadata }) {
 
     return (
         <AppLayout>
-            <div className="container mx-auto px-6 py-2 content-center items-center text-white text-center">
-                <div className="py-2">
-                    <p className="text-2xl">You are about to be redirected to {game.title} checkout!</p>
-                    <p className="text-xl">Make sure you are logged in to Epic Games first.</p>
-                </div>
-                <div>
-                    <button className="btn h-15 w-auto px-4 bg-black epic-login inline rounded-md"><img className="inline m-1" height="25px" width="24" src="/img/Epic-Games-White-Solid.png" />Go to Epic Games</button> 
-                    <p>Or wait 5 seconds...</p>
+            <div className="container mx-auto px-6 sm:py-2 content-center items-center text-white text-center flex flex-col sm:flex-row h-screen min-h-full">
+                <div className="flex-1">
+                    <div className="">
+                        <p className="text-2xl font-semibold">You are about to be redirected to {game.title} checkout!</p>
+                        <p className="text-lg">Make sure you are logged in to Epic Games first.</p>
+                    </div>
+                    <div> 
+                        <p className="text-xl">Wait 5 seconds</p>
+                        <br></br>
+                        <p>OR</p>
+                        <br></br>
+                        <a href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game._id}#/purchase/verify?_k=mshm8g`}>
+                            <button className="btn h-20 w-auto px-7 bg-black epic-login inline rounded-md">
+                                <img className="inline m-1" height="25px" width="24" src="/img/Epic-Games-White-Solid.png" />Go to Checkout
+                            </button>
+                        </a>
+                    </div>
                 </div>
                 <br>
                 </br>
-                <Image
-                    src={game.DieselStoreFrontTall || game.OfferImageTall || '/img/egs-placeholder.png'}
-                    width={300}
-                    height={450}
-                    className="my-2 w-full rounded-md absolute"
-                    />
+                <div className="flex-1">
+                    <Image
+                        src={game.DieselStoreFrontWide || game.OfferImageWide || '/img/egs-placeholder.png'}
+                        width={1100}
+                        height={630}
+                        className="lg:my-2 w-full rounded-md absolute"
+                        />
+                </div>
             </div>
         </AppLayout>
     )
