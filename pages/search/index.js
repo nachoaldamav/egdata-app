@@ -10,7 +10,7 @@ import Head from 'next/head'
 
 const searchClient = algoliasearch(
   '0X90LHIM7C',
-  `${process.env.ALGOLIA_KEY}`
+  'b1e5b58f2772d9bdaa1fec4c3e5c9507'
 );
 
 const updateAfter = 700;
