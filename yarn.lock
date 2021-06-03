@@ -5497,6 +5497,15 @@ cookie-signature@1.0.6:
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
   integrity sha1-4wOogrNCzD7oylE6eZmXNNqzriw=
 
+cookie-though@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/cookie-though/-/cookie-though-1.1.5.tgz#10ac9813d79ef6bf2ebcfb8b4171cb0556154280"
+  integrity sha512-A7toDpAmKOATqwPxNtYSx1rJDsjfQt/SJcvSk3mVSwbw0gcNY1inzNnIHcF9eLLd9potdRjISidTd++pI4u6jg==
+  dependencies:
+    events "3.3.0"
+    lodash.throttle "4.1.1"
+    preact "10.5.13"
+
 cookie@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.0.tgz#beb437e7022b3b6d49019d088665303ebe9c14ba"
@@ -6736,6 +6745,11 @@ eventemitter3@^4.0.1:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
+
+events@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
 
 events@^1.1.1:
   version "1.1.1"
@@ -9072,7 +9086,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "^3.0.0"
 
-lodash.throttle@^4.1.1:
+lodash.throttle@4.1.1, lodash.throttle@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
@@ -11473,6 +11487,11 @@ preact-render-to-string@^5.1.7:
   integrity sha512-nXVCOpvepSk9AfPwqS08rf9NDOCs8eeYYlG+7tE85iP5jVyjz+aYb1BYaP5SPdfVWVrzI9L5NzxozUvKaD96tA==
   dependencies:
     pretty-format "^3.8.0"
+
+preact@10.5.13:
+  version "10.5.13"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.13.tgz#85f6c9197ecd736ce8e3bec044d08fd1330fa019"
+  integrity sha512-q/vlKIGNwzTLu+jCcvywgGrt+H/1P/oIRSD6mV4ln3hmlC+Aa34C7yfPI4+5bzW8pONyVXYS7SvXosy2dKKtWQ==
 
 preact@^10.4.1:
   version "10.5.11"

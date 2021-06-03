@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import AppLayout from '../../components/AppLayout'
 import Link from "next/link"
@@ -10,11 +9,9 @@ import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
 import Countdown from 'react-countdown'
 import PriceGraph from '../priceGraph'
-import Tooltip from '../Tooltip'
 import axios from 'axios'
-import { updateLocale } from 'moment'
 import aa from 'search-insights'
-import algoliasearch from 'algoliasearch/lite'
+import { getPreferences } from 'cookie-though';
 
 
 export default function Game({ id, metadata }) {
@@ -78,7 +75,13 @@ export default function Game({ id, metadata }) {
         })
     })
 
-    sendAlgoliaEvent(game);
+    const cookiePreference = getPreferences();
+
+    console.log(cookiePreference);
+    
+    if (cookiePreference.cookieOptions[1].isEnabled === true) {
+        sendAlgoliaEvent(game);
+    }
 
     return (
         <AppLayout>
