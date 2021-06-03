@@ -20,7 +20,7 @@ const HitComponent = ({ hit }) => (
                     <Link href={`/product/${hit.slug}`} target="">
                         <a>
                         <Image
-                            src={hit.DieselStoreFrontTall || '/egs_logo.png'}
+                            src={hit.OfferImageTall || '/egs_logo.png'}
                             alt={hit.title}
                             width={250}
                             height={333}
