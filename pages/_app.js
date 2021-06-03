@@ -6,6 +6,14 @@ import Router, { useRouter }  from 'next/router'
 import Head from 'next/head'
 import { Navbar } from '../components/navbar'
 import firebase from '../firebase/firebaseConfig'
+import aa from 'search-insights'
+
+async function createUserId() {
+  if (typeof window !== "undefined") {
+    const randomId = ('_' + Math.random().toString(36).substr(2, 9));
+    localStorage.setItem('ALGOLIA_USER_ID', randomId)
+  }
+}
 
 //Binding events.
 Router.events.on('routeChangeStart', () => NProgress.start())
@@ -13,6 +21,22 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
+  // Check localStorage for Algolia ID
+  if (typeof window !== 'undefined') {
+    if (localStorage.getItem('ALGOLIA_USER_ID') != undefined) {
+      const userToken = localStorage.getItem('ALGOLIA_USER_ID');
+      aa('setUserToken', userToken);
+    } else {
+      createUserId();
+    }
+  }
+
+  aa('init', {
+    appId: '0X90LHIM7C',
+    apiKey: 'b1e5b58f2772d9bdaa1fec4c3e5c9507',
+  });
+
+
   const router = useRouter()
   const pathname = router.pathname;
   const GTAG = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TPGMW0EP2J');"

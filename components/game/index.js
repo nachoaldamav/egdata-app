@@ -13,6 +13,9 @@ import PriceGraph from '../priceGraph'
 import Tooltip from '../Tooltip'
 import axios from 'axios'
 import { updateLocale } from 'moment'
+import aa from 'search-insights'
+import algoliasearch from 'algoliasearch/lite'
+
 
 export default function Game({ id, metadata }) {
 
@@ -74,6 +77,8 @@ export default function Game({ id, metadata }) {
             counter: 0
         })
     })
+
+    sendAlgoliaEvent(game);
 
     return (
         <AppLayout>
@@ -189,3 +194,16 @@ function useGame (context) {
       isError: error
     }
   }
+
+
+async function sendAlgoliaEvent(game) {
+    // Starting from v1.3.0 of the search-insights.js library
+    // Init algolia insights
+
+    aa('viewedObjectIDs', {
+        index: 'games',
+        eventName: 'Product Detail Page Viewed',
+        objectIDs: [`${game.namespace}`]
+    });
+
+}

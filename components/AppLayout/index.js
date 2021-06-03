@@ -1,4 +1,4 @@
-
+import { CookieBanner } from '@palmabit/react-cookie-law'
 
 export default function AppLayout ({children}) {
     return (
