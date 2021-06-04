@@ -212,7 +212,7 @@ async function sendAlgoliaEvent(game) {
     //clickedObjectIDs
     aa('clickedObjectIDs', {
         index: 'games',
-        eventName: 'Product Detail Page Viewed',
+        eventName: 'Product clicked',
         objectIDs: [`${game.id}`]
     });
 
