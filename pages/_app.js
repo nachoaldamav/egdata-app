@@ -5,9 +5,12 @@ import 'nprogress/nprogress.css'
 import Router, { useRouter }  from 'next/router'
 import Head from 'next/head'
 import { Navbar } from '../components/navbar'
-import firebase from '../firebase/firebaseConfig'
 import aa from 'search-insights'
+import { getPreferences } from 'cookie-though';
+import { useEffect } from 'react'
+import TagManager from 'react-gtm-module';
 
+// Create userId for Algolia
 async function createUserId() {
   if (typeof window !== "undefined") {
     const randomId = ('_' + Math.random().toString(36).substr(2, 9));
@@ -21,6 +24,17 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
+  // Initialize GTM if consent
+  if (typeof window !== 'undefined') {
+  const cookiePreference = getPreferences();
+    if (cookiePreference.cookieOptions[2].isEnabled === true) {
+      useEffect(() => {
+        TagManager.initialize({ gtmId: 'GTM-WNNDHSP' });
+      }, []);
+    }
+  } 
+
+
   // Check localStorage for Algolia ID
   if (typeof window !== 'undefined') {
     if (localStorage.getItem('ALGOLIA_USER_ID') != undefined) {
@@ -39,7 +53,7 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter()
   const pathname = router.pathname;
-  const GTAG = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-TPGMW0EP2J');"
+
   return (
     <>
     <Head>
@@ -62,10 +76,6 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#2A2A2A" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TPGMW0EP2J"></script>
-        <script>
-         {GTAG}
-        </script>
     </Head>
     {pathname !== '/r/[id]' && <Navbar/>}
     <Component {...pageProps} />
