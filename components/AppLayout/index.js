@@ -1,5 +1,5 @@
 import { CookieBanner } from '@palmabit/react-cookie-law'
-import { init } from 'cookie-though';
+import { init, getPreferences, hide } from 'cookie-though';
 
 const config = {
   "policies": [
@@ -43,7 +43,12 @@ const config = {
 
 export default function AppLayout ({children}) {
     if (typeof window !== "undefined") {
-      init(config);
+      const cookiePreference = getPreferences();
+      if (cookiePreference.cookieOptions[0].isEnabled === true) {
+        hide();
+      } else {
+        init(config);
+      }
     }
 
     return (
