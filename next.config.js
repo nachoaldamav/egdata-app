@@ -8,6 +8,6 @@ module.exports = withPWA({
       runtimeCaching,
     },
     images: {
-      domains: ['cdn1.epicgames.com', 'cdn2.unrealengine.com'],
+      domains: ['cdn1.epicgames.com', 'cdn2.unrealengine.com', 'dev.to'],
     },
   })

@@ -2,45 +2,63 @@ import Head from 'next/head'
 import AppLayout from '../../components/AppLayout'
 import useSWR from 'swr'
 import Link from 'next/link'
+import Image from 'next/image'
 
-export default function blog({ id }) {
-    const { posts, isLoading, isError } = usePosts(id)
-    if (isLoading) return (
-        <AppLayout>
-            <div className="container mx-auto px-6 py-2 content-center items-center">
-                <p>Loading...</p>
-            </div>
-        </AppLayout>
-    )
-    if (isError) return (
-        <AppLayout><p className="text-5xl text-white text-left py-5">Failed to load</p></AppLayout>
-    )
+export default function blog({ posts }) {
 
     return (
         <AppLayout>
             <div className="px-20">
                 <p className="text-5xl text-white text-left py-5">Blog</p>
-                {posts.map(({ id, title, description, slug }) => (
-                    <>
-                    <Link href={`/blog/${slug}`}>
+                {posts.map(({ id, title, description, slug, cover_image, social_image }) => (
+                    <div key={id}>
+                    <Link href={`/blog/${id}`}>
                         <a>
-                        <p key={id} className="text-xl text-white">{title}</p>
-                        <p>{description}</p>
+                        <Image
+                            src={cover_image || social_image || '/egs_logo.png'}
+                            width={700}
+                            height={394}
+                            layout="intrinsic"
+                            className="rounded-md"
+                        />
+                            <p className="text-xl text-white">{title}</p>
+                            <p className="text-md text-white">{description}</p>
                         </a>
                     </Link>
-                    </>
+                    </div>
                 ))}
             </div>
         </AppLayout>
     )
 }
 
-function usePosts (props) {
-    const fetcher = (...args) => fetch(...args).then(res => res.json())
-    const { data, error } = useSWR('https://dev.to/api/articles?username=srdrabx_26', fetcher)
+// This function gets called at build time
+export async function getStaticPaths() {
+    // Call an external API endpoint to get posts
+    const res = await fetch('https://dev.to/api/articles?username=srdrabx_26')
+    const posts = await res.json()
+  
+    // Get the paths we want to pre-render based on posts
+    const paths = posts.map((post) => ({
+      params: { id: post.id },
+    }))
+  
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return { paths, fallback: false }
+}
+
+// This function gets called at build time
+export async function getStaticProps() {
+    // Call an external API endpoint to get posts
+    const res = await fetch('https://dev.to/api/articles?username=srdrabx_26')
+    const posts = await res.json()
+  
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time
     return {
-      posts: data,
-      isLoading: !error && !data,
-      isError: error
+      props: {
+        posts,
+      },
     }
   }
