@@ -1,9 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 .vercel
-public/sw.js.map
-.env
-.env.local
-public/sw.js.map
+/public/sw.js.map
+/.env
+/.env.local
+/public/sw.js.map
 
 # dependencies
 /node_modules
