@@ -44,7 +44,6 @@ const config = {
 export default function AppLayout ({children}) {
     if (typeof window !== "undefined") {
       const cookiePreference = getPreferences();
-      console.log(cookiePreference)
       if (cookiePreference.isCustomised === true) {
         hide();
       } else {
