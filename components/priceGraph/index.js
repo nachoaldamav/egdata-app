@@ -39,7 +39,6 @@ export default function PriceGraph({ id }) {
       .catch(err => {
         console.log(err);
       });
-    console.log(empSal, empAge);
   };
 
   useEffect(() => {

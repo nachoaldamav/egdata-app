@@ -61,8 +61,7 @@ export default function Game({ id, metadata }) {
         }
       };
     
-    const firebase = "https://epicstore-2a6cc.firebaseio.com/"
-    const url = `https://epicstore-2a6cc.firebaseio.com/${game.id}.json`
+    const url = `https://epicstore-2a6cc.firebaseio.com/games/${game.id}.json`
 
     axios.get(url)
     .then((response) => {
@@ -76,8 +75,6 @@ export default function Game({ id, metadata }) {
     })
 
     const cookiePreference = getPreferences();
-
-    console.log(cookiePreference);
     
     if (cookiePreference.cookieOptions[1].isEnabled === true) {
         sendAlgoliaEvent(game);
