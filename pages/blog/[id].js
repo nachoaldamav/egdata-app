@@ -2,12 +2,24 @@ import Head from 'next/head'
 import AppLayout from '../../components/AppLayout'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
+import Image from 'next/image'
 
 function Post({ post }) {
     return (
       <AppLayout>
+      <div className="mx-auto lg:px-10 py-2">
+      <div className="hero container max-w-screen-lg mx-auto">
+        <Image
+          src={post.cover_image || post.social_image || '/egs_logo.png'}
+          width={1100}
+          height={630}
+          layout="intrinsic"
+          className="rounded-md"
+        />
+      </div>
         <h1 className="text-5xl text-white text-left px-20 py-5">{post.title}</h1>
         <p className="text-white px-20"><ReactMarkdown className="game_description" plugins={[gfm]}>{post.body_markdown}</ReactMarkdown></p>
+      </div>
       </AppLayout>
     )
   }

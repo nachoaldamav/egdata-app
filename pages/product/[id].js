@@ -55,8 +55,7 @@ export async function getStaticPaths() {
         gamesSlug.push(createParams)
     });
     const result = await removeItemOnce(gamesSlug, '/product/gamedec')
-
-    console.log(result);
+    
     return {
         fallback: true,
         paths: result

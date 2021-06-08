@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
   // Check localStorage for Algolia ID
   if (typeof window !== 'undefined') {
     if (localStorage.getItem('ALGOLIA_USER_ID') != undefined) {
-      const userToken = localStorage.getItem('ALGOLIA_USER_ID');
+      const userToken = (localStorage.getItem('ALGOLIA_USER_ID') || '_00000000');
       aa('setUserToken', userToken);
     } else {
       createUserId();
