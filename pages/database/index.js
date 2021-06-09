@@ -10,11 +10,11 @@ export default function IndexPage() {
 
   return (
     <AppLayout>
-        <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
-            {games.map(game => (
-                <Game game={game} key={game.id} />
-            ))}
-        </div>
+      <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
+        {games.map((game) => (
+          <Game game={game} key={game.id} />
+        ))}
+      </div>
     </AppLayout>
   )
 }
