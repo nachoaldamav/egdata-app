@@ -24,5 +24,7 @@ module.exports = {
     "react/prop-types": RULES.OFF,
     "no-unused-vars": RULES.WARNING,
     camelcase: RULES.WARNING,
+    "react/display-name": RULES.WARNING,
   },
+  parser: "babel-eslint",
 }
