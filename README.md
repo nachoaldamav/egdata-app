@@ -11,3 +11,4 @@ https://github.com/srdrabx/egs-api
  - Comments on games, simulating reviews (Using Disqus until I make a solution for it)
  - Regional pricing
  - Top selled games
+ - Search page ranking by visits
