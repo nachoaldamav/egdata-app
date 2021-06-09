@@ -41,3 +41,4 @@ public/sw.js.map
 .env
 .env.local
 public/sw.js.map
+.eslintcache

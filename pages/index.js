@@ -2,27 +2,17 @@ import Head from "next/head"
 import Image from "next/image"
 import AppLayout from "../components/AppLayout"
 import Link from "next/link"
-import { Banner, BannerShowcase } from "../pages/free-games"
+import { Banner } from "../pages/free-games"
 import useSWR from "swr"
-import Skeleton from "@material-ui/lab/Skeleton"
-
-const loading = false
+import Renderloader from "../components/loader"
 
 export default function Game({ id }) {
   const { api, isLoading, isError } = useApi(id)
   if (isLoading) {
     return (
       <AppLayout>
-        <div className="container mx-auto px-6 py-2 content-center items-center">
-          <Skeleton
-            className="mx-auto"
-            variant="rect"
-            width="75%"
-            height={630}
-            animation="wave"
-          />
-          <br />
-          <Skeleton variant="text" width="25%" animation="wave" />
+        <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
+          <Renderloader />
         </div>
       </AppLayout>
     )
@@ -77,7 +67,6 @@ export default function Game({ id }) {
 
         <Banner />
         <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
-          {loading === true && <h1>Loading...</h1>}
           {api.map(
             ({
               title,

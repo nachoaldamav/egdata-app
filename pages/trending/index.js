@@ -5,24 +5,6 @@ import ImageCard from "../../components/imageCard"
 import GameLink from "../../components/GameLink"
 import Link from "next/link"
 
-const options = {
-  data: {
-    query:
-      "query collectionLayoutQuery($locale: String, $country: String!, $slug: String) {\n  Storefront {\n    collectionLayout(locale: $locale, slug: $slug) {\n      _activeDate\n      _locale\n      _metaTags\n      _slug\n      _title\n      _urlPattern\n      lastModified\n      regionBlock\n      affiliateId\n      takeover {\n        banner {\n          altText\n          src\n        }\n        description\n        eyebrow\n        title\n      }\n      seo {\n        title\n        description\n        keywords\n        image {\n          src\n          altText\n        }\n        twitter {\n          title\n          description\n        }\n        og {\n          title\n          description\n          image {\n            src\n            alt\n          }\n        }\n      }\n      collectionOffers {\n        title\n        id\n        namespace\n        description\n        effectiveDate\n        keyImages {\n          type\n          url\n        }\n        seller {\n          id\n          name\n        }\n        productSlug\n        urlSlug\n        url\n        items {\n          id\n          namespace\n        }\n        customAttributes {\n          key\n          value\n        }\n        categories {\n          path\n        }\n        linkedOfferId\n        linkedOffer {\n          effectiveDate\n          customAttributes {\n            key\n            value\n          }\n        }\n        price(country: $country) {\n          totalPrice {\n            discountPrice\n            originalPrice\n            voucherDiscount\n            discount\n            fmtPrice(locale: $locale) {\n              originalPrice\n              discountPrice\n              intermediatePrice\n            }\n          }\n          lineOffers {\n            appliedRules {\n              id\n              endDate\n            }\n          }\n        }\n      }\n      pageTheme {\n        preferredMode\n        light {\n          theme\n          accent\n        }\n        dark {\n          theme\n          accent\n        }\n      }\n    }\n  }\n}\n",
-    variables: {
-      locale: "en-US",
-      slug: "top-sellers-top-20",
-      country: "US",
-    },
-  },
-}
-
-const variables = {
-  locale: "en-US",
-  slug: "top-sellers-top-20",
-  country: "US",
-}
-
 const fetcher = (url) => axios.get(url).then((res) => res.data)
 
 export default function TrendingGames() {
@@ -65,9 +47,6 @@ export default function TrendingGames() {
           }
           .game_card {
             padding-top: 15px;
-          }
-          #engines {
-            visibility: hidden !important;
           }
         `}
       </style>

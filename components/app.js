@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from "react"
 import PropTypes from "prop-types"
 import {
@@ -15,7 +16,7 @@ import Image from "next/image"
 import Head from "next/head"
 
 const HitComponent = ({ hit }) => (
-  <div className="">
+  <div className="mx-auto">
     <div key={hit.id} className="rounded-md pl-2 pr-2 game_card">
       <Link href={`/product/${hit.slug}`} target="">
         <a>
@@ -91,15 +92,15 @@ export default class extends React.Component {
             {...this.props}
           >
             <Configure hitsPerPage={12} />
-            <header className="flex items-center justify-center py-3">
+            <header className="flex items-center justify-center py-3 px-2">
               <img
                 className="items-center px-2"
                 src="https://res.cloudinary.com/hilnmyskv/image/upload/q_auto/v1610378794/Algolia_com_Website_assets/images/shared/algolia_logo/search-by-algolia-dark-background.png"
               />
               <SearchBox />
             </header>
-            <main className="flex flex-wrap lg:flex-nowrap">
-              <div className="menu flex-auto w-1/4 px-5 py-5">
+            <main className="flex flex-wrap-reverse lg:flex-nowrap mx-auto">
+              <div className="menu flex-auto w-full lg:w-1/4  px-5 py-5">
                 <RefinementList attribute="categories" limit={25} />
               </div>
               <div className="flex-auto">
