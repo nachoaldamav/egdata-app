@@ -3,7 +3,7 @@ import axios from "axios"
 import AppLayout from "../../components/AppLayout"
 import ImageCard from "../../components/imageCard"
 import GameLink from "../../components/GameLink"
-import Link from "next/link"
+import Renderloader from "../../components/loader"
 
 const fetcher = (url) => axios.get(url).then((res) => res.data)
 
@@ -24,7 +24,9 @@ export default function TrendingGames() {
   if (!data)
     return (
       <AppLayout>
-        <h1 className="text-5xl text-white text-left px-20 py-5">loading...</h1>
+        <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
+          <Renderloader />
+        </div>
       </AppLayout>
     )
 
