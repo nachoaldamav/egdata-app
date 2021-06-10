@@ -1,5 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/client"
 import Link from "next/link"
+import { LogIn } from "iconoir-react"
 
 export default function LoginComponent() {
   const [session, loading] = useSession()
@@ -8,7 +9,9 @@ export default function LoginComponent() {
       {!session && (
         <Link href="/login">
           <a className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2">
-            Sign in
+            <div className="inline-flex">
+              <LogIn height={27} width={27} /> Sign in
+            </div>
           </a>
         </Link>
       )}

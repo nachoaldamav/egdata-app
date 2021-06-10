@@ -20,7 +20,7 @@ export default function Dropdown(elements) {
       selected={selected}
       onSelect={(code) => updateCountry(code)}
       optionsSize={14}
-      className="menu-flags"
+      className="menu-flags pb-0"
       selectButtonClassName="menu-flags-button"
       placeholder="Select Country"
     />

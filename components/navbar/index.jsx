@@ -3,6 +3,7 @@ import React from 'react';
 import { session, signIn, signOut, useSession } from 'next-auth/client'
 import LoginComponent from '../LoginComponent'
 import Dropdown from '../dropdown'
+import { Activity, Search } from 'iconoir-react';
 
 
 export class Navbar extends React.Component {
@@ -66,20 +67,24 @@ export class Navbar extends React.Component {
 					</div>
 				</header>
 
-				<div className={this.state.isOpen ? 'px-2 pt-2 pb-4 block' : 'px-2 pt-2 pb-4 hidden sm:flex'}>
+				<div className={this.state.isOpen ? 'px-2 pt-2 pb-4 block' : 'px-2 pt-2 pb-4 hidden items-center sm:flex'}>
 					<Link href="/trending">
 					<a
-						className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2"
+						className="mt-1 py-1 text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2 block"
 					>
-						Trending
+						<div className="inline-flex">
+						<Activity height={27} width={27}/> Trending
+						</div>
 					</a>
 					</Link>
 
 					<Link href="/search">
 					<a
-						className="mt-1 py-1 block text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2"
+						className="mt-1 py-1 text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2 block"
 					>
-						Search
+						<div className="inline-flex">
+						<Search height={27} width={27}/> Search
+						</div>
 					</a>
 					</Link>
 					<LoginComponent />

@@ -139,6 +139,9 @@ html > ul {
 .game_description p span {
   display: block;
 }
+.menu-flags {
+  padding-bottom: 5px!important;
+}
 
 .menu-flags-button {
   color: white!important;
