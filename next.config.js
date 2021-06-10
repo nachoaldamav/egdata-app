@@ -10,4 +10,7 @@ module.exports = withPWA({
   images: {
     domains: ["cdn1.epicgames.com", "cdn2.unrealengine.com", "dev.to"],
   },
+  future: {
+    webpack5: true,
+  },
 })
