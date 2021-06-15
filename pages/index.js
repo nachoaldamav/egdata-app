@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Banner } from "../pages/free-games"
 import useSWR from "swr"
 import Renderloader from "../components/loader"
+import CarouselSlider from "../components/slider"
 
 export default function Game({ id }) {
   const { api, isLoading, isError } = useApi(id)
@@ -66,6 +67,7 @@ export default function Game({ id }) {
         </style>
 
         <Banner />
+        <CarouselSlider />
         <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
           {api.map(
             ({
@@ -89,6 +91,8 @@ export default function Game({ id }) {
                       alt={title}
                       width={250}
                       height={333}
+                      placeholder="blur"
+                      blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
                       layout="responsive"
                       id={id}
                       className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100"

@@ -25,14 +25,13 @@ Router.events.on("routeChangeError", () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
   // Initialize GTM if consent
-  if (typeof window !== "undefined") {
+
+  useEffect(() => {
     const cookiePreference = getPreferences()
     if (cookiePreference.cookieOptions[2].isEnabled === true) {
-      useEffect(() => {
-        TagManager.initialize({ gtmId: "GTM-WNNDHSP" })
-      }, [])
+      TagManager.initialize({ gtmId: "GTM-WNNDHSP" })
     }
-  }
+  })
 
   // Check localStorage for Algolia ID
   if (typeof window !== "undefined") {
