@@ -51,7 +51,7 @@ export function BannerShowcase() {
   )
 }
 
-export default function freeGames({ data }) {
+export default function FreeGames({ data }) {
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state

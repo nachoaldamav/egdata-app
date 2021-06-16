@@ -4,7 +4,7 @@ import useSWR from "swr"
 import Skeleton from "@material-ui/lab/Skeleton"
 import Image from "next/image"
 
-export default function redirectPage({ id, metadata }) {
+export default function RedirectPage({ id, metadata }) {
   const { game, isLoading, isError } = useGame(id)
   if (isLoading) {
     return (

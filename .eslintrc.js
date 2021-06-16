@@ -31,6 +31,7 @@ module.exports = {
     "no-unused-vars": RULES.WARNING,
     camelcase: RULES.WARNING,
     "react/display-name": RULES.WARNING,
+    "@next/next/no-img-element": RULES.WARNING,
   },
   parser: "babel-eslint",
 }
