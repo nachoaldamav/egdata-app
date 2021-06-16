@@ -32,7 +32,6 @@
     "cookie-cutter": "^0.2.0",
     "cookie-though": "^1.1.5",
     "disqus-react": "^1.0.10",
-    "expo": "^41.0.1",
     "express": "^4.17.1",
     "firebase": "^8.2.1",
     "firebaseui": "^4.7.1",
