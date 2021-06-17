@@ -6,6 +6,7 @@ import { Banner } from "../pages/free-games"
 import useSWR from "swr"
 import Renderloader from "../components/loader"
 import CarouselSlider from "../components/slider"
+import ErrorMessage from "../components/ErrorMessage"
 
 export default function Game({ id }) {
   const { api, isLoading, isError } = useApi(id)
@@ -19,11 +20,7 @@ export default function Game({ id }) {
     )
   }
   if (isError) {
-    return (
-      <AppLayout>
-        <p className="text-5xl text-white text-left py-5">Failed to load</p>
-      </AppLayout>
-    )
+    return <ErrorMessage />
   }
 
   return (

@@ -4,6 +4,7 @@ import AppLayout from "../../components/AppLayout"
 import ImageCard from "../../components/imageCard"
 import GameLink from "../../components/GameLink"
 import Renderloader from "../../components/loader"
+import ErrorMessage from "../../components/ErrorMessage"
 
 const fetcher = (url) => axios.get(url).then((res) => res.data)
 
@@ -13,14 +14,7 @@ export default function TrendingGames() {
     fetcher
   )
 
-  if (error)
-    return (
-      <AppLayout>
-        <h1 className="text-5xl text-white text-left px-20 py-5">
-          Failed to load
-        </h1>
-      </AppLayout>
-    )
+  if (error) return <ErrorMessage />
   if (!data)
     return (
       <AppLayout>

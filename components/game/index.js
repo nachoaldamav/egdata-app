@@ -94,6 +94,8 @@ export default function Game({ id, metadata }) {
 
   if (cookiePreference.cookieOptions[1].isEnabled === true) {
     sendAlgoliaEvent(game)
+  } else if (cookiePreference.cookieOptions[1].isEnabled === false) {
+    sendAlgoliaEventNoConsent(game)
   }
 
   return (
@@ -260,6 +262,22 @@ async function sendAlgoliaEvent(game) {
   })
 
   // clickedObjectIDs
+  aa("clickedObjectIDs", {
+    index: "games",
+    eventName: "Product clicked",
+    objectIDs: [`${game.id}`],
+  })
+}
+
+async function sendAlgoliaEventNoConsent(game) {
+  aa("setUserToken", "_00000000")
+
+  aa("viewedObjectIDs", {
+    index: "games",
+    eventName: "Product Detail Page Viewed",
+    objectIDs: [`${game.id}`],
+  })
+
   aa("clickedObjectIDs", {
     index: "games",
     eventName: "Product clicked",

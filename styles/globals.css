@@ -171,3 +171,7 @@ html > ul {
       width: 12vw;
     }
 }
+
+.error-message {
+  text-align: -webkit-center;
+}

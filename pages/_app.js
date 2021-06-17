@@ -31,17 +31,15 @@ function MyApp({ Component, pageProps }) {
     if (cookiePreference.cookieOptions[2].isEnabled === true) {
       TagManager.initialize({ gtmId: "GTM-WNNDHSP" })
     }
-  })
 
-  // Check localStorage for Algolia ID
-  if (typeof window !== "undefined") {
-    if (localStorage.getItem("ALGOLIA_USER_ID") !== undefined) {
-      const userToken = localStorage.getItem("ALGOLIA_USER_ID") || "_00000000"
+    // Check localStorage for Algolia ID
+    if (localStorage.getItem("ALGOLIA_USER_ID") !== null) {
+      const userToken = localStorage.getItem("ALGOLIA_USER_ID")
       aa("setUserToken", userToken)
     } else {
       createUserId()
     }
-  }
+  })
 
   aa("init", {
     appId: "0X90LHIM7C",
