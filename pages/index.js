@@ -71,6 +71,9 @@ export default function Game({ id, trending }) {
 
         <Banner />
         <RecommendedGames data={data} />
+        <h1 className="text-2xl text-white text-left px-5 md:px-20 pt-5">
+          Recently added
+        </h1>
         <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
           {api.map(
             ({
