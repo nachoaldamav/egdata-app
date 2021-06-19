@@ -44,26 +44,14 @@ export default function RecommendedGames({ data }) {
                       />
                       <div className="card_body h-20 text-white">
                         <header className="flex items-center justify-between leading-tight px-2 md:px-4 md:py-4 py-2 lg:py-2">
-                          <h1 className="text-lg">
-                            <a
-                              className="no-underline hover:underline"
-                              href="#"
-                            >
-                              {title}
-                            </a>
-                          </h1>
+                          <h1 className="text-lg">{title}</h1>
                           <div className="text-gray-200 text-sm">
                             {categories.slice(0, 3).join(", ")}
                           </div>
                         </header>
 
-                        <footer className="flex items-center justify-between leading-none px-2 md:px-2 md:pb-2 text-gray-400">
-                          <a
-                            className="flex items-center no-underline hover:underline"
-                            href="#"
-                          >
-                            <p className="ml-2 text-sm">{seller}</p>
-                          </a>
+                        <footer className="flex items-center justify-between leading-none px-2 md:px-2 md:pb-2 text-gray-400 flex items-center">
+                          <p className="ml-2 text-sm">{seller}</p>
                         </footer>
                       </div>
                     </a>
