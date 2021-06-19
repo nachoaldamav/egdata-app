@@ -54,6 +54,7 @@ export default function Game({ id, metadata }) {
           src={image || "/egs_logo.png"}
           width={1920}
           height={1080}
+          alt={game.title}
           layout="intrinsic"
         />
       )}
@@ -94,8 +95,6 @@ export default function Game({ id, metadata }) {
 
   if (cookiePreference.cookieOptions[1].isEnabled === true) {
     sendAlgoliaEvent(game)
-  } else if (cookiePreference.cookieOptions[1].isEnabled === false) {
-    sendAlgoliaEventNoConsent(game)
   }
 
   return (
@@ -134,6 +133,9 @@ export default function Game({ id, metadata }) {
             }
             width={1100}
             height={630}
+            placeholder="blur"
+            blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
+            alt={game.title}
             className="mx-auto"
           />
         </div>
@@ -262,22 +264,6 @@ async function sendAlgoliaEvent(game) {
   })
 
   // clickedObjectIDs
-  aa("clickedObjectIDs", {
-    index: "games",
-    eventName: "Product clicked",
-    objectIDs: [`${game.id}`],
-  })
-}
-
-async function sendAlgoliaEventNoConsent(game) {
-  aa("setUserToken", "_00000000")
-
-  aa("viewedObjectIDs", {
-    index: "games",
-    eventName: "Product Detail Page Viewed",
-    objectIDs: [`${game.id}`],
-  })
-
   aa("clickedObjectIDs", {
     index: "games",
     eventName: "Product clicked",
