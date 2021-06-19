@@ -102,7 +102,7 @@ export default function Game({ id, metadata }) {
       <style jsx>
         {`
           .sub_menu {
-            background: #111827;
+            background: #101116;
             position: sticky;
             top: 0px;
             left: 0px;
