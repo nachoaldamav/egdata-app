@@ -5,10 +5,14 @@ import Link from "next/link"
 import { Banner } from "../pages/free-games"
 import useSWR from "swr"
 import Renderloader from "../components/loader"
-import CarouselSlider from "../components/slider"
 import ErrorMessage from "../components/ErrorMessage"
+import RecommendedGames from "../components/RecommendedGames"
+import algoliasearch from "algoliasearch"
 
-export default function Game({ id }) {
+const client = algoliasearch("0X90LHIM7C", "89a8fc95db44e802497a75305542c07b")
+const index = client.initIndex("games")
+
+export default function Game({ id, trending }) {
   const { api, isLoading, isError } = useApi(id)
   if (isLoading) {
     return (
@@ -22,6 +26,8 @@ export default function Game({ id }) {
   if (isError) {
     return <ErrorMessage />
   }
+
+  const data = trending
 
   return (
     <AppLayout>
@@ -64,7 +70,7 @@ export default function Game({ id }) {
         </style>
 
         <Banner />
-        <CarouselSlider />
+        <RecommendedGames data={data} />
         <div className="flex flex-wrap container mx-auto px-11 justify-items-stretch place-items-center place-content-center">
           {api.map(
             ({
@@ -145,4 +151,16 @@ function useApi(context) {
     isLoading: !error && !data,
     isError: error,
   }
+}
+
+Game.getInitialProps = async (ctx) => {
+  const res = await index
+    .search("", {
+      hitsPerPage: 3,
+    })
+    .then(({ hits }) => {
+      return hits
+    })
+  const json = await res
+  return { trending: json }
 }

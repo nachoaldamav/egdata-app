@@ -24,7 +24,7 @@
     "@next/mdx": "^10.0.4",
     "@palmabit/react-cookie-law": "^0.6.2",
     "@tailwindcss/postcss7-compat": "^2.0.2",
-    "algoliasearch": "^4.8.3",
+    "algoliasearch": "^4.9.3",
     "autoprefixer": "^10.1.0",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",

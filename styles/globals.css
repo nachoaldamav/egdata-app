@@ -175,3 +175,7 @@ html > ul {
 .error-message {
   text-align: -webkit-center;
 }
+
+.card_body {
+  background-color: #1a1d24;
+}
