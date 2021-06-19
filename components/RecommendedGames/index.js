@@ -9,9 +9,23 @@ const index = client.initIndex("games")
 export default function RecommendedGames({ data }) {
   return (
     <div className="text-white">
-      <h1 className="text-2xl text-white text-left px-5 md:px-20 pt-5">
-        Most viewed
-      </h1>
+      <div className="flex flex-nowrap justify-between items-baseline">
+        <div>
+          <h1 className="text-2xl text-white text-left px-5 md:px-20 pt-5">
+            Most viewed
+          </h1>
+        </div>
+        <div className="px-5 md:px-20">
+          <Link href="/search">
+            <a>
+              <button className="bg-transparent hover:bg-white text-white font-semibold hover:text-black py-2 px-4 border border-white hover:border-transparent rounded">
+                See more
+              </button>
+            </a>
+          </Link>
+        </div>
+      </div>
+
       <div className="container my-2 mx-auto px-4 md:px-12 overflow-x-auto lg:overflow-x-hidden">
         <div className="flex flex-nowrap lg:w-full w-max -mx-1 lg:-mx-4 ">
           {data.map(
