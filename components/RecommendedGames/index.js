@@ -65,29 +65,3 @@ export default function RecommendedGames({ data }) {
     </div>
   )
 }
-
-async function useApi() {
-  const { data, error } = index
-    .search("", {
-      hitsPerPage: 3,
-    })
-    .then(({ hits }) => {
-      return hits
-    })
-  return {
-    api: data,
-    isLoading: !error && !data,
-    isError: error,
-  }
-}
-
-async function getInitialProps({ req }) {
-  const response = await index
-    .search("", {
-      hitsPerPage: 3,
-    })
-    .then(({ hits }) => {
-      return hits
-    })
-  return { trending: response }
-}
