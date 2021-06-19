@@ -1,7 +1,7 @@
 const colors = require("tailwindcss/colors")
 
 module.exports = {
-  purge: ["./**/*.html", "./**/*.vue", "./**/*.jsx", "./**/*.js"],
+  purge: [],
   presets: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -138,9 +138,7 @@ module.exports = {
       inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
       none: "none",
     },
-    container: {
-      center: true,
-    },
+    container: {},
     cursor: {
       auto: "auto",
       default: "default",
