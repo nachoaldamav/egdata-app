@@ -32,6 +32,7 @@ module.exports = {
     camelcase: RULES.WARNING,
     "react/display-name": RULES.WARNING,
     "@next/next/no-img-element": RULES.WARNING,
+    "react-hooks/rules-of-hooks": RULES.WARNING,
   },
   parser: "babel-eslint",
 }
