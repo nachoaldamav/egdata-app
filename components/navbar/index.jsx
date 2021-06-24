@@ -67,26 +67,18 @@ export class Navbar extends React.Component {
 					</div>
 				</header>
 
-				<div className={this.state.isOpen ? 'px-2 pt-2 pb-4 block' : 'px-2 pt-2 pb-4 hidden items-center sm:flex'}>
+				<div className={this.state.isOpen ? 'px-2 pt-2 pb-4 block justify-items-center' : 'px-2 py-2 hidden items-center sm:flex'}>
+				<Link href="/search">
+					<a className="py-1 text-white font-semibold rounded px-24 justify-center info-banner hover:bg-gray-500 inline-flex w-auto md:w-54">
+						<Search height={27} width={27}/> Search
+					</a>
+					</Link>
 					<Link href="/trending">
-					<a
-						className="mt-1 py-1 text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2 block"
-					>
-						<div className="inline-flex">
+					<a className="py-1 text-white font-semibold rounded px-2 hover:bg-gray-500 inline-flex">
 						<Activity height={27} width={27}/> Trending
-						</div>
 					</a>
 					</Link>
 
-					<Link href="/search">
-					<a
-						className="mt-1 py-1 text-white font-semibold rounded px-2 hover:bg-gray-500 sm:mt-0 sm:ml-2 block"
-					>
-						<div className="inline-flex">
-						<Search height={27} width={27}/> Search
-						</div>
-					</a>
-					</Link>
 					<LoginComponent />
 					<Dropdown/>
 				</div>

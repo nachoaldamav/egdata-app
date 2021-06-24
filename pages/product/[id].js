@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { NextSeo } from "next-seo"
-import Game from "../../components/game"
+import Game, { GamePage } from "../../components/game"
 import { useRouter } from "next/router"
 import AppLayout from "../../components/AppLayout"
 import Skeleton from "@material-ui/lab/Skeleton"
@@ -146,7 +146,7 @@ export default function Product({ metadata }) {
         />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Game />
+      <GamePage OpenCritic={metadata.title} />
     </>
   )
 }

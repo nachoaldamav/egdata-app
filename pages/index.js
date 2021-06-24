@@ -8,11 +8,12 @@ import Renderloader from "../components/loader"
 import ErrorMessage from "../components/ErrorMessage"
 import RecommendedGames from "../components/RecommendedGames"
 import algoliasearch from "algoliasearch"
+import RatedGames from "../components/RatedGames"
 
 const client = algoliasearch("0X90LHIM7C", "89a8fc95db44e802497a75305542c07b")
 const index = client.initIndex("games")
 
-export default function Game({ id, trending }) {
+export default function Game({ id, trending, rated }) {
   const { api, isLoading, isError } = useApi(id)
   if (isLoading) {
     return (
@@ -28,10 +29,11 @@ export default function Game({ id, trending }) {
   }
 
   const data = trending
+  const ratedGames = rated
 
   return (
     <AppLayout>
-      <div className="bg-gray-900">
+      <div className="background-color">
         <Head>
           <title>Epic Games Data</title>
           <link rel="manifest" href="/manifest.json" />
@@ -71,6 +73,7 @@ export default function Game({ id, trending }) {
 
         <Banner />
         <RecommendedGames data={data} />
+        <RatedGames data={ratedGames} />
         <h1 className="text-2xl text-white text-left px-5 md:px-20 pt-5">
           Recently added
         </h1>
@@ -99,6 +102,7 @@ export default function Game({ id, trending }) {
                       height={333}
                       placeholder="blur"
                       blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
+                      quality={100}
                       layout="responsive"
                       id={id}
                       className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100"
@@ -164,6 +168,14 @@ Game.getInitialProps = async (ctx) => {
     .then(({ hits }) => {
       return hits
     })
+  const indexRated = client.initIndex("games_rating_desc")
+  const resRated = await indexRated
+    .search("", {
+      hitsPerPage: 3,
+    })
+    .then(({ hits }) => {
+      return hits
+    })
   const json = await res
-  return { trending: json }
+  return { trending: json, rated: resRated }
 }

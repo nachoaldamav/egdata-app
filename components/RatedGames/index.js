@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import _ from "lodash"
 
-export default function RecommendedGames({ data }) {
+export default function RatedGames({ data }) {
   const plataformas = [
     "Windows",
     "Mac OS",
@@ -21,22 +21,14 @@ export default function RecommendedGames({ data }) {
     const newArray = _.without(array, ...plataformas)
     return newArray
   }
+
   return (
     <div className="text-white">
       <div className="flex flex-nowrap justify-between items-baseline">
         <div>
           <h1 className="text-2xl text-white text-left px-5 md:px-20 pt-5">
-            Most viewed
+            Top Rated
           </h1>
-        </div>
-        <div className="px-5 md:px-20">
-          <Link href="/search">
-            <a>
-              <button className="bg-transparent hover:bg-white text-white font-semibold hover:text-black py-2 px-4 border border-white hover:border-transparent rounded">
-                See more
-              </button>
-            </a>
-          </Link>
         </div>
       </div>
 

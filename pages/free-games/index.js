@@ -129,8 +129,13 @@ export default function FreeGames({ data }) {
             }) => (
               <div key={id}>
                 {endDate !== "" && (
-                  <Link href={productSlug}>
-                    <a target="_blank">
+                  <Link
+                    href={`${productSlug.replace(
+                      "https://www.epicgames.com/store/",
+                      "/"
+                    )}?ref=free-games`}
+                  >
+                    <a>
                       <div className="rounded-md pl-2 pr-2">
                         <Image
                           src={
