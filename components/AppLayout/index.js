@@ -49,14 +49,6 @@ const config = {
 }
 
 export default function AppLayout({ children }) {
-  hide()
-  useEffect(() => {
-    const cookiePreference = getPreferences()
-    if (cookiePreference.isCustomised !== true) {
-      init(config)
-    }
-  })
-
   return (
     <>
       <div className="background-color h-full min-h-screen">
