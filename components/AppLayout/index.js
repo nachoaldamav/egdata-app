@@ -49,13 +49,11 @@ const config = {
 }
 
 export default function AppLayout({ children }) {
+  hide()
   useEffect(() => {
     const cookiePreference = getPreferences()
-    if (cookiePreference.isCustomised === true) {
-      hide()
-    } else {
+    if (cookiePreference.isCustomised !== true) {
       init(config)
-      show()
     }
   })
 

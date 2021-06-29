@@ -82,7 +82,7 @@ function useCritics(id) {
     `https://api.opencritic.com/api/game/${id}`,
     fetcher
   )
-  console.log(data)
+
   return {
     game: data,
     isLoading: !error && !data,

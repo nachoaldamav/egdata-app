@@ -21,7 +21,6 @@ export default function PriceGraph({ id }) {
     axios
       .get(url)
       .then((res) => {
-        console.log(res)
         for (const dataObj of res.data.data) {
           empSal.push(dataObj.price)
           empAge.push(Date.parse(dataObj.date))

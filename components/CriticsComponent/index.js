@@ -49,7 +49,7 @@ function useCritics(context) {
     `https://api.opencritic.com/api/game/search?criteria=${id}`,
     fetcher
   )
-  console.log(data)
+
   return {
     game: data,
     isLoading: !error && !data,
