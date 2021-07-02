@@ -112,6 +112,7 @@ export function ExpansionsTab(data) {
               height={14}
               layout="responsive"
               quality={100}
+              loading="eager"
               placeholder="blur"
               blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
               className="rounded-sm"
