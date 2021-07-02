@@ -275,6 +275,7 @@ export function GamePage({ id, OpenCritic }) {
           height={1080}
           alt={game.title}
           placeholder="blur"
+          loading="eager"
           blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
           layout="intrinsic"
         />
