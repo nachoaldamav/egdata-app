@@ -1,3 +1,5 @@
+/* purgecss start ignore */
+
 /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
 /*
@@ -554,8 +556,6 @@ ol, ul {
 
 .container {
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 @media (min-width: 640px) {
@@ -587,6 +587,8 @@ ol, ul {
     max-width: 1536px;
   }
 }
+
+/* purgecss end ignore */
 
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
@@ -18462,7 +18464,6 @@ ol, ul {
 }
 
 .sticky {
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -31178,8 +31179,6 @@ ol, ul {
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -49086,7 +49085,6 @@ ol, ul {
   }
 
   .sm\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -61724,8 +61722,6 @@ ol, ul {
 @media (min-width: 768px) {
   .md\:container {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -79632,7 +79628,6 @@ ol, ul {
   }
 
   .md\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -92270,8 +92265,6 @@ ol, ul {
 @media (min-width: 1024px) {
   .lg\:container {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -110178,7 +110171,6 @@ ol, ul {
   }
 
   .lg\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -122816,8 +122808,6 @@ ol, ul {
 @media (min-width: 1280px) {
   .xl\:container {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -140724,7 +140714,6 @@ ol, ul {
   }
 
   .xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -153362,8 +153351,6 @@ ol, ul {
 @media (min-width: 1536px) {
   .\32xl\:container {
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -171270,7 +171257,6 @@ ol, ul {
   }
 
   .\32xl\:sticky {
-    position: -webkit-sticky;
     position: sticky;
   }
 

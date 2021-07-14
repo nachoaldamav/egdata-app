@@ -19,12 +19,12 @@ import Tooltip from "react-simple-tooltip"
 import axios from "axios"
 import ErrorMessage from "../ErrorMessage"
 
-export function RegionalPricingTab(id) {
+export function RegionalPricingTab({ id }) {
   const countries = getCountries()
 
   function RenderTable() {
     return countries.map((country, index) => {
-      const url = `https://raw.githubusercontent.com/srdrabx/prices-tracker-egs/main/database/prices/${country}/${id.id}.json`
+      const url = `https://raw.githubusercontent.com/srdrabx/prices-tracker-egs/main/database/prices/${country}/${id}.json`
       return RenderCountry(url, index, country)
     })
   }
