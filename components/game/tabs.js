@@ -202,11 +202,7 @@ export function DetailsTab({ offerId }) {
           <WifiOff height={20} width={20} className="mx-2" />
         </p>
         <p className="flex-1">
-          {data.customAttributes.canRunOffline !== undefined &&
-          data.customAttributes.CanRunOffline.value !== undefined &&
-          data.data.customAttributes.CanRunOffline.value !== false
-            ? "Yes"
-            : "No"}
+          {data.customAttributes.CanRunOffline.value !== false ? "Yes" : "No"}
         </p>
       </div>
       <div className="flex flex-col md:flex-row justify-between items-center w-full py-4 md:py-2 border-2 border-gray-600 border-b-0">
