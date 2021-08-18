@@ -20,6 +20,7 @@ export default function blog({ posts }) {
                     height={394}
                     layout="intrinsic"
                     className="rounded-md"
+                    unoptimized={true}
                   />
                   <p className="text-xl text-white">{title}</p>
                   <p className="text-md text-white">{description}</p>

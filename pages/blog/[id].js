@@ -15,6 +15,7 @@ function Post({ post }) {
             height={630}
             layout="intrinsic"
             className="rounded-md"
+            unoptimized={true}
           />
         </div>
         <h1 className="text-5xl text-white text-left px-20 py-5">

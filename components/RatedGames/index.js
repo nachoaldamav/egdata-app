@@ -61,6 +61,7 @@ export default function RatedGames({ data }) {
                         blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
                         layout="responsive"
                         className="block h-auto w-full"
+                        unoptimized={true}
                       />
                       <div className="card_body h-20 text-white">
                         <header className="flex items-center justify-between leading-tight px-2 md:px-4 md:py-4 py-2 lg:py-2">

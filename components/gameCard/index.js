@@ -53,6 +53,7 @@ export default function Game({ game }) {
               layout="responsive"
               id={gamesInfo.id}
               className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100"
+              unoptimized={true}
             />
             <div className="px-2 py-2">
               <div className="font-bold text-gray-50 text-base mb-2 game_title">

@@ -62,6 +62,7 @@ export default function RenderScore({ id }) {
           alt="Critics value"
           layout="intrinsic"
           quality={100}
+          unoptimized={true}
         ></Image>
       </div>
       <div className="px-2">

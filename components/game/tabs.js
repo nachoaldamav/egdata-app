@@ -116,6 +116,7 @@ export function ExpansionsTab(data) {
               placeholder="blur"
               blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
               className="rounded-sm"
+              unoptimized={true}
             />
           </div>
           <div className="flex-1 py-2 md:py-0 text-center">

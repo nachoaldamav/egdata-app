@@ -147,6 +147,7 @@ export default function FreeGames({ data }) {
                           width={670}
                           height={376}
                           className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100 py-0"
+                          unoptimized={true}
                         />
                         <Countdown
                           date={startDate}

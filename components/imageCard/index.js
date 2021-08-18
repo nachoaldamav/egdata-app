@@ -13,6 +13,7 @@ export default function ImageCard({ keyImages, title, id }) {
       layout="responsive"
       id={id}
       className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100"
+      unoptimized={true}
     />
   )
 }

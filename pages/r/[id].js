@@ -71,6 +71,7 @@ export default function RedirectPage({ id, metadata }) {
             width={1100}
             height={630}
             className="lg:my-2 w-full rounded-md absolute"
+            unoptimized={true}
           />
         </div>
       </div>

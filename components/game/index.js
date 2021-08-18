@@ -60,6 +60,7 @@ export default function Game({ id, metadata }) {
           height={1080}
           alt={game.title}
           layout="intrinsic"
+          unoptimized={true}
         />
       )}
     </div>
@@ -278,6 +279,7 @@ export function GamePage({ id, OpenCritic }) {
           loading="eager"
           blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
           layout="intrinsic"
+          unoptimized={true}
         />
       )}
     </div>
@@ -464,6 +466,7 @@ export function GamePage({ id, OpenCritic }) {
               placeholder="blur"
               blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
               className="rounded-md"
+              unoptimized={true}
             />
             <div className="flex flex-nowrap justify-between py-4 px-2 md:px-0 w-full">
               <div>
