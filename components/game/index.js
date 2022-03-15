@@ -389,7 +389,6 @@ export function GamePage({ id, OpenCritic }) {
             </div>
             <div className="rounded-md flex flex-col md:flex-row">
               <div className="px-2 flex-0">
-                <CriticsComponent />
                 <div className="pt-2">
                   <h3 className="text-xl p-5">Social Links</h3>
                 </div>
