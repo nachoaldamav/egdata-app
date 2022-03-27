@@ -161,7 +161,7 @@ function useApi(context) {
   }
 }
 
-Game.getInitialProps = async (ctx) => {
+/* Game.getInitialProps = async (ctx) => {
   const res = await index
     .search("", {
       hitsPerPage: 3,
@@ -179,4 +179,23 @@ Game.getInitialProps = async (ctx) => {
     })
   const json = await res
   return { trending: json, rated: resRated }
+} */
+
+export async function getStaticProps(ctx) {
+  const res = await index
+    .search("", {
+      hitsPerPage: 3,
+    })
+    .then(({ hits }) => {
+      return hits
+    })
+  const indexRated = client.initIndex("games_rating_desc")
+  const resRated = await indexRated
+    .search("", {
+      hitsPerPage: 3,
+    })
+    .then(({ hits }) => {
+      return hits
+    })
+  return { props: { trending: res, rated: resRated }, revalidate: 3600 }
 }
