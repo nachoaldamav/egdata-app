@@ -6,6 +6,7 @@ import { useEffect } from "react"
 import { askNotification } from "../../firebase/firebaseConfig"
 import { DateTime } from "luxon"
 import Countdown, { zeroPad } from "react-countdown"
+import findImage from "../../utils/findImage"
 
 export function Banner() {
   return (
@@ -77,8 +78,6 @@ export default function FreeGames({ data }) {
     askNotification()
   }, [])
 
-  console.log(data)
-
   return (
     <AppLayout>
       <Head>
@@ -108,7 +107,7 @@ export default function FreeGames({ data }) {
         <meta name="twitter:image" content="https://i.imgur.com/l3YT3CX.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <div className="flex flex-wrap container mx-auto px-20">
+      <div className="flex flex-col flex-wrap container mx-auto px-20">
         <p className="text-5xl text-white text-left py-5">Free Games</p>
         <div className="flex flex-row flex-wrap py-8">
           {data
@@ -117,36 +116,23 @@ export default function FreeGames({ data }) {
               ({
                 title,
                 id,
-                VaultClosed,
-                DieselStoreFrontWide,
-                currentPrice,
-                productSlug,
-                seller,
-                discount,
-                originalPrice,
-                discountPercentage,
-                namespace,
                 slug,
                 endDate,
                 startDate,
                 available,
-                OfferImageWide,
+                keyImages,
+                status,
               }) => (
                 <div key={id} className="max-w-md">
                   {endDate !== "" && (
-                    <Link
-                      href={`${productSlug.replace(
-                        "https://www.epicgames.com/store/",
-                        "/"
-                      )}?ref=free-games`}
-                    >
+                    <Link href={`/product/${slug}?ref=free-games`}>
                       <a>
                         <div className="rounded-md pl-2 pr-2">
                           <Image
                             src={
-                              DieselStoreFrontWide ||
-                              VaultClosed ||
-                              OfferImageWide ||
+                              findImage(keyImages, "DieselStoreFrontWide") ||
+                              findImage(keyImages, "VaultClosed") ||
+                              findImage(keyImages, "OfferImageWide") ||
                               "/egs_logo.png"
                             }
                             alt={title}
@@ -166,7 +152,7 @@ export default function FreeGames({ data }) {
                               {title}
                             </div>
                             <div className="text-gray-100 text-base inline">
-                              {available === "false" && (
+                              {status === "ACTIVE" && (
                                 <span>
                                   {DateTime.fromISO(startDate)
                                     .setLocale("en")
@@ -218,9 +204,60 @@ export default function FreeGames({ data }) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch("https://api.egdata.app/free-api.php")
+  const res = await fetch(
+    "https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions"
+  )
   const data = await res.json()
 
   // Pass data to the page via props
-  return { props: { data: data } }
+  return {
+    props: {
+      data: await formatResponse(data.data.Catalog.searchStore.elements),
+    },
+  }
+}
+
+async function formatResponse(data) {
+  const formattedData = data.map((game) => {
+    return {
+      title: game.title,
+      id: game.id,
+      namespace: game.namespace,
+      effectiveDate: game.effectiveDate,
+      currentPrice: game.price.totalPrice.fmtPrice.discountPrice,
+      seller: game.seller.name,
+      slug: game.catalogNs?.mappings[0]?.pageSlug || game.productSlug || "",
+      status: game.status,
+      keyImages: game.keyImages,
+      ...getDates(game),
+    }
+  })
+
+  return formattedData
+}
+
+function getDates(data) {
+  const hasOffers = data.promotions?.promotionalOffers?.length > 0 || false
+  const hasUpcomingOffers =
+    data.promotions?.upcomingPromotionalOffers?.length > 0 || false
+
+  console.log(data.promotions)
+
+  if (data.promotions && hasOffers) {
+    const startDate =
+      data.promotions?.promotionalOffers[0]?.promotionalOffers[0]?.startDate
+    const endDate =
+      data.promotions?.promotionalOffers[0]?.promotionalOffers[0]?.endDate
+    return { startDate, endDate }
+  } else if (data.promotions && hasUpcomingOffers) {
+    const startDate =
+      data.promotions?.upcomingPromotionalOffers[0]?.promotionalOffers[0]
+        ?.startDate
+    const endDate =
+      data.promotions?.upcomingPromotionalOffers[0]?.promotionalOffers[0]
+        ?.endDate
+    return { startDate, endDate }
+  } else {
+    return { startDate: "", endDate: "" }
+  }
 }
