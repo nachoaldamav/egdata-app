@@ -11,17 +11,4 @@ module.exports = withPWA({
   images: {
     domains: ["cdn1.epicgames.com", "cdn2.unrealengine.com", "dev.to"],
   },
-  async headers() {
-    return [
-      {
-        source: "/api/:id",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=3600000, immutable, s-maxage=3600000",
-          },
-        ],
-      },
-    ]
-  },
 })
