@@ -42,3 +42,4 @@ public/sw.js.map
 .env.local
 public/sw.js.map
 .eslintcache
+public/workbox*

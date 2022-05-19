@@ -1,6 +1,5 @@
 import Head from "next/head"
-import { NextSeo } from "next-seo"
-import Game, { GamePage } from "../../components/game"
+import { GamePage } from "../../components/game"
 import { useRouter } from "next/router"
 import AppLayout from "../../components/AppLayout"
 import Skeleton from "@material-ui/lab/Skeleton"
@@ -52,7 +51,7 @@ export async function getStaticPaths() {
   const gamesSlug = []
   await games.elements.forEach((element) => {
     const createParams = {
-      params: { id: element.productSlug.replace("/home", "") },
+      params: { id: element?.productSlug?.replace("/home", "") || null },
     }
     gamesSlug.push(createParams)
   })
@@ -60,7 +59,7 @@ export async function getStaticPaths() {
 
   return {
     fallback: true,
-    paths: result,
+    paths: [],
   }
 }
 
