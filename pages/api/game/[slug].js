@@ -4,13 +4,13 @@ import { productIddBySlug } from "../../../libs/gqlQueries/getProductId"
 
 export default async function getGame(req, res) {
   res.setHeader("Cache-Control", "max-age=604800, must-revalidate")
-  const { slug } = req.query
+  const { slug, country } = req.query
   const { id, namespace } = await getProductId(slug)
   const variables = {
     productNamespace: namespace,
     offerId: id,
-    locale: "en-US",
-    country: "US",
+    locale: country || "en-US",
+    country: country?.split("-")[1] || "US",
     includeSubItems: true,
   }
 
@@ -30,8 +30,18 @@ async function getProductId(slug) {
 
   const response = await EGClient.request(productIddBySlug, variables)
 
+  const res = await fetch(
+    `https://store-content-ipv4.ak.epicgames.com/api/en-US/content/products/${slug}`
+  )
+
+  const data = await res.json()
+
   return {
-    namespace: response.StorePageMapping.mapping.mappings.offer.namespace,
-    id: response.StorePageMapping.mapping.mappings.offerId,
+    namespace:
+      response.StorePageMapping.mapping.mappings?.offer?.namespace ||
+      data.namespace,
+    id:
+      response.StorePageMapping.mapping.mappings.offerId ||
+      data.pages[0].offer.id,
   }
 }

@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import AppLayout from "../../components/AppLayout"
 import Skeleton from "@material-ui/lab/Skeleton"
 import axios from "axios"
+import findImage from "../../utils/findImage"
 
 function removeItemOnce(arr, value) {
   const index = arr.indexOf(value)
@@ -67,12 +68,12 @@ export async function getStaticProps(context) {
   const { params } = context
   const { id } = params
 
-  const res = await fetch(`https://api.egdata.app/game.php?title=${id}`)
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/game/${id}`)
   const metadata = await res.json()
 
   return {
     props: {
-      metadata,
+      metadata: metadata.Catalog.catalogOffer,
     },
   }
 }
@@ -110,21 +111,21 @@ export default function Product({ metadata }) {
         />
         <meta
           property="og:description"
-          content={metadata._title || "Game not found"}
+          content={metadata.description || "Game not found"}
           key="og:description"
         />
         <meta
           property="og:image"
           content={
-            metadata.DieselStoreFrontWide ||
-            metadata.OfferImageWide ||
+            findImage(metadata.keyImages, "DieselStoreFrontWide") ||
+            findImage(metadata.keyImages, "OfferImageWide") ||
             "/img/egs-placeholder.png"
           }
           key="og:image"
         />
         <meta
           property="og:url"
-          content={`https://egdata.app/product/${metadata.slug || "404"}`}
+          content={`https://egdata.app/product/${router.query || "404"}`}
         />
 
         <meta
@@ -133,13 +134,13 @@ export default function Product({ metadata }) {
         />
         <meta
           name="twitter:description"
-          content={metadata._title || "Game not found"}
+          content={metadata.description || "Game not found"}
         />
         <meta
           name="twitter:image"
           content={
-            metadata.DieselStoreFrontWide ||
-            metadata.OfferImageWide ||
+            findImage(metadata.keyImages, "DieselStoreFrontWide") ||
+            findImage(metadata.keyImages, "OfferImageWide") ||
             "/img/egs-placeholder.png"
           }
         />

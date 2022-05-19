@@ -238,6 +238,7 @@ export default function Game({ id, metadata }) {
 }
 
 export function GamePage({ id, OpenCritic }) {
+  const router = useRouter()
   const { game, isLoading, isError } = useGame(id)
   if (isLoading) {
     return (
@@ -260,13 +261,6 @@ export function GamePage({ id, OpenCritic }) {
     return <ErrorMessage />
   }
 
-  const disqusShortname = "egs-data"
-  const disqusConfig = {
-    url: game.website_url, // url
-    identifier: game.id, // Single post id
-    title: game.title, // Single post title
-  }
-
   const galleryImages = game.galleryImages.map((image, index) => (
     <div key={index}>
       {image !== null && (
@@ -284,20 +278,6 @@ export function GamePage({ id, OpenCritic }) {
       )}
     </div>
   ))
-
-  const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      // Render a completed state
-      return ""
-    } else {
-      // Render a countdown
-      return (
-        <span>
-          {days} {days !== 1 ? "days" : "day"} {hours}:{minutes}:{seconds}
-        </span>
-      )
-    }
-  }
 
   const url = `https://epicstore-2a6cc.firebaseio.com/games/${game.id}.json`
 
@@ -338,7 +318,6 @@ export function GamePage({ id, OpenCritic }) {
   const categories = _.without(game.tags, ...plataformas).join(", ")
 
   function returnTo() {
-    const router = useRouter()
     const { ref } = router.query
     if (ref === "free-games") {
       return (
@@ -517,7 +496,7 @@ export function GamePage({ id, OpenCritic }) {
                     target="_blank"
                     rel="noreferrer"
                     href={`https://www.pcgamingwiki.com/wiki/${game.title.replace(
-                      " ",
+                      / /g,
                       "_"
                     )}`}
                   >

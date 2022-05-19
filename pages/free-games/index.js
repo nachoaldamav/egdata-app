@@ -2,7 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import AppLayout from "../../components/AppLayout"
 import Link from "next/link"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { askNotification } from "../../firebase/firebaseConfig"
 import { DateTime } from "luxon"
 import Countdown, { zeroPad } from "react-countdown"
@@ -77,6 +77,8 @@ export default function FreeGames({ data }) {
     askNotification()
   }, [])
 
+  console.log(data)
+
   return (
     <AppLayout>
       <Head>
@@ -108,102 +110,106 @@ export default function FreeGames({ data }) {
       </Head>
       <div className="flex flex-wrap container mx-auto px-20">
         <p className="text-5xl text-white text-left py-5">Free Games</p>
-        <div className="flex flex-row-reverse flex-wrap md:flex-nowrap py-8">
-          {data.map(
-            ({
-              title,
-              id,
-              VaultClosed,
-              DieselStoreFrontWide,
-              currentPrice,
-              productSlug,
-              seller,
-              discount,
-              originalPrice,
-              discountPercentage,
-              namespace,
-              slug,
-              endDate,
-              startDate,
-              available,
-            }) => (
-              <div key={id}>
-                {endDate !== "" && (
-                  <Link
-                    href={`${productSlug.replace(
-                      "https://www.epicgames.com/store/",
-                      "/"
-                    )}?ref=free-games`}
-                  >
-                    <a>
-                      <div className="rounded-md pl-2 pr-2">
-                        <Image
-                          src={
-                            DieselStoreFrontWide ||
-                            VaultClosed ||
-                            "/egs_logo.png"
-                          }
-                          alt={title}
-                          width={670}
-                          height={376}
-                          className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100 py-0"
-                          unoptimized={true}
-                        />
-                        <Countdown
-                          date={startDate}
-                          zeroPadTime={2}
-                          renderer={renderer}
-                        />
-                        <div></div>
-                        <div className="px-2 py-2">
-                          <div className="font-bold text-gray-50 text-base mb-2 game_title">
-                            {title}
-                          </div>
-                          <div className="text-gray-100 text-base inline">
-                            {available === "false" && (
-                              <span>
-                                {DateTime.fromISO(startDate)
-                                  .setLocale("en")
-                                  .toLocaleString({
-                                    month: "short",
-                                    day: "numeric",
-                                    hour: "numeric",
-                                    minute: "numeric",
-                                  })}{" "}
-                                -{" "}
-                                {DateTime.fromISO(endDate)
-                                  .setLocale("en")
-                                  .toLocaleString({
-                                    month: "short",
-                                    day: "numeric",
-                                    hour: "numeric",
-                                    minute: "numeric",
-                                  })}
-                              </span>
-                            )}
-                            {available === "true" && (
-                              <span>
-                                {" "}
-                                Free now -{" "}
-                                {DateTime.fromISO(endDate)
-                                  .setLocale("en")
-                                  .toLocaleString({
-                                    month: "short",
-                                    day: "numeric",
-                                    hour: "numeric",
-                                    minute: "numeric",
-                                  })}
-                              </span>
-                            )}
+        <div className="flex flex-row flex-wrap py-8">
+          {data
+            .reverse()
+            .map(
+              ({
+                title,
+                id,
+                VaultClosed,
+                DieselStoreFrontWide,
+                currentPrice,
+                productSlug,
+                seller,
+                discount,
+                originalPrice,
+                discountPercentage,
+                namespace,
+                slug,
+                endDate,
+                startDate,
+                available,
+                OfferImageWide,
+              }) => (
+                <div key={id} className="max-w-md">
+                  {endDate !== "" && (
+                    <Link
+                      href={`${productSlug.replace(
+                        "https://www.epicgames.com/store/",
+                        "/"
+                      )}?ref=free-games`}
+                    >
+                      <a>
+                        <div className="rounded-md pl-2 pr-2">
+                          <Image
+                            src={
+                              DieselStoreFrontWide ||
+                              VaultClosed ||
+                              OfferImageWide ||
+                              "/egs_logo.png"
+                            }
+                            alt={title}
+                            width={670}
+                            height={376}
+                            className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100 py-0"
+                            unoptimized={true}
+                          />
+                          <Countdown
+                            date={startDate}
+                            zeroPadTime={2}
+                            renderer={renderer}
+                          />
+                          <div></div>
+                          <div className="px-2 py-2">
+                            <div className="font-bold text-gray-50 text-base mb-2 game_title">
+                              {title}
+                            </div>
+                            <div className="text-gray-100 text-base inline">
+                              {available === "false" && (
+                                <span>
+                                  {DateTime.fromISO(startDate)
+                                    .setLocale("en")
+                                    .toLocaleString({
+                                      month: "short",
+                                      day: "numeric",
+                                      hour: "numeric",
+                                      minute: "numeric",
+                                    })}{" "}
+                                  -{" "}
+                                  {DateTime.fromISO(endDate)
+                                    .setLocale("en")
+                                    .toLocaleString({
+                                      month: "short",
+                                      day: "numeric",
+                                      hour: "numeric",
+                                      minute: "numeric",
+                                    })}
+                                </span>
+                              )}
+                              {available === "true" && (
+                                <span>
+                                  {" "}
+                                  Free now -{" "}
+                                  {DateTime.fromISO(endDate)
+                                    .setLocale("en")
+                                    .toLocaleString({
+                                      month: "short",
+                                      day: "numeric",
+                                      hour: "numeric",
+                                      minute: "numeric",
+                                    })}
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </a>
-                  </Link>
-                )}
-              </div>
-            )
-          )}
+                      </a>
+                    </Link>
+                  )}
+                </div>
+              )
+            )}
         </div>
       </div>
     </AppLayout>
@@ -216,5 +222,5 @@ export async function getServerSideProps() {
   const data = await res.json()
 
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data: data } }
 }
