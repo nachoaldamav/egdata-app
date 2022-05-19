@@ -3,6 +3,8 @@ import { getProductById } from "../../../libs/gqlQueries/getProductById"
 import { productIddBySlug } from "../../../libs/gqlQueries/getProductId"
 
 export default async function getGame(req, res) {
+  // Cache response inmutably
+  res.setHeader("Cache-Control", "max-age=31536000, public, immutable")
   const { slug, country } = req.query
   const { id, namespace } = await getProductId(slug)
   const variables = {
