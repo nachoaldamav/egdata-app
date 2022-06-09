@@ -98,7 +98,7 @@
     "lint-staged": "^11.0.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.3.1",
-    "tailwindcss": "^2.2.4"
+    "tailwindcss": "^3"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

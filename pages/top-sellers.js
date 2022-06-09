@@ -57,7 +57,7 @@ export default function TopSellers({ data }) {
                   className="w-full rounded-md absolute transition duration-500 ease-in-out opacity-70 transform hover:opacity-100"
                   unoptimized={true}
                 />
-                <span className="absolute top-3 right-2 font-bold text-xl text-white bg-black bg-opacity-20 w-fit px-2 text-center backdrop-blur-lg rounded-r-lg rounded-t-lg rounded-b-none rounded-l-none">
+                <span className="absolute top-4 right-2 font-bold text-xl text-white bg-black bg-opacity-20 w-fit px-2 text-center backdrop-blur-lg rounded-r-lg rounded-t-lg rounded-b-none rounded-l-none">
                   {game.position}
                 </span>
                 <div className="px-2 py-2">
