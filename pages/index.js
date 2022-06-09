@@ -32,8 +32,6 @@ export default function Game({ id, trending, rated }) {
   const data = trending
   const ratedGames = rated
 
-  console.log(api)
-
   return (
     <AppLayout>
       <div className="background-color">
@@ -134,7 +132,14 @@ export default function Game({ id, trending, rated }) {
                       )}
                       <div className="text-gray-100 text-base inline">
                         {" "}
-                        {game.price.totalPrice.fmtPrice.discountPrice}
+                        {game.price.totalPrice.fmtPrice.originalPrice ===
+                        "0" ? (
+                          <div className="inline">Free</div>
+                        ) : (
+                          <div className="inline">
+                            {game.price.totalPrice.fmtPrice.discountPrice}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
