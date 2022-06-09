@@ -23,7 +23,6 @@ export default async function API(req, res) {
     releaseDate: `[,${currentDateString}]`,
     withPrice: true,
   }
-  variables.country = country || "US"
 
   try {
     const response = await EGClient.request(MainRequest, variables)

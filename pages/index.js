@@ -32,6 +32,8 @@ export default function Game({ id, trending, rated }) {
   const data = trending
   const ratedGames = rated
 
+  console.log(api)
+
   return (
     <AppLayout>
       <div className="background-color">
@@ -113,24 +115,26 @@ export default function Game({ id, trending, rated }) {
                       {game.seller.name}
                     </div>
                     <div className="text-gray-200 text-base">
-                      {game?.price?.totalPice?.discount > 0 && (
+                      {game?.price?.totalPrice?.discount > 0 && (
                         <div className="text-gray-500 text-base inline font-sans">
                           <span className="tracking-wider leading-relaxed text-xs p-1 bg-blue-500 font-medium rounded-md no-underline text-white">
                             -
-                            {(game.price.totalPice.discountPrice /
-                              game.price.totalPice.originalPrice) *
-                              100}
+                            {(
+                              (game.price.totalPrice.discountPrice /
+                                game.price.totalPrice.originalPrice) *
+                              100
+                            ).toFixed(0)}
                             %
                           </span>
                           <div className="inline"> </div>
                           <div className="line-through inline">
-                            {game.price.totalPice.originalPrice}
+                            {game.price.totalPrice.fmtPrice.originalPrice}
                           </div>
                         </div>
                       )}
                       <div className="text-gray-100 text-base inline">
                         {" "}
-                        {game?.price?.totalPice?.discountPrice}
+                        {game.price.totalPrice.fmtPrice.discountPrice}
                       </div>
                     </div>
                   </div>

@@ -8,7 +8,7 @@ export default function LoginComponent() {
     <>
       {!session && (
         <Link href="/login">
-          <a className="py-1 text-white font-semibold rounded px-2 mx-2 block md:inline-flex hover:bg-gray-500">
+          <a className="gap-2 text-white font-semibold rounded px-2 mx-2 block md:inline-flex items-center hover:bg-gray-500">
             <LogIn height={27} width={27} /> Sign in
           </a>
         </Link>
