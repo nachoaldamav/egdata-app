@@ -88,7 +88,7 @@ function Diff({ diff }) {
     )
   } else if (diff < 0) {
     return (
-      <span className="text-red-500">
+      <span className="text-red-500 inline-flex gap-1">
         <ArrowDown />
         {diff}
       </span>
