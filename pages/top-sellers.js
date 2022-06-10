@@ -42,10 +42,10 @@ export default function TopSellers({ data }) {
             id={index}
             className="rounded-md pl-2 pr-2 game_card relative"
           >
-            <Link href={`https://store.epicgames.com${game.url}`}>
+            <Link href={`${game.url}`}>
               <a target="_blank">
                 <Image
-                  src={game.image}
+                  src={game.image || "/egs_logo.png"}
                   alt={game.title}
                   width={250}
                   height={333}
