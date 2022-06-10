@@ -448,15 +448,15 @@ export function GamePage({ id, OpenCritic }) {
             />
             <div className="flex flex-nowrap justify-between py-4 px-2 md:px-0 w-full">
               <div>
-                <h3>Original</h3>
+                <h3 className="text-lg">Original</h3>
                 {game.originalPrice}
               </div>
               <div>
-                <h3>Discount</h3>
+                <h3 className="text-lg">Discount</h3>
                 {game.discount !== "0" ? `${game.discountPercentage}%` : "-"}
               </div>
               <div>
-                <h3>Current</h3>
+                <h3 className="text-lg">Current</h3>
                 {game.currentPrice}
               </div>
             </div>

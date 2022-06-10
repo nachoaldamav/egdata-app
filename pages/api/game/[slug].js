@@ -4,13 +4,16 @@ import { productIddBySlug } from "../../../libs/gqlQueries/getProductId"
 
 export default async function getGame(req, res) {
   res.setHeader("Cache-Control", "s-maxage=86400")
-  const { slug, country } = req.query
+  const { slug, country, selectedCountry } = req.query
+
+  console.log(slug, country, selectedCountry)
+
   const { id, namespace } = await getProductId(slug)
   const variables = {
     productNamespace: namespace,
     offerId: id,
-    locale: country || "en-US",
-    country: country?.split("-")[1] || "US",
+    locale: "en-US",
+    country: selectedCountry || country,
     includeSubItems: true,
   }
 

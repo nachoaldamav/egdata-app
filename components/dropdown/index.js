@@ -30,6 +30,7 @@ export default function Dropdown(elements) {
 async function updateCountry(code) {
   if (typeof window !== "undefined") {
     localStorage.setItem("selectedCountry", code)
+    document.cookie = `selectedCountry=${code}`
   }
   location.reload()
 }
