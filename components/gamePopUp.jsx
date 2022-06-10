@@ -56,7 +56,7 @@ export default function GamePopUp({ children, link, gameId }) {
                       ? game.description.substring(0, 100) + "..."
                       : game.description}
                   </span>
-                  <span className="w-full flex flex-row justify-between">
+                  <span className="w-full flex flex-row justify-between items-center">
                     {game?.price?.totalPrice?.discount > 0 && (
                       <div className="text-gray-500 text-base inline font-sans">
                         <span className="tracking-wider leading-relaxed text-xs p-1 bg-blue-500 font-medium rounded-md no-underline text-white">
@@ -74,7 +74,7 @@ export default function GamePopUp({ children, link, gameId }) {
                         </div>
                       </div>
                     )}
-                    <div className="text-gray-100 text-base inline">
+                    <div className="text-gray-100 text-base inline items-center">
                       {" "}
                       {game.price.totalPrice.fmtPrice.originalPrice === "0" ? (
                         <div className="inline">Free</div>

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-export async function middleware(req) {
+export default async function middleware(req) {
   const url = req.nextUrl.clone()
   const country = req.cookies.selectedCountry || "US"
 
