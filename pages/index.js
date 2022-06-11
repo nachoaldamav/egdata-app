@@ -118,9 +118,8 @@ export default function Game({ id, trending, rated }) {
                           <span className="tracking-wider leading-relaxed text-xs p-1 bg-blue-500 font-medium rounded-md no-underline text-white">
                             -
                             {(
-                              (game.price.totalPrice.discountPrice /
-                                game.price.totalPrice.originalPrice) *
-                              100
+                              (game.price.totalPrice.discount * 100) /
+                              game.price.totalPrice.originalPrice
                             ).toFixed(0)}
                             %
                           </span>
