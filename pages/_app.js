@@ -43,12 +43,12 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#2A2A2A" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5821873603989488"
+          crossOrigin="anonymous"
+        ></script>
       </Head>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5821873603989488"
-        crossorigin="anonymous"
-      ></Script>
       {pathname !== "/r/[id]" && <Navbar />}
       <Component {...pageProps} />
     </>
