@@ -46,6 +46,7 @@ function Footer() {
           </div>
         </div>
       </div>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
   )
 }

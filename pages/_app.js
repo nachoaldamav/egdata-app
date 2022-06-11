@@ -5,6 +5,7 @@ import "nprogress/nprogress.css"
 import Router, { useRouter } from "next/router"
 import Head from "next/head"
 import { Navbar } from "../components/navbar"
+import Script from "next/script"
 
 const privatePages = ["/dashboard/editor"]
 
@@ -43,6 +44,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#2A2A2A" />
       </Head>
+      <Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5821873603989488"></Script>
       {pathname !== "/r/[id]" && <Navbar />}
       <Component {...pageProps} />
     </>
