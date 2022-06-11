@@ -49,5 +49,10 @@ async function getProductId(slug) {
 
 function getHomeId(pages) {
   const homePage = pages.find((page) => page._title === "home")
+
+  if (!homePage) {
+    return pages[0].offer.id
+  }
+
   return homePage.offer.id
 }
