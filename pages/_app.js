@@ -5,7 +5,7 @@ import "nprogress/nprogress.css"
 import Router, { useRouter } from "next/router"
 import Head from "next/head"
 import { Navbar } from "../components/navbar"
-import Script from "next/script"
+import { useEffect } from "react"
 
 const privatePages = ["/dashboard/editor"]
 
@@ -15,6 +15,16 @@ Router.events.on("routeChangeComplete", () => NProgress.done())
 Router.events.on("routeChangeError", () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    const head = document.getElementsByTagName("head")[0]
+    const scriptElement = document.createElement(`script`)
+    scriptElement.type = `text/javascript`
+    scriptElement.async = true
+    scriptElement.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5821873603989488`
+    scriptElement.crossOrigin = "anonymous"
+    head.appendChild(scriptElement)
+  }, [])
+
   // Get the pathname
   const { pathname } = useRouter()
 
@@ -43,11 +53,6 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#2A2A2A" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5821873603989488"
-          crossOrigin="anonymous"
-        ></script>
       </Head>
       {pathname !== "/r/[id]" && <Navbar />}
       <Component {...pageProps} />
