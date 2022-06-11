@@ -271,7 +271,7 @@ export function GamePage({ id, OpenCritic }) {
             </div>
             <div className="flex flex-nowrap justify-between py-2">
               <Link
-                href={`https://store.epicgames/p/${gameId}`}
+                href={`https://store.epicgames.com/p/${gameId}`}
                 target="_blank"
               >
                 <a>
