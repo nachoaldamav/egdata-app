@@ -3,9 +3,11 @@ import { useRouter } from "next/router"
 import useSWR from "swr"
 import Skeleton from "@material-ui/lab/Skeleton"
 import Image from "next/image"
+import findImage from "../../utils/findImage"
 
 export default function RedirectPage({ id, metadata }) {
   const { game, isLoading, isError } = useGame(id)
+
   if (isLoading) {
     return (
       <AppLayout>
@@ -46,7 +48,7 @@ export default function RedirectPage({ id, metadata }) {
           <div>
             <br></br>
             <a
-              href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game._id}#/purchase/verify?_k=mshm8g`}
+              href={`https://www.epicgames.com/store/purchase?namespace=${game.namespace}&showNavigation=true&highlightColor=0078f2&offers=${game.id}#/purchase/verify?_k=mshm8g`}
             >
               <button className="btn h-20 w-auto px-7 bg-black epic-login inline rounded-md">
                 <img
@@ -64,14 +66,15 @@ export default function RedirectPage({ id, metadata }) {
         <div className="flex-1">
           <Image
             src={
-              game.DieselStoreFrontWide ||
-              game.OfferImageWide ||
+              findImage(game?.keyImages, "DieselStoreFrontWide") ||
+              findImage(game?.keyImages, "OfferImageWide") ||
               "/img/egs-placeholder.png"
             }
             width={1100}
             height={630}
             className="lg:my-2 w-full rounded-md absolute"
             unoptimized={true}
+            alt={game.title}
           />
         </div>
       </div>
@@ -89,13 +92,11 @@ function useGame(context) {
 
   const fetcher = (...args) => fetch(...args).then((res) => res.json())
   const { data, error } = useSWR(
-    `https://api.egdata.app/game.php?title=${id}&country=${
-      selectedCountry || "US"
-    }`,
+    `/api/game/${id}?country=${selectedCountry}`,
     fetcher
   )
   return {
-    game: data,
+    game: data?.Catalog.catalogOffer,
     isLoading: !error && !data,
     isError: error,
   }

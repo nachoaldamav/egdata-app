@@ -1,7 +1,6 @@
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import { useState } from "react"
-import { useAuth } from "@clerk/nextjs"
 
 const Editor = dynamic(() => import("../../components/Editor"), {
   ssr: false,

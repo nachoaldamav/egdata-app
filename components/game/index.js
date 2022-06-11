@@ -2,7 +2,6 @@ import Image from "next/image"
 import AppLayout from "../../components/AppLayout"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import useSWR from "swr"
 import Skeleton from "@material-ui/lab/Skeleton"
 import ReactMarkdown from "react-markdown"
 import gfm from "remark-gfm"
@@ -17,10 +16,35 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import "react-tabs/style/react-tabs.css"
 import { RegionalPricingTab, ExpansionsTab, DetailsTab } from "./tabs"
 import { OpenInWindow } from "iconoir-react"
+import { useEffect, useState } from "react"
+import findImage from "../../utils/findImage"
 
 export function GamePage({ id, OpenCritic }) {
   const router = useRouter()
-  const { game, isLoading, isError } = useGame(id)
+  const gameId = router.query.id
+  const [game, setGame] = useState(null)
+  const [subOffer, setSubOffer] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(null)
+
+  useEffect(() => {
+    if (gameId) {
+      fetch(`/api/game/${gameId}`)
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json.Catalog)
+          setGame(json.Catalog.catalogOffer)
+          setSubOffer(json.Catalog.offerSubItems)
+          setIsLoading(false)
+        })
+        .catch((err) => {
+          console.log(err)
+          setIsLoading(false)
+          setIsError(true)
+        })
+    }
+  }, [gameId])
+
   if (isLoading) {
     return (
       <AppLayout>
@@ -42,23 +66,7 @@ export function GamePage({ id, OpenCritic }) {
     return <ErrorMessage />
   }
 
-  const galleryImages = game.galleryImages.map((image, index) => (
-    <div key={index}>
-      {image !== null && (
-        <Image
-          src={image || "/egs_logo.png"}
-          width={1920}
-          height={1080}
-          alt={game.title}
-          placeholder="blur"
-          loading="eager"
-          blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-          layout="intrinsic"
-          unoptimized={true}
-        />
-      )}
-    </div>
-  ))
+  const galleryImages = [null]
 
   const url = `https://epicstore-2a6cc.firebaseio.com/games/${game.id}.json`
 
@@ -96,7 +104,23 @@ export function GamePage({ id, OpenCritic }) {
     "Holiday Sale 2020",
   ]
 
-  const categories = _.without(game.tags, ...plataformas).join(", ")
+  const categories = () => {
+    const categories = []
+    game.tags.forEach((category) => {
+      categories.push(category.name)
+    })
+    return categories.join(", ")
+  }
+
+  const platforms = () => {
+    const platforms = []
+    game.tags.forEach((platform) => {
+      if (platform.name === "Windows" || platform.name === "Mac OS") {
+        platforms.push(platform.name)
+      }
+    })
+    return platforms.join(", ")
+  }
 
   function returnTo() {
     const { ref } = router.query
@@ -142,7 +166,7 @@ export function GamePage({ id, OpenCritic }) {
               className="game_description pb-5 px-5"
               plugins={[gfm]}
             >
-              {game._description}
+              {game.description}
             </ReactMarkdown>
             <div className="py-4">
               <hr></hr>
@@ -158,9 +182,9 @@ export function GamePage({ id, OpenCritic }) {
                 <div className="flex flex-nowrap justify-between py-1">
                   <div className="px-2 md:px-5">Seller</div>
                   <div className="px-2 md:px-5 truncate">
-                    <Link href={`/search?query=${game.seller}`}>
+                    <Link href={`/search?query=${game.seller.name}`}>
                       <a className="underline hover:no-underline">
-                        {game.seller}
+                        {game.seller.name}
                       </a>
                     </Link>
                   </div>
@@ -168,14 +192,13 @@ export function GamePage({ id, OpenCritic }) {
                 <div className="flex flex-nowrap justify-between py-1">
                   <div className="px-2 md:px-5">Platforms</div>
                   <div className="px-2 md:px-5 overflow-ellipsis">
-                    {game.tags.includes("Windows") === true && "Windows"}
-                    {game.tags.includes("Mac OS") === true && ", Mac OS"}
+                    {platforms()}
                   </div>
                 </div>
                 <div className="flex flex-nowrap justify-between py-1 w-full">
                   <div className="px-2 md:px-5">Categories</div>
                   <div className="px-2 md:px-5 text-right whitespace-nowrap md:whitespace-normal overflow-x-auto">
-                    {categories}
+                    {categories()}
                   </div>
                 </div>
                 <div className="flex flex-nowrap justify-between py-1">
@@ -215,7 +238,7 @@ export function GamePage({ id, OpenCritic }) {
           </div>
           <div className="w-full md:w-3/12 px-5">
             <Image
-              src={game.Thumbnail}
+              src={findImage(game.keyImages, "Thumbnail")}
               alt={game.title}
               width={175}
               height={235}
@@ -230,26 +253,34 @@ export function GamePage({ id, OpenCritic }) {
             <div className="flex flex-nowrap justify-between py-4 px-2 md:px-0 w-full">
               <div>
                 <h3 className="text-lg">Original</h3>
-                {game.originalPrice}
+                {game.price.totalPrice.fmtPrice.originalPrice}
               </div>
               <div>
                 <h3 className="text-lg">Discount</h3>
-                {game.discount !== "0" ? `${game.discountPercentage}%` : "-"}
+                {game.price.totalPrice.discount !== 0
+                  ? `${(
+                      (game.price.totalPrice.discount * 100) /
+                      game.price.totalPrice.originalPrice
+                    ).toFixed(0)}%`
+                  : "-"}
               </div>
               <div>
                 <h3 className="text-lg">Current</h3>
-                {game.currentPrice}
+                {game.price.totalPrice.fmtPrice.discountPrice}
               </div>
             </div>
             <div className="flex flex-nowrap justify-between py-2">
-              <Link href={game.productSlug} target="_blank">
+              <Link
+                href={`https://store.epicgames/p/${gameId}`}
+                target="_blank"
+              >
                 <a>
                   <button className="mr-1 flex-1 inline-flex items-center justify-center px-7 py-3 border-2 border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-transparent hover:border-blue-700">
                     Buy now
                   </button>
                 </a>
               </Link>
-              <Link href={`/r/${game.slug}`}>
+              <Link href={`/r/${gameId}`}>
                 <a>
                   <button className="ml-1 flex-1 inline-flex items-center justify-center px-7 py-3 border boder-blue-700 text-base font-medium rounded-md text-white bg-transparent hover:bg-indigo-700">
                     Direct buy
@@ -291,8 +322,8 @@ export function GamePage({ id, OpenCritic }) {
             <TabPanel>
               <RegionalPricingTab id={game.id} />
             </TabPanel>
-            <TabPanel>
-              {game.galleryImages[0] !== undefined ? (
+            {/*  <TabPanel>
+              {game.galleryImages && game.galleryImages[0] !== undefined ? (
                 <div className="flex flex-col md:grid grid-flow-row grid-cols-2 max-w-4xl mx-auto py-4 gap-4">
                   {galleryImages}
                 </div>
@@ -306,35 +337,13 @@ export function GamePage({ id, OpenCritic }) {
               <ExpansionsTab data={game.pages} />
             </TabPanel>
             <TabPanel>
-              <DetailsTab offerId={game.offerSubItems[0].id} />
-            </TabPanel>
+              <DetailsTab offerId={subOffer[0].id} />
+            </TabPanel> */}
           </Tabs>
         </div>
       </div>
     </AppLayout>
   )
-}
-
-function useGame(context) {
-  const router = useRouter()
-  const { id } = router.query
-  let selectedCountry
-  if (typeof window !== "undefined") {
-    selectedCountry = localStorage.getItem("selectedCountry")
-  }
-
-  const fetcher = (...args) => fetch(...args).then((res) => res.json())
-  const { data, error } = useSWR(
-    `https://api.egdata.app/game.php?title=${id}&country=${
-      selectedCountry || "US"
-    }`,
-    fetcher
-  )
-  return {
-    game: data,
-    isLoading: !error && !data,
-    isError: error,
-  }
 }
 
 async function sendAlgoliaEvent(game) {
@@ -364,7 +373,6 @@ GamePage.getInitialProps = async (context) => {
     .then((response) => {
       return response
     })
-  console.info(res)
   const json = await res
   return { OpenCritic: json }
 }
