@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react"
 import {
   InfoEmpty,
   CloudSync,
@@ -16,7 +15,6 @@ import { useRouter } from "next/router"
 import { DateTime } from "luxon"
 import useSWR from "swr"
 import Tooltip from "react-simple-tooltip"
-import axios from "axios"
 import ErrorMessage from "../ErrorMessage"
 
 export function RegionalPricingTab({ id }) {

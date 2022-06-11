@@ -6,8 +6,6 @@ export default async function getGame(req, res) {
   res.setHeader("Cache-Control", "s-maxage=86400")
   const { slug, country, selectedCountry } = req.query
 
-  console.log(slug, country, selectedCountry)
-
   const { id, namespace } = await getProductId(slug)
   const variables = {
     productNamespace: namespace,

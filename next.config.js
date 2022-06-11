@@ -4,7 +4,6 @@ const withPWA = require("next-pwa")
 const runtimeCaching = require("next-pwa/cache")
 module.exports = withMDX()
 module.exports = withPWA({
-  webpack5: true,
   pwa: {
     disable: process.env.NODE_ENV === "development",
     register: true,
@@ -14,6 +13,7 @@ module.exports = withPWA({
   images: {
     domains: ["cdn1.epicgames.com", "cdn2.unrealengine.com", "dev.to"],
   },
+  swcMinify: true,
 })
 
 module.exports = ({ defaultConfig }) => {

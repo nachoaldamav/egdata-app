@@ -1,8 +1,3 @@
-import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link"
-import useSWR from "swr"
-import Skeleton from "@material-ui/lab/Skeleton"
 import axios from "axios"
 
 export default function GameCard({ id }) {
