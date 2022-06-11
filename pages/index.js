@@ -163,7 +163,7 @@ function useApi(context) {
     `/api/main?country=${selectedCountry || "US"}`,
     fetcher
   )
-  console.log(data)
+
   return {
     api: data,
     isLoading: !error && !data,

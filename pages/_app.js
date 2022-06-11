@@ -1,22 +1,18 @@
 import "../styles/globals.css"
 import "../styles/tailwind.css"
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  RedirectToSignIn,
+} from "@clerk/nextjs"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 import Router, { useRouter } from "next/router"
 import Head from "next/head"
 import { Navbar } from "../components/navbar"
-import aa from "search-insights"
-import { getPreferences } from "cookie-though"
-import { useEffect } from "react"
-import TagManager from "react-gtm-module"
 
-// Create userId for Algolia
-async function createUserId() {
-  if (typeof window !== "undefined") {
-    const randomId = "_" + Math.random().toString(36).substr(2, 9)
-    localStorage.setItem("ALGOLIA_USER_ID", randomId)
-  }
-}
+const privatePages = ["/dashboard/editor"]
 
 // Binding events.
 Router.events.on("routeChangeStart", () => NProgress.start())
@@ -24,35 +20,14 @@ Router.events.on("routeChangeComplete", () => NProgress.done())
 Router.events.on("routeChangeError", () => NProgress.done())
 
 function MyApp({ Component, pageProps }) {
-  // Initialize GTM if consent
+  // Get the pathname
+  const { pathname } = useRouter()
 
-  useEffect(() => {
-    const cookiePreference = getPreferences()
-    if (cookiePreference.cookieOptions[2].isEnabled === true) {
-      TagManager.initialize({ gtmId: "GTM-WNNDHSP" })
-    }
-  })
-
-  // Check localStorage for Algolia ID
-  if (typeof window !== "undefined") {
-    if (localStorage.getItem("ALGOLIA_USER_ID") !== undefined) {
-      const userToken = localStorage.getItem("ALGOLIA_USER_ID") || "_00000000"
-      aa("setUserToken", userToken)
-    } else {
-      createUserId()
-    }
-  }
-
-  aa("init", {
-    appId: "0X90LHIM7C",
-    apiKey: "b1e5b58f2772d9bdaa1fec4c3e5c9507",
-  })
-
-  const router = useRouter()
-  const pathname = router.pathname
+  // Check if the current route matches a public page
+  const isPublicPage = !privatePages.includes(pathname)
 
   return (
-    <>
+    <ClerkProvider {...pageProps}>
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -75,8 +50,19 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#2A2A2A" />
       </Head>
       {pathname !== "/r/[id]" && <Navbar />}
-      <Component {...pageProps} />
-    </>
+      {isPublicPage ? (
+        <Component {...pageProps} />
+      ) : (
+        <>
+          <SignedIn>
+            <Component {...pageProps} />
+          </SignedIn>
+          <SignedOut>
+            <RedirectToSignIn />
+          </SignedOut>
+        </>
+      )}
+    </ClerkProvider>
   )
 }
 

@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import findImage from "../utils/findImage"
 
 export default function GamePopUp({ children, link, gameId }) {
-  const [events, setEvents] = useState([])
   const [loading, setLoading] = useState(true)
   const [game, setGame] = useState(null)
 

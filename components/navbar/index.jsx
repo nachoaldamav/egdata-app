@@ -1,6 +1,5 @@
 import Link from "next/link"
 import React from "react"
-import { session, signIn, signOut, useSession } from "next-auth/client"
 import LoginComponent from "../LoginComponent"
 import Dropdown from "../dropdown"
 import { Activity, Search } from "iconoir-react"

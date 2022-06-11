@@ -241,8 +241,6 @@ function getDates(data) {
   const hasUpcomingOffers =
     data.promotions?.upcomingPromotionalOffers?.length > 0 || false
 
-  console.log(data.promotions)
-
   if (data.promotions && hasOffers) {
     const startDate =
       data.promotions?.promotionalOffers[0]?.promotionalOffers[0]?.startDate
