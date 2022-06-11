@@ -1,11 +1,5 @@
 import "../styles/globals.css"
 import "../styles/tailwind.css"
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  RedirectToSignIn,
-} from "@clerk/nextjs"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 import Router, { useRouter } from "next/router"
@@ -27,7 +21,7 @@ function MyApp({ Component, pageProps }) {
   const isPublicPage = !privatePages.includes(pathname)
 
   return (
-    <ClerkProvider {...pageProps}>
+    <>
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -50,19 +44,8 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#2A2A2A" />
       </Head>
       {pathname !== "/r/[id]" && <Navbar />}
-      {isPublicPage ? (
-        <Component {...pageProps} />
-      ) : (
-        <>
-          <SignedIn>
-            <Component {...pageProps} />
-          </SignedIn>
-          <SignedOut>
-            <RedirectToSignIn />
-          </SignedOut>
-        </>
-      )}
-    </ClerkProvider>
+      <Component {...pageProps} />
+    </>
   )
 }
 
