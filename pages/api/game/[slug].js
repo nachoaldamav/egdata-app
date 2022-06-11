@@ -10,7 +10,7 @@ export default async function getGame(req, res) {
   const variables = {
     productNamespace: namespace,
     offerId: id,
-    locale: "en-US",
+    locale: selectedCountry || country,
     country: selectedCountry || country,
     includeSubItems: true,
   }
