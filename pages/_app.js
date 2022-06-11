@@ -6,6 +6,12 @@ import Router, { useRouter } from "next/router"
 import Head from "next/head"
 import { Navbar } from "../components/navbar"
 import { useEffect } from "react"
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  RedirectToSignIn,
+} from "@clerk/nextjs"
 
 const privatePages = ["/dashboard/editor"]
 
@@ -32,7 +38,7 @@ function MyApp({ Component, pageProps }) {
   const isPublicPage = !privatePages.includes(pathname)
 
   return (
-    <>
+    <ClerkProvider>
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -55,8 +61,19 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#2A2A2A" />
       </Head>
       {pathname !== "/r/[id]" && <Navbar />}
-      <Component {...pageProps} />
-    </>
+      {isPublicPage ? (
+        <Component {...pageProps} />
+      ) : (
+        <>
+          <SignedIn>
+            <Component {...pageProps} />
+          </SignedIn>
+          <SignedOut>
+            <RedirectToSignIn />
+          </SignedOut>
+        </>
+      )}
+    </ClerkProvider>
   )
 }
 
