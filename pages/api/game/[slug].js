@@ -43,6 +43,11 @@ async function getProductId(slug) {
       data.namespace,
     id:
       response.StorePageMapping.mapping.mappings.offerId ||
-      data.pages[0].offer.id,
+      getHomeId(data.pages),
   }
+}
+
+function getHomeId(pages) {
+  const homePage = pages.find((page) => page._title === "home")
+  return homePage.offer.id
 }
