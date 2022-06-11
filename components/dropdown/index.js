@@ -10,6 +10,9 @@ export default function Dropdown(elements) {
 
   if (typeof window !== "undefined") {
     selected = localStorage.getItem("selectedCountry") || "US"
+
+    // Set the selected country in the cookie with a max age of 1 year
+    document.cookie = `selectedCountry=${selected}; max-age=31536000`
   }
 
   return (
@@ -30,7 +33,7 @@ export default function Dropdown(elements) {
 async function updateCountry(code) {
   if (typeof window !== "undefined") {
     localStorage.setItem("selectedCountry", code)
-    document.cookie = `selectedCountry=${code}`
+    document.cookie = `selectedCountry=${code}; max-age=31536000`
   }
   location.reload()
 }
