@@ -6,7 +6,7 @@ import Countdown, { zeroPad } from "react-countdown"
 
 export default function FreeGames({ data }) {
   return (
-    <div className="w-full h-fit flex flex-col text-white px-10 md:px-20 py-4 md:py-12">
+    <div className="w-full h-fit flex flex-col text-white px-10 md:px-20 py-4 md:pt-12">
       <h4 className="text-4xl font-bold">Free Games</h4>
       <div className="flex flex-row w-full min-w-full overflow-y-auto flex-nowrap">
         {data.map((item, index) => (
@@ -58,7 +58,6 @@ function isUpcoming(promotions) {
 function ParseDates({ promotions }) {
   function parseDate(date) {
     const d = new Date(date)
-    // Convert to Jun 6, 07:00 PM
     return `${d.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",

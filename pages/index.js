@@ -11,6 +11,7 @@ import algoliasearch from "algoliasearch"
 import RatedGames from "../components/RatedGames"
 import findImage from "../utils/findImage"
 import FreeGames from "../components/FreeGames"
+import Home1 from "../components/ads/HomePage"
 
 const client = algoliasearch("0X90LHIM7C", "89a8fc95db44e802497a75305542c07b")
 const index = client.initIndex("games")
@@ -74,6 +75,7 @@ export default function Game({ trending, rated, freeGames }) {
         </style>
 
         <FreeGames data={freeGames} />
+        <Home1 />
         <RecommendedGames data={data} />
         <RatedGames data={ratedGames} />
         <h1 className="text-2xl text-white text-left px-5 md:px-20 pt-5">
