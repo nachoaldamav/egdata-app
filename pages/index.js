@@ -194,7 +194,7 @@ export async function getStaticProps(ctx) {
   )
     .then((res) => res.json())
     .then((res) => {
-      return res.data.Catalog.searchStore.elements
+      return res.data.Catalog.searchStore.elements.reverse()
     })
 
   return {
