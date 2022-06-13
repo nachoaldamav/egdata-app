@@ -125,14 +125,14 @@ export default function Game({ id, trending, rated }) {
                           </span>
                           <div className="inline"> </div>
                           <div className="line-through inline">
-                            {game.price.totalPrice.fmtPrice.originalPrice}
+                            {game?.price?.totalPrice?.fmtPrice?.originalPrice || 0}
                           </div>
                         </div>
                       )}
                       <div className="text-gray-100 text-base inline">
                         {" "}
-                        {game.price.totalPrice.fmtPrice.originalPrice ===
-                        "0" ? (
+                        {game.price.totalPrice.originalPrice ===
+                        0 ? (
                           <div className="inline">Free</div>
                         ) : (
                           <div className="inline">
