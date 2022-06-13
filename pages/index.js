@@ -10,11 +10,12 @@ import RecommendedGames from "../components/RecommendedGames"
 import algoliasearch from "algoliasearch"
 import RatedGames from "../components/RatedGames"
 import findImage from "../utils/findImage"
+import FreeGames from "../components/FreeGames"
 
 const client = algoliasearch("0X90LHIM7C", "89a8fc95db44e802497a75305542c07b")
 const index = client.initIndex("games")
 
-export default function Game({ id, trending, rated }) {
+export default function Game({ trending, rated, freeGames }) {
   const { api, isLoading, isError } = useApi()
   if (isLoading) {
     return (
@@ -72,7 +73,7 @@ export default function Game({ id, trending, rated }) {
           `}
         </style>
 
-        <Banner />
+        <FreeGames data={freeGames} />
         <RecommendedGames data={data} />
         <RatedGames data={ratedGames} />
         <h1 className="text-2xl text-white text-left px-5 md:px-20 pt-5">
@@ -97,7 +98,7 @@ export default function Game({ id, trending, rated }) {
                     alt={game.title}
                     width={250}
                     height={333}
-                    placeholder="blur"
+                    placeholder="empty"
                     blurDataURL="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
                     quality={100}
                     layout="responsive"
@@ -125,14 +126,14 @@ export default function Game({ id, trending, rated }) {
                           </span>
                           <div className="inline"> </div>
                           <div className="line-through inline">
-                            {game?.price?.totalPrice?.fmtPrice?.originalPrice || 0}
+                            {game?.price?.totalPrice?.fmtPrice?.originalPrice ||
+                              0}
                           </div>
                         </div>
                       )}
                       <div className="text-gray-100 text-base inline">
                         {" "}
-                        {game.price.totalPrice.originalPrice ===
-                        0 ? (
+                        {game.price.totalPrice.originalPrice === 0 ? (
                           <div className="inline">Free</div>
                         ) : (
                           <div className="inline">
@@ -152,7 +153,7 @@ export default function Game({ id, trending, rated }) {
   )
 }
 
-function useApi(context) {
+function useApi() {
   let selectedCountry
   if (typeof window !== "undefined") {
     selectedCountry = localStorage.getItem("selectedCountry")
@@ -186,5 +187,21 @@ export async function getStaticProps(ctx) {
     .then(({ hits }) => {
       return hits
     })
-  return { props: { trending: res, rated: resRated }, revalidate: 3600 }
+
+  const freeGames = await fetch(
+    "https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions"
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      return res.data.Catalog.searchStore.elements
+    })
+
+  return {
+    props: {
+      trending: res,
+      rated: resRated,
+      freeGames: freeGames.filter((game) => game.promotions !== null),
+    },
+    revalidate: 3600,
+  }
 }
