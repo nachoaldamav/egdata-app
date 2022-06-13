@@ -17,7 +17,7 @@ export default function FreeGames({ data }) {
             }`}
             key={index}
           >
-            <a key={index} className="w-1/3 shrink-0 rounded-lg m-4">
+            <a key={index} className="w-96 xl:w-1/3 shrink-0 rounded-lg m-4">
               <img
                 className="w-full h-64 object-cover rounded-t-lg"
                 src={
