@@ -83,7 +83,7 @@ export class Navbar extends React.Component {
           </Link>
           <Link href="/top-sellers">
             <a className="text-white font-semibold rounded px-2 hover:bg-gray-500 inline-flex items-center gap-2">
-              <Activity height={27} width={27} /> Trending
+              <Activity height={27} width={27} /> Top sellers
             </a>
           </Link>
           <LoginComponent />
