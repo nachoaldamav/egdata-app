@@ -89,7 +89,9 @@ export default function Game({ trending, rated, freeGames }) {
             >
               <Link
                 href="/product/[id]"
-                as={`/product/${game.catalogNs.mappings[0].pageSlug}`}
+                as={`/product/${
+                  game.productSlug || game.catalogNs.mappings[0].pageSlug
+                }`}
               >
                 <a>
                   <Image
