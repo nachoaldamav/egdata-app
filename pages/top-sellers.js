@@ -72,7 +72,7 @@ export default function TopSellers({ data }) {
                   </div>
                   <div className="text-gray-200 text-base inline-flex w-full items-center justify-between">
                     {game.price}
-                    <Diff diff={game.diff} />
+                    <Diff diff={game.diff} pos={game.position} />
                   </div>
                 </div>
               </a>
@@ -84,12 +84,12 @@ export default function TopSellers({ data }) {
   )
 }
 
-function Diff({ diff }) {
-  if (diff > 0) {
+function Diff({ diff, pos }) {
+  if (diff > 0 || pos === diff) {
     return (
       <span className="text-green-500 inline-flex gap-1">
         <ArrowUp />
-        {diff}
+        {Math.abs(diff)}
       </span>
     )
   } else if (diff < 0) {
