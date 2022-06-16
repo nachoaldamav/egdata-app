@@ -71,7 +71,7 @@ export default function TopSellers({ data }) {
                     {game.title}
                   </div>
                   <div className="text-gray-200 text-base inline-flex w-full items-center justify-between">
-                    {game.price}
+                    {game.price === "0" ? "Free" : game.price}
                     <Diff diff={game.diff} pos={game.position} />
                   </div>
                 </div>
