@@ -85,7 +85,7 @@ export default function TopSellers({ data }) {
 }
 
 function Diff({ diff, pos }) {
-  if (diff > 0 || pos === diff) {
+  if (pos === Math.abs(diff) || diff > 0) {
     return (
       <span className="text-green-500 inline-flex gap-1">
         <ArrowUp />
