@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { useDetectAdBlock } from "adblock-detect-react"
+import Script from "next/script"
 
 const adUnitProps = {
   DEFAULT: {
-    "data-ad-slot": "7181773959",
+    "data-ad-slot": "9905170712",
     "data-ad-format": "auto",
     "data-full-width-responsive": "true",
   },
@@ -12,14 +13,6 @@ const adUnitProps = {
 export default function AdComponent({ variant = "DEFAULT" }) {
   const [failure, setFailure] = useState(false)
   const adBlockDetected = useDetectAdBlock()
-  useEffect(() => {
-    try {
-      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-    } catch (err) {
-      console.error(err)
-      setFailure(true)
-    }
-  }, [])
 
   return (
     <div
@@ -35,12 +28,19 @@ export default function AdComponent({ variant = "DEFAULT" }) {
           </p>
         </div>
       ) : (
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
-          {...adUnitProps[variant]}
-        />
+        <>
+          <ins
+            className="adsbygoogle"
+            style={{ display: "block" }}
+            data-ad-client="ca-pub-5821873603989488"
+            {...adUnitProps[variant]}
+          />
+          <Script id="ad" strategy="lazyOnload">
+            {`
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            `}
+          </Script>
+        </>
       )}
     </div>
   )
