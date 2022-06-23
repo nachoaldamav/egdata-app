@@ -16,11 +16,11 @@ export default function AdComponent({ variant = "DEFAULT" }) {
 
   return (
     <div
-      className="w-full h-fit flex flex-col text-white px-10 md:px-20 py-4 md:py-12 overflow-hidden"
+      className="w-full h-fit flex flex-col justify-center items-center text-white px-10 md:px-20 py-4 md:py-12 overflow-hidden"
       style={{ minWidth: "300px", minHeight: "250px" }}
       aria-hidden={true}
     >
-      <h4 className="text-sm font-medium">Ad</h4>
+      <h4 className="text-sm font-medium w-full text-left">Ad</h4>
       {adBlockDetected || failure ? (
         <div className="border-2 border-green-700 w-full h-24 flex flex-col items-center justify-center">
           <p className="text-sm text-white font-medium">
@@ -30,7 +30,7 @@ export default function AdComponent({ variant = "DEFAULT" }) {
       ) : (
         <>
           <ins
-            className="adsbygoogle self-center"
+            className="adsbygoogle w-full"
             style={{ display: "block" }}
             data-ad-client="ca-pub-5821873603989488"
             {...adUnitProps[variant]}
