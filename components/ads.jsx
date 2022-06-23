@@ -30,7 +30,7 @@ export default function AdComponent({ variant = "DEFAULT" }) {
       ) : (
         <>
           <ins
-            className="adsbygoogle"
+            className="adsbygoogle self-center"
             style={{ display: "block" }}
             data-ad-client="ca-pub-5821873603989488"
             {...adUnitProps[variant]}
