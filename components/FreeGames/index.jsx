@@ -33,8 +33,8 @@ export default function FreeGames({ data }) {
                   isUpcoming(item.promotions)
                     ? item.promotions.upcomingPromotionalOffers[0]
                         .promotionalOffers[0].startDate
-                    : item.promotions.promotionalOffers[0].promotionalOffers[0]
-                        .startDate
+                    : item.promotions?.promotionalOffers[0]
+                        ?.promotionalOffers[0].startDate
                 }
                 zeroPadTime={2}
                 renderer={renderer}
@@ -71,11 +71,12 @@ function ParseDates({ promotions }) {
     return (
       <p className="text-sm">
         {parseDate(
-          promotions.upcomingPromotionalOffers[0].promotionalOffers[0].startDate
+          promotions.upcomingPromotionalOffers[0]?.promotionalOffers[0]
+            ?.startDate
         )}{" "}
         -{" "}
         {parseDate(
-          promotions.upcomingPromotionalOffers[0].promotionalOffers[0].endDate
+          promotions.upcomingPromotionalOffers[0]?.promotionalOffers[0]?.endDate
         )}
       </p>
     )
@@ -83,11 +84,11 @@ function ParseDates({ promotions }) {
     return (
       <p className="text-sm">
         {parseDate(
-          promotions.promotionalOffers[0].promotionalOffers[0].startDate
+          promotions.promotionalOffers[0]?.promotionalOffers[0]?.startDate
         )}{" "}
         -{" "}
         {parseDate(
-          promotions.promotionalOffers[0].promotionalOffers[0].endDate
+          promotions.promotionalOffers[0]?.promotionalOffers[0]?.endDate
         )}
       </p>
     )
