@@ -12,7 +12,7 @@ export default async function API(req, res) {
   const variables = {
     category: "games/edition/base|software/edition/base",
     count: 100,
-    country,
+    country: country || "US",
     keywords: "",
     locale: "en-US",
     sortBy: "releaseDate",
@@ -30,6 +30,7 @@ export default async function API(req, res) {
     res.json(response.Catalog.searchStore.elements)
   } catch (error) {
     console.log(error)
-    res.json(error)
+    const data = error.data.Catalog.searchStore.elements
+    res.json(data || error)
   }
 }

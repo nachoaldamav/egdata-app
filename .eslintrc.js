@@ -34,5 +34,5 @@ module.exports = {
     "@next/next/no-img-element": RULES.WARNING,
     "react-hooks/rules-of-hooks": RULES.WARNING,
   },
-  parser: "babel-eslint",
+  parser: "@babel/eslint-parser",
 }
